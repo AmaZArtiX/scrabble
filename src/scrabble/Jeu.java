@@ -1,38 +1,49 @@
+// Classe principale du Scrabble : Jeu
+//
+// Auteur(s): LAMPE Ronan
+//
+//
+//
+//
+
+// Package
 package scrabble;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
+// Import(s)
+import java.util.Scanner;
 
 public class Jeu {
-	
-	//Fonction de lecture du dictionnaire
-	public static void lectureDico() {
-		Path path = Paths.get("files/dictionnaire/dico.txt");
-		
-		try {
-			//Ajout des mots du fichier .txt dans la liste "dico"
-			List<String> dico = Files.readAllLines(path);
-			
-			//Affichage du dictionnaire mot par mot
-			for (String mot:dico) {
-				System.out.println(mot);
-			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
 
+	//Fonction comprenant l'entrée d'un mot et la vérif. de son existence dans le dictionnaire
+	public static void recherche() {
+		//Déclaration du dictionnaire
+		Dictionnaire Dictionnaire = new Dictionnaire();
+		
+		//Fonction d'initialisation du dictionnaire
+		Dictionnaire.initDico();
+		
+		//Affichage de la proposition d'entrée
+		System.out.println("Veuillez entrer le mot recherché");
+		
+		//Lecture du mot entré (non sécurisé)
+		Scanner sc = new Scanner(System.in);
+		String mot = sc.nextLine().toUpperCase();
+		
+		//Affichage du résultat de la recherche
+		System.out.print("Résultat: ");
+		if(Dictionnaire.existe(mot)) System.out.println("Existe.\n");
+		else System.out.print("N'existe pas.");
+	}
+	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//Fonction de lecture du dictionnaire
-		lectureDico();
+		//Affichage du jeu
+		System.out.println("\nBienvenue dans le jeu Scrabble\n");
+		
+		//Test de la fonction "recherche"
+		recherche();
 	}
 
 }
