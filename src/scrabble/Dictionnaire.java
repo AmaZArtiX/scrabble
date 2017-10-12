@@ -1,10 +1,14 @@
-// Classe secondaire du Scrabble : Dictionnaire
-//
-// Auteur(s): LAMPE Ronan
-//
-//
-//
-//
+/*******************************************************************************
+Nom ................. : Dictionnaire
+
+Description ......... : Classe présentant tout les éléments relatifs au 
+						Dictionnaire
+
+Auteur(s) ........... : LAMPE Ronan
+
+Dernière modification : 12/10/2017
+
+*******************************************************************************/
 
 // Package
 package scrabble;
@@ -52,5 +56,10 @@ public class Dictionnaire {
 			if(mot.equals(motRech)) return true;
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Dictionnaire [" + Dico + "]";
 	}
 }
