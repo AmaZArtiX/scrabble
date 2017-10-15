@@ -1,12 +1,12 @@
 /*******************************************************************************
-Nom ................. : Dictionnaire
+Nom ................. : Dictionnaire.java
 
 Description ......... : Classe présentant tout les éléments relatifs au 
 						Dictionnaire
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 12/10/2017
+Dernière modification : 13/10/2017
 
 *******************************************************************************/
 
@@ -24,25 +24,25 @@ import java.util.List;
 
 public class Dictionnaire {
 
-	//Dictionnaire vide
+	// Dictionnaire vide
 	private List<String> Dico = new ArrayList<String>();
 	
-	//Fonction "set" du dictionnaire
+	// Fonction "set" du dictionnaire
 	public void setDico(List<String> dico) {
 		Dico = dico;
 	}
 	
-	//Fonction "get" du dictionnaire
+	// Fonction "get" du dictionnaire
 	public List<String> getDico() {
 		return Dico;
 	}
 	
-	//Fonction d'initialisation du dictionnaire
+	// Fonction d'initialisation du dictionnaire
 	public void initDico() {
 		Path path = Paths.get("files/dictionnaire/dico.txt");
 		
 		try {
-			//Ajout des mots du fichier .txt dans la liste "dico"
+			// Ajout des mots du fichier .txt dans la liste "dico"
 			Dico = Files.readAllLines(path, StandardCharsets.ISO_8859_1);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -50,7 +50,7 @@ public class Dictionnaire {
 		}		
 	}
 	
-	//Fonction de recherche d'un mot dans le dictionnaire
+	// Fonction de recherche d'un mot dans le dictionnaire
 	public boolean existe(String motRech) {
 		for (String mot : Dico) {
 			if(mot.equals(motRech)) return true;
