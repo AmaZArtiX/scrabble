@@ -23,17 +23,15 @@ import javafx.scene.control.TextField;
 public class JeuControlleur extends Jeu {
 
 	// Lien entre le fichier FXML et le Label lblResRech
-	@FXML
-	private Label lblResRech;
+	@FXML private Label lblResRech;
 	
 	// Lien entre le fichier FXML et le TextView motRech
-	@FXML
-	private TextField motRech;
+	@FXML private TextField motRech;
 	
 	// Fonction de vérification de l'existance d'un mot dans le Dictionnaire
 	public void verifExist(ActionEvent e) {
 		
-		if(Dictionnaire.existe(motRech.getText().toUpperCase())) lblResRech.setText("Existe");
+		if  (Dictionnaire.existe(motRech.getText().toUpperCase())) lblResRech.setText("Existe");
 		else lblResRech.setText("N'existe pas");
 		
 		motRech.setText("");
