@@ -45,7 +45,7 @@ public class AccueilControlleur extends Jeu {
 		Parent rootPrincipal = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
 		// Déclaration de la scène et insertion dans le primaryStage
-		Scene scenePrincipale = new Scene(rootPrincipal, 1000, 600);
+		Scene scenePrincipale = new Scene(rootPrincipal, 1280, 980);
 		
 		// Changement de la scène d'acceuil vers la scène principale
 		Stage primaryStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
