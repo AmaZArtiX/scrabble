@@ -9,15 +9,18 @@ Description ......... : Fichier .fxml comportant les éléments relatifs aux vis
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 13/10/2017
+Dernière modification : 17/10/2017
 
 *******************************************************************************/
 -->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,7 +31,7 @@ Dernière modification : 13/10/2017
 
 <AnchorPane maxHeight="980.0" maxWidth="1280.0" prefHeight="980.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.JeuControlleur">
    <children>
-      <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="980.0" prefWidth="1280.0">
+      <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="-0.5" layoutY="-0.5" prefHeight="980.0" prefWidth="1280.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="75.0" />
@@ -39,7 +42,26 @@ Dernière modification : 13/10/2017
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER" blendMode="SRC_ATOP" prefHeight="50.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="SCRABBLE" underline="true">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                     <children>
+                        <Separator prefWidth="300.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="300.0">
+                     <children>
+                        <ComboBox prefHeight="30.0" prefWidth="250.0" promptText="Nouvelle Partie" visibleRowCount="2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" blendMode="SRC_ATOP" prefHeight="75.0" prefWidth="200.0">
                      <children>
                         <Label text="Veuillez entrer ci-dessous le mot à rechercher :" textAlignment="CENTER" wrapText="true">
                            <font>
@@ -50,15 +72,16 @@ Dernière modification : 13/10/2017
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="motRech" onAction="#verifExist" prefHeight="40.0" prefWidth="210.0" />
+                        <TextField fx:id="motRech" onAction="#verifExist" prefHeight="40.0" prefWidth="280.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#verifExist" prefHeight="40.0" prefWidth="210.0" text="Rechercher">
+                        <Button mnemonicParsing="false" onAction="#verifExist" prefHeight="40.0" prefWidth="280.0" text="Rechercher">
                            <font>
                               <Font size="18.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" blendMode="SRC_ATOP" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
@@ -86,7 +109,8 @@ Dernière modification : 13/10/2017
                         <Button mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="210.0" text="Quitter">
                            <font>
                               <Font size="18.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -99,9 +123,6 @@ Dernière modification : 13/10/2017
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -116,14 +137,54 @@ Dernière modification : 13/10/2017
                 <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="98.0" prefWidth="960.0" spacing="25.0">
                      <children>
-                        <Label text="En construction">
+                        <Button mnemonicParsing="false" text="Dictionnaire">
                            <font>
-                              <Font name="System Bold" size="36.0" />
+                              <Font size="18.0" />
                            </font>
-                        </Label>
-                     </children></HBox>
+                        </Button>
+                        <HBox alignment="CENTER" prefWidth="10.0">
+                           <children>
+                              <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Score">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Joueur">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text=":">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefWidth="10.0">
+                           <children>
+                              <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" text="Professeur">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
                         <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity">
@@ -161,11 +222,29 @@ Dernière modification : 13/10/2017
                               <RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
                           </rowConstraints>
+                           <children>
+                              <ImageView fx:id="gridImgView00" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                           </children>
                         </GridPane>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                  <HBox alignment="CENTER" prefHeight="98.0" prefWidth="960.0" spacing="25.0" GridPane.rowIndex="2">
                      <children>
+                        <Button mnemonicParsing="false" text="Abandon">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Sac">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <HBox alignment="CENTER" prefWidth="10.0">
+                           <children>
+                              <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
+                           </children>
+                        </HBox>
                         <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
@@ -180,6 +259,21 @@ Dernière modification : 13/10/2017
                             <RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
+                        <HBox alignment="CENTER" prefWidth="10.0">
+                           <children>
+                              <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" text="Mélanger">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Jouer">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                </children>
