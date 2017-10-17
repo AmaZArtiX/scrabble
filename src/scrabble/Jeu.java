@@ -7,7 +7,7 @@ Description ......... : Classe principale comportant une itération de Dictionnai
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 13/10/2017
+Dernière modification : 17/10/2017
 
 *******************************************************************************/
 
@@ -28,6 +28,9 @@ public class Jeu extends Application {
 	
 	// Déclaration du nom du joueur
 	static String nomJoueur = "";
+	
+	// Déclaration du score du Joueur
+	static int scoreJoueur = 0;
 	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {		
