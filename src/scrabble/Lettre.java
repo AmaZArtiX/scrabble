@@ -34,5 +34,4 @@ public class Lettre {
 		this.nbFois = nbFois;
 	}
 	
-
 }

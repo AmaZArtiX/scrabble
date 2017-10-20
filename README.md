@@ -9,4 +9,4 @@ _Ce projet est un projet étudiant de Licence 3 Informatique (Valenciennes, Mont
 - Mr BAH Mamadou
 
 ### Professeur Référent :
-* Mr LECOMTE Sylvain
+- Mr LECOMTE Sylvain
