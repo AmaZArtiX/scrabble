@@ -184,7 +184,7 @@ Dernière modification : 17/10/2017
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: #007024;">
+                        <GridPane alignment="CENTER" gridLinesVisible="true" style="-fx-background-color: #007024; -fx-border-width: 5;">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="52.0" minWidth="52.0" prefWidth="52.0" />
@@ -220,14 +220,14 @@ Dernière modification : 17/10/2017
                               <RowConstraints maxHeight="52.0" minHeight="52.0" prefHeight="52.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="3">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -235,7 +235,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.columnIndex="7">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.columnIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -243,20 +243,20 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="11">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.columnIndex="14">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.columnIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -264,7 +264,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -272,7 +272,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="9" GridPane.rowIndex="1">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -280,7 +280,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="13" GridPane.rowIndex="1">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -288,7 +288,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="1" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -296,13 +296,13 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="6" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="8" GridPane.rowIndex="2">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="8" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -310,21 +310,21 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="2" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="12" GridPane.rowIndex="2">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="12" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="2" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="2" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.rowIndex="3">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -332,7 +332,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="7" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -340,14 +340,14 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="11" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="3" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="3" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="14" GridPane.rowIndex="3">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="14" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -356,7 +356,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -366,7 +366,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="10" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -376,7 +376,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="4" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -384,7 +384,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="5" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -392,7 +392,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="5" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="9" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -400,7 +400,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="5" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="13" GridPane.rowIndex="5">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="13" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -408,7 +408,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="5" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -416,13 +416,13 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="6" GridPane.rowIndex="6">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="8" GridPane.rowIndex="6">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="8" GridPane.rowIndex="6">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -430,21 +430,21 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="6" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="12" GridPane.rowIndex="6">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="12" GridPane.rowIndex="6">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="6" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="6" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.rowIndex="7">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.rowIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -460,21 +460,21 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="7" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="11" GridPane.rowIndex="7">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="11" GridPane.rowIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="7" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.columnIndex="14" GridPane.rowIndex="7">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.columnIndex="14" GridPane.rowIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="2" GridPane.rowIndex="8">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -482,13 +482,13 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="6" GridPane.rowIndex="8">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="6" GridPane.rowIndex="8">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="8" GridPane.rowIndex="8">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="8" GridPane.rowIndex="8">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -496,7 +496,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="8" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="12" GridPane.rowIndex="8">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="12" GridPane.rowIndex="8">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -504,7 +504,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="8" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -512,7 +512,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="5" GridPane.rowIndex="9">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -520,7 +520,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="9" GridPane.rowIndex="9">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="9" GridPane.rowIndex="9">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -528,7 +528,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="9" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="9" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="13" GridPane.rowIndex="9">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="13" GridPane.rowIndex="9">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -538,7 +538,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="4" GridPane.rowIndex="10">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="4" GridPane.rowIndex="10">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -548,7 +548,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="10" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="10" GridPane.rowIndex="10">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="10" GridPane.rowIndex="10">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -557,14 +557,14 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="10" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="10" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.rowIndex="11">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.rowIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="3" GridPane.rowIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -572,7 +572,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="11" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="7" GridPane.rowIndex="11">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="7" GridPane.rowIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -580,21 +580,21 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="11" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="11" GridPane.rowIndex="11">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="11" GridPane.rowIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="11" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="11" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="14" GridPane.rowIndex="11">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="14" GridPane.rowIndex="11">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="2" GridPane.rowIndex="12">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="2" GridPane.rowIndex="12">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -602,13 +602,13 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="12" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="6" GridPane.rowIndex="12">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="6" GridPane.rowIndex="12">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="12" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="8" GridPane.rowIndex="12">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="8" GridPane.rowIndex="12">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -616,7 +616,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="12" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="12" GridPane.rowIndex="12">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="12" GridPane.rowIndex="12">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -624,7 +624,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="12" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="13" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="1" GridPane.rowIndex="13">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -632,7 +632,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="13" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="5" GridPane.rowIndex="13">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="5" GridPane.rowIndex="13">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -640,7 +640,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="13" />
-                              <HBox style="-fx-background-color: #0090CD;" GridPane.columnIndex="9" GridPane.rowIndex="13">
+                              <HBox style="-fx-background-image: url('LT.png');" GridPane.columnIndex="9" GridPane.rowIndex="13">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -648,20 +648,20 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="13" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="13" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="13" GridPane.rowIndex="13">
+                              <HBox style="-fx-background-image: url('MD.png');" GridPane.columnIndex="13" GridPane.rowIndex="13">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="13" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.rowIndex="14">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.rowIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="14" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="3" GridPane.rowIndex="14">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="3" GridPane.rowIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -669,7 +669,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="14" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.columnIndex="7" GridPane.rowIndex="14">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.columnIndex="7" GridPane.rowIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
@@ -677,14 +677,14 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="14" />
-                              <HBox style="-fx-background-color: #97C5E6;" GridPane.columnIndex="11" GridPane.rowIndex="14">
+                              <HBox style="-fx-background-image: url('LD.png');" GridPane.columnIndex="11" GridPane.rowIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </HBox>
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="14" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="14" />
-                              <HBox style="-fx-background-color: #DC002F;" GridPane.columnIndex="14" GridPane.rowIndex="14">
+                              <HBox style="-fx-background-image: url('MT.png');" GridPane.columnIndex="14" GridPane.rowIndex="14">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
