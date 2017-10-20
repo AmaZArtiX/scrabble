@@ -13,7 +13,7 @@ public class sacALettres {
 	}
 
 
-//creation des lettres et remplissage du sac à lettre (102 lettres)
+// creation des lettres et remplissage du sac à lettre (102 lettres)
 	public void remplissageSac() {
         //initialisation des lettres
 		Lettre JOKER = new Lettre("*",0,2);
