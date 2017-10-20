@@ -2,7 +2,9 @@ package scrabble;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class sacALettres {
 	protected List<Lettre> lettres;
@@ -180,19 +182,42 @@ public class sacALettres {
         }
     }
 	
+	//Melange le contenu du sac pour bien piocher apres
+	public void melangerSac() {
+		Collections.shuffle(lettres);
+	}
+	
 	//verification si une lettre est dans le sac
 	public boolean contientLettre(Lettre lettre) {
 		return lettres.contains(lettre);
 	}
 
 	//retourne le nombre de lettre dans le sac (taille du sac)
-	public int nombreDeJetons(List<Lettre> lettres) {
+	public int nombreDeJetons() {
 		return lettres.size();
 	}
 	
 	//retourne true si le sac est vide, false sinon
-	public boolean vide(List<Lettre> lettres) {
+	public boolean estVide() {
 		if(lettres == null) return true;
 		return false;
 	}
+	
+	// Afficher le contenu du sac
+	public void afficherSac() {
+		for(Lettre L: lettres)
+		{
+			System.out.println(L.lettre);
+		}
+	}
+	
+	//tirer une lettre dans le sacAlettre
+	public Lettre tirerUneLettre() {
+		int taille = nombreDeJetons();
+		melangerSac(); // melange le contenu avant de tirer la lettre
+		Random rand = new Random();
+		int lettre = rand.nextInt(taille) + 1;
+		return lettres.remove(lettre);
+	}
+	
 }
