@@ -39,7 +39,7 @@ public class Dictionnaire {
 	
 	// Fonction d'initialisation du dictionnaire
 	public void initDico() {
-		Path path = Paths.get("files/dictionnaire/dico.txt");
+		Path path = Paths.get("dictionnaire/dico.txt");
 		
 		try {
 			// Ajout des mots du fichier .txt dans la liste "dico"
