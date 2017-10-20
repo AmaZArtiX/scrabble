@@ -1,11 +1,11 @@
 /*******************************************************************************
 Nom ................. : Tuile.java
 
-Description ......... : Classe présentant tout les éléments relatifs aux Tuiles
+Description ......... : Classe prï¿½sentant tout les ï¿½lï¿½ments relatifs aux Tuiles
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 18/10/2017
+Derniï¿½re modification : 18/10/2017
 
 *******************************************************************************/
 
@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 
 public class Tuile {
 
-	// Propriétés de Tuile
+	// Propriï¿½tï¿½s de Tuile
 	private char lettre;
 	private int valeur;
 	private Path img;
@@ -30,7 +30,7 @@ public class Tuile {
 		this.img = Paths.get("files/tuiles/*.png");
 	}
 	
-	// Constructeur par paramètres
+	// Constructeur par paramï¿½tres
 	public Tuile(char Lettre, int Valeur, Path Img) {
 		this.lettre = Lettre;
 		this.valeur = Valeur;
@@ -50,5 +50,10 @@ public class Tuile {
 	// Fonction retournant le chemain de l'image
 	public Path getImg() {
 		return img;
+	}
+
+	@Override
+	public String toString() {
+		return "Tuile [lettre=" + lettre + ", valeur=" + valeur + ", img=" + img + "]";
 	}
 }
