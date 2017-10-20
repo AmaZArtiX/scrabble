@@ -49,6 +49,7 @@ public class AccueilControlleur extends Jeu {
 		// Changement de la scène d'acceuil vers la scène principale
 		Stage stageJeu = (Stage) ((Node)e.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
+		stageJeu.setTitle("Plateau - Scrabble");
 		stageJeu.show();
 	}
 	

@@ -452,7 +452,7 @@ Dernière modification : 17/10/2017
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7" />
                               <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                              <HBox style="-fx-background-color: #E2B462;" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                              <HBox style="-fx-background-image: url('CD.png');" GridPane.columnIndex="7" GridPane.rowIndex="7">
                                  <children>
                                     <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
