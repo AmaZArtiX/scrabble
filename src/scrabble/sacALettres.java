@@ -1,3 +1,16 @@
+/*******************************************************************************
+Name................. : sacALettre.java
+
+Description ......... : Creation des lettres et remplissage du sac et quelques methodes
+
+@uthor... ........... : BAH Mamadou
+
+Version...............: 1.0
+
+Date..................: 20/10/2017
+
+*******************************************************************************/
+
 package scrabble;
 
 import java.util.ArrayList;
