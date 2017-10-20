@@ -1,3 +1,16 @@
+/*******************************************************************************
+Name................. : sacALettre.java
+
+Description ......... : Classe Lettre avec ses attributs et son constructer
+
+@uthor... ........... : BAH Mamadou
+
+Version...............: 1.0
+
+Date..................: 20/10/2017
+
+*******************************************************************************/
+
 package scrabble;
 
 public class Lettre {
