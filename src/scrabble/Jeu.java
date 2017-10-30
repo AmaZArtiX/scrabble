@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class Jeu extends Application {
 	
-	// Déclaration du dictionnaire
+	// D�claration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
 	// Déclaration du nom du Joueur

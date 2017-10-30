@@ -19,16 +19,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class sacALettres {
+public class Sac {
 	protected List<Lettre> lettres;
 
-	public sacALettres(List<Lettre> lettres) {
+	public Sac(List<Lettre> lettres) {
 		super();
 		this.lettres = new ArrayList<>();
 	}
 
-
-// creation des lettres et remplissage du sac à lettre (102 lettres)
+// creation des lettres et remplissage du sac Ã  lettre (102 lettres)
 	public void remplissageSac() {
         //initialisation des lettres
 		Lettre JOKER = new Lettre("*",0,2);
