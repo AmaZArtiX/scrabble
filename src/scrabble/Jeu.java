@@ -1,13 +1,13 @@
 /*******************************************************************************
 Nom ................. : Jeu.java
 
-Description ......... : Classe principale comportant une itération de Dictionnai
-						-re, la fonction main ainsi que la scène javafx principa
+Description ......... : Classe principale comportant une itï¿½ration de Dictionnai
+						-re, la fonction main ainsi que la scï¿½ne javafx principa
 						-le
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 17/10/2017
+Derniï¿½re modification : 17/10/2017
 
 *******************************************************************************/
 
@@ -23,14 +23,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Jeu extends Application {
-	
-	// Déclaration du dictionnaire
+
+	// Dï¿½claration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
-	// Déclaration du nom du joueur
+	// Dï¿½claration du nom du joueur
 	static String nomJoueur = "";
 	
-	// Déclaration du score du Joueur
+	// Dï¿½claration du score du Joueur
 	static int scoreJoueur = 0;
 	
 	// Ceci est la fonction principale du jeu
@@ -39,7 +39,7 @@ public class Jeu extends Application {
 		// Initialisation du dictionnaire
 		Dictionnaire.initDico();
 		
-		// Lancement de la fenêtre javafx --> fonction "start"
+		// Lancement de la fenï¿½tre javafx --> fonction "start"
 		launch(args);
 	}
 
@@ -47,10 +47,10 @@ public class Jeu extends Application {
 	@Override
 	public void start(Stage stageAccueil) throws Exception {
 		
-		// root de l'Accueil créé avec Scene Builder
+		// root de l'Accueil crï¿½ï¿½ avec Scene Builder
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
-		// Déclaration de la scène et insertion dans le primaryStage
+		// Dï¿½claration de la scï¿½ne et insertion dans le primaryStage
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
 		// Visualisation de stageAccueil
@@ -59,5 +59,4 @@ public class Jeu extends Application {
 		stageAccueil.setTitle("Accueil - Scrabble");
 		stageAccueil.show();
 	}
-
 }
