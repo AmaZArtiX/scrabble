@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class JeuControlleur extends Jeu {
@@ -41,7 +42,8 @@ public class JeuControlleur extends Jeu {
 		// Changement de la scène d'acceuil vers la scène principale
 		Stage stageDictionnaire = new Stage();
 		stageDictionnaire.setScene(scene);
-		stageDictionnaire.setTitle("Scrabble - Dictionnaire");
+		stageDictionnaire.getIcons().add(new Image("S.png"));
+		stageDictionnaire.setTitle("Dictionnaire - Scrabble");
 		stageDictionnaire.show();
 	}
 	
@@ -51,6 +53,7 @@ public class JeuControlleur extends Jeu {
 		System.exit(0);
 	}
 	
+	// Fonction d'initialisation de la fenêtre de Jeu
 	public void initialize() {
 		
 		lblScoreJ.setText("Score du Joueur \"" + nomJoueur + "\" : " + Integer.toString(scoreJoueur));

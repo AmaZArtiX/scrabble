@@ -19,6 +19,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Jeu extends Application {
@@ -44,7 +45,7 @@ public class Jeu extends Application {
 
 	// Fonction permettant le lancement de l'application
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage stageAccueil) throws Exception {
 		
 		// root de l'Accueil cr�� avec Scene Builder
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
@@ -52,9 +53,10 @@ public class Jeu extends Application {
 		// D�claration de la sc�ne et insertion dans le primaryStage
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
-		// Visualisation du primaryStage
-		primaryStage.setScene(sceneAccueil);
-		primaryStage.setTitle("Scrabble");
-		primaryStage.show();
+		// Visualisation de stageAccueil
+		stageAccueil.setScene(sceneAccueil);
+		stageAccueil.getIcons().add(new Image("S.png"));
+		stageAccueil.setTitle("Accueil - Scrabble");
+		stageAccueil.show();
 	}
 }
