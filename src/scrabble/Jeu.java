@@ -1,13 +1,13 @@
 /*******************************************************************************
 Nom ................. : Jeu.java
 
-Description ......... : Classe principale comportant une it�ration de Dictionnai
-						-re, la fonction main ainsi que la sc�ne javafx principa
+Description ......... : Classe principale comportant une itération de Dictionnai
+						-re, la fonction main ainsi que la scène javafx principa
 						-le
 
 Auteur(s) ........... : LAMPE Ronan
 
-Derni�re modification : 17/10/2017
+Dernière modification : 17/10/2017
 
 *******************************************************************************/
 
@@ -39,7 +39,7 @@ public class Jeu extends Application {
 		// Initialisation du dictionnaire
 		Dictionnaire.initDico();
 		
-		// Lancement de la fen�tre javafx --> fonction "start"
+		// Lancement de la fenêtre javafx --> fonction "start"
 		launch(args);
 	}
 
@@ -50,7 +50,7 @@ public class Jeu extends Application {
 		// root de l'Accueil créé avec Scene Builder
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
-		// Déclaration de la scéne et insertion dans le primaryStage
+		// Déclaration de la scène et insertion dans le primaryStage
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
 		// Visualisation de stageAccueil
