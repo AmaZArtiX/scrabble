@@ -27,7 +27,7 @@ public class Sac {
 		this.lettres = new ArrayList<>();
 	}
 
-// creation des lettres et remplissage du sac � lettre (102 lettres)
+// creation des lettres et remplissage du sac à lettre (102 lettres)
 	public void remplissageSac() {
         //initialisation des lettres
 		Lettre JOKER = new Lettre("*",0,2);
