@@ -1,13 +1,13 @@
 /*******************************************************************************
 Nom ................. : Jeu.java
 
-Description ......... : Classe principale comportant une it�ration de Dictionnai
-						-re, la fonction main ainsi que la sc�ne javafx principa
+Description ......... : Classe principale comportant une itération de Dictionnai
+						-re, la fonction main ainsi que la scène javafx principa
 						-le
 
 Auteur(s) ........... : LAMPE Ronan
 
-Derni�re modification : 17/10/2017
+Dernière modification : 17/10/2017
 
 *******************************************************************************/
 
@@ -23,14 +23,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Jeu extends Application {
-
-	// D�claration du dictionnaire
+	
+	// Déclaration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
-	// D�claration du nom du joueur
+	// Déclaration du nom du Joueur
 	static String nomJoueur = "";
 	
-	// D�claration du score du Joueur
+	// Déclaration du score du Joueur
 	static int scoreJoueur = 0;
 	
 	// Ceci est la fonction principale du jeu
@@ -39,7 +39,7 @@ public class Jeu extends Application {
 		// Initialisation du dictionnaire
 		Dictionnaire.initDico();
 		
-		// Lancement de la fen�tre javafx --> fonction "start"
+		// Lancement de la fenêtre javafx --> fonction "start"
 		launch(args);
 	}
 
@@ -47,10 +47,10 @@ public class Jeu extends Application {
 	@Override
 	public void start(Stage stageAccueil) throws Exception {
 		
-		// root de l'Accueil cr�� avec Scene Builder
+		// root de l'Accueil créé avec Scene Builder
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
-		// D�claration de la sc�ne et insertion dans le primaryStage
+		// Déclaration de la scène et insertion dans le primaryStage
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
 		// Visualisation de stageAccueil
