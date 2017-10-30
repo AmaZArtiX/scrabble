@@ -59,5 +59,4 @@ public class Jeu extends Application {
 		stageAccueil.setTitle("Accueil - Scrabble");
 		stageAccueil.show();
 	}
-
 }
