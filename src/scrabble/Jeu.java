@@ -24,13 +24,13 @@ import javafx.stage.Stage;
 
 public class Jeu extends Application {
 
-	// Dï¿½claration du dictionnaire
+	// Déclaration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
-	// Dï¿½claration du nom du joueur
+	// Déclaration du nom du joueur
 	static String nomJoueur = "";
 	
-	// Dï¿½claration du score du Joueur
+	// Déclaration du score du Joueur
 	static int scoreJoueur = 0;
 	
 	// Ceci est la fonction principale du jeu
