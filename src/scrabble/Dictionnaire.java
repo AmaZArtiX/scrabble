@@ -1,12 +1,12 @@
 /*******************************************************************************
 Nom ................. : Dictionnaire.java
 
-Description ......... : Classe présentant tout les éléments relatifs au 
+Description ......... : Classe prï¿½sentant tout les ï¿½lï¿½ments relatifs au 
 						Dictionnaire
 
 Auteur(s) ........... : LAMPE Ronan
 
-Dernière modification : 13/10/2017
+Derniï¿½re modification : 13/10/2017
 
 *******************************************************************************/
 
@@ -49,7 +49,8 @@ public class Dictionnaire {
 			e.printStackTrace();
 		}		
 	}
-	
+	/*
+	 * 
 	// Fonction de recherche d'un mot dans le dictionnaire
 	public boolean existe(String motRech) {
 		for (String mot : Dico) {
@@ -57,6 +58,34 @@ public class Dictionnaire {
 		}
 		return false;
 	}
+	*/
+	
+	public boolean existe(String mot) {
+		
+		boolean trouve;
+		int debut;
+		int milieu;
+		int fin;
+		
+		trouve = false;
+		debut = 0;
+		fin = Dico.size();
+		
+		while(!trouve && ((fin - debut) > 1)) {
+			
+			milieu = (debut+fin)/2;
+			trouve = (Dico.get(milieu).equals(mot));
+			
+			if(Dico.get(milieu).compareTo(mot) > 0)
+				fin = milieu;
+			else
+				debut = milieu;
+		}
+		
+		return trouve;
+	}
+	
+	
 
 	@Override
 	public String toString() {
