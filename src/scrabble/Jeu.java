@@ -50,13 +50,14 @@ public class Jeu extends Application {
 		// root de l'Accueil créé avec Scene Builder
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
-		// Déclaration de la scène et insertion dans le primaryStage
+		// Déclaration de la scène et insertion dans le stageAccueil
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
 		// Visualisation de stageAccueil
 		stageAccueil.setScene(sceneAccueil);
 		stageAccueil.getIcons().add(new Image("S.png"));
 		stageAccueil.setTitle("Accueil - Scrabble");
+		stageAccueil.setResizable(false);
 		stageAccueil.show();
 	}
 }

@@ -20,7 +20,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class DictionnaireControlleur extends Jeu{
+public class DictionnaireControleur extends Jeu{
 
 	// Lien entre le fichier FXML et le Label lblResRech
 	@FXML private Label lblResRech;

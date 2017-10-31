@@ -26,7 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AccueilControlleur extends Jeu {
+public class AccueilControleur extends Jeu {
 
 	// Lien entre le fichier FXML et le TextField nomTxtJoueur
 	@FXML private TextField nomTxtJoueur;
@@ -50,6 +50,11 @@ public class AccueilControlleur extends Jeu {
 		Stage stageJeu = (Stage) ((Node)e.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
+		stageJeu.setResizable(true);
+		stageJeu.setMaxWidth(1280);
+		stageJeu.setMaxHeight(980);
+		stageJeu.setMinWidth(1024);
+		stageJeu.setMinHeight(512);
 		stageJeu.show();
 	}
 	

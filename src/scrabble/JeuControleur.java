@@ -25,7 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class JeuControlleur extends Jeu {
+public class JeuControleur extends Jeu {
 
 	// Lien entre le fichier FXML et le Label lbl
 	@FXML private Label lblScoreJ;
@@ -44,6 +44,7 @@ public class JeuControlleur extends Jeu {
 		stageDictionnaire.setScene(scene);
 		stageDictionnaire.getIcons().add(new Image("S.png"));
 		stageDictionnaire.setTitle("Dictionnaire - Scrabble");
+		stageDictionnaire.setResizable(false);
 		stageDictionnaire.show();
 	}
 	
