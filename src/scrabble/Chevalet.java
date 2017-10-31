@@ -1,17 +1,19 @@
-/**************************************************************
- * Chevalet 
- * 
- * Support contenant les 7 tuiles dont le joueur dispose 
- * tout au long du jeu.
- * 
- * Copyright © 20 octobre 2017 @author Simon BACQUET
- * @version 1.0.0
- */
-
+// Package
 package scrabble;
 
+// Import(s)
 import java.util.ArrayList;
 import java.util.Collections;
+
+/*************************************************************************
+ * Nom ...........: Chevalet.java
+ * Description ...: Ensemble de tuiles dont dispose le joueur durant la 
+ * ...............: partie, il en possede 7 constamment
+ * ...............:
+ * Auteur(s) .....: SIMON BACQUET
+ * Version .......: 1.0
+ * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ ************************************************************************/
 
 public class Chevalet {
 	
@@ -20,13 +22,13 @@ public class Chevalet {
 	// Taille constante du chevalet tout au long du jeu 
 	private final int TAILLE = 7;
 	
-	// Constructeur sans paramètre
+	// Constructeur sans parametre
 	Chevalet(){
 		
 		this.chevalet = new ArrayList<Tuile>();
 	}
 	
-	// Constructeur avec un chevalet en paramètre 
+	// Constructeur avec un chevalet en parametre 
 	Chevalet(ArrayList<Tuile> chevalet){
 		
 		this.chevalet = chevalet;
@@ -52,19 +54,19 @@ public class Chevalet {
 		return this.chevalet.size();
 	}
 	
-	// Retourne la tuile correspondante à l'indice donné 
+	// Retourne la tuile correspondante a l'indice donne 
 	public Tuile getObjet(int i) {
 		
 		return this.chevalet.get(i);
 	}
 	
-	// Retourne l'indice de la tuile donnée 
+	// Retourne l'indice de la tuile donnee 
 	public int getIndex(Tuile t) {
 		
 		return this.chevalet.indexOf(t);
 	}
 	
-	// Retourne un boolean selon l'état de la liste (#t = vide)
+	// Retourne un boolean selon l'etat de la liste (#t = vide)
 	public boolean estVide(){
 		
 		return this.chevalet.isEmpty();
@@ -76,13 +78,14 @@ public class Chevalet {
 		this.chevalet.clear();
 	}
 	
-	// Supprime l'objet à l'indice i
+	// Supprime l'objet a l'indice i
 	public void supprimerObjet(int i) {
 		
 		this.chevalet.remove(i);
 	}
 	
-	// Mélange les tuile de la liste 
+	
+	// Melange les tuile de la liste 
 	public void melanger() {
 		
 		Collections.shuffle(chevalet);

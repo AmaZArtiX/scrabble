@@ -1,33 +1,32 @@
-/*
-Nom de la classe : Joueur
-
-Classe "Joueur" comprenant les caractéristiques de celui ci
-et les fonctions qui lui sont associées
-
-Auteur : Chtairi Yacine
-
-Dernière modification : 20/10/2017
- */ 
-
+// Package
 package scrabble;
+
+/*************************************************************************
+ * Nom ...........: Joueur.java
+ * Description ...: Classe "Joueur" comprenant les caracteristiques de celui ci
+ * ...............: et les fonctions qui lui sont associees
+ * ...............:
+ * Auteur(s) .....: YACINE CHTAIRI
+ * Version .......: 1.0
+ * Copyright .....: Â© 2017 YACINE CHTAIRI ALL RIGHTS RESERVED
+ ************************************************************************/
 
 public class Joueur {
 
-	//Propriétés du joueur
+	// Proprietes du joueur
 	private String nom;
 	private int score;
-	//Ajouter :    "Un joueur a un chevalet"
-				 //"Un joueur a un nombre d'aides limité"
-				 //"Un joueur a un historique"
+	/* Ajouter : "Un joueur a un chevalet"
+				 "Un joueur a un nombre d'aides limite"
+				 "Un joueur a un historique" */
 					 
-		
-	//Constructeur sans paramètres
+	// Constructeur sans parametres
 	public Joueur() {
 		this.nom =  "";
 		this.score = 0;
 	}
 	
-	//Constructeur avec paramètres
+	// Constructeur avec parametres
 	public Joueur(String nom, int score) {
 		this.nom = nom;
 		this.score = score;

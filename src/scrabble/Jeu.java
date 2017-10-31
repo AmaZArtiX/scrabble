@@ -1,16 +1,3 @@
-/*******************************************************************************
-Nom ................. : Jeu.java
-
-Description ......... : Classe principale comportant une itération de Dictionnai
-						-re, la fonction main ainsi que la scène javafx principa
-						-le
-
-Auteur(s) ........... : LAMPE Ronan
-
-Dernière modification : 17/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
@@ -22,15 +9,25 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/*************************************************************************
+ * Nom ...........: Jeu.java
+ * Description ...: Classe principale comportant une itération de Dictionnai
+ * ...............: Dictionnaire, la fonction main ainsi que la scène javafx 
+ * ...............: principale
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: © 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
+
 public class Jeu extends Application {
 	
-	// D�claration du dictionnaire
+	// Declaration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
-	// Déclaration du nom du Joueur
+	// Declaration du nom du Joueur
 	static String nomJoueur = "";
 	
-	// Déclaration du score du Joueur
+	// Declaration du score du Joueur
 	static int scoreJoueur = 0;
 	
 	// Ceci est la fonction principale du jeu
@@ -39,7 +36,7 @@ public class Jeu extends Application {
 		// Initialisation du dictionnaire
 		Dictionnaire.initDico();
 		
-		// Lancement de la fenêtre javafx --> fonction "start"
+		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
 	}
 
@@ -47,10 +44,10 @@ public class Jeu extends Application {
 	@Override
 	public void start(Stage stageAccueil) throws Exception {
 		
-		// root de l'Accueil créé avec Scene Builder
+		// root de l'Accueil cree avec Scene Builder (Accueil.fxml)
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
-		// Déclaration de la scène et insertion dans le stageAccueil
+		// Declaration de la scene
 		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
 		
 		// Visualisation de stageAccueil
