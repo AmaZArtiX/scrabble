@@ -1,15 +1,3 @@
-/*******************************************************************************
-Nom ................. : AccueilControlleur.java
-
-Description ......... : Classe comportant les fonctions de contrôle utilisées
-						par l'application lors d'un événement (clic sur un bout
-						-on, etc...) de la scène Accueil
-
-Auteur(s) ........... : LAMPE Ronan
-
-Dernière modification : 17/10/2017
-
-*******************************************************************************/
 
 // Package
 package scrabble;
@@ -26,6 +14,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/*************************************************************************
+ * Nom ...........: AccueilControlleur.java
+ * Description ...: Classe comportant les fonctions de contrï¿½le utilisï¿½es
+ * ...............: par l'application lors d'un ï¿½vï¿½nement (clic sur un bout
+ * ...............: -on, etc...) de la scï¿½ne Accueil
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: Â© 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
+
 public class AccueilControlleur extends Jeu {
 
 	// Lien entre le fichier FXML et le TextField nomTxtJoueur
@@ -34,26 +32,26 @@ public class AccueilControlleur extends Jeu {
 	// Lien entre le fichier FXML et le Button lanJeu
 	@FXML private Button lanJeu;
 	
-	// Fonction permettant d'accèder à l'écran de jeu
+	// Fonction permettant d'accï¿½der ï¿½ l'ï¿½cran de jeu
 	public void gotoJeu(ActionEvent e) throws IOException {
 		
-		// On récupère le nom du joueur
+		// On rï¿½cupï¿½re le nom du joueur
 		nomJoueur = nomTxtJoueur.getText();
 		
-		// Test root créé avec Scene Builder
+		// Test root crï¿½ï¿½ avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
-		// Déclaration de la scène et insertion dans le primaryStage
+		// Dï¿½claration de la scï¿½ne et insertion dans le primaryStage
 		Scene scene = new Scene(root, 1280, 980);
 		
-		// Changement de la scène d'acceuil vers la scène principale
+		// Changement de la scï¿½ne d'acceuil vers la scï¿½ne principale
 		Stage stageJeu = (Stage) ((Node)e.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
 		stageJeu.show();
 	}
 	
-	// Fonction de vérification de la longueur du nom du joueur
+	// Fonction de vï¿½rification de la longueur du nom du joueur
 	public void lettreEntree(ActionEvent e) {
 		
 		if (nomTxtJoueur.getLength() > 1) lanJeu.setDisable(false);

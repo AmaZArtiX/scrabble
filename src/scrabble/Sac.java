@@ -1,16 +1,3 @@
-/*******************************************************************************
-Name................. : sacALettre.java
-
-Description ......... : Creation des lettres et remplissage du sac et quelques methodes
-
-@uthor... ........... : BAH Mamadou
-
-Version...............: 1.0
-
-Date..................: 20/10/2017
-
-*******************************************************************************/
-
 package scrabble;
 
 import java.util.ArrayList;
@@ -19,212 +6,156 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/*************************************************************************
+ * Nom ...........: Sac.java
+ * Description ...: Sac dans lequel les joueurs piochent les tuiles (102 
+ * ...............: au total) pour les ajouter à leur chevalet
+ * ...............:
+ * Auteur(s) .....: MAMADOU BAH
+ * Version .......: 1.0
+ * Copyright .....: © 2017 MAMADOU BAH ALL RIGHTS RESERVED
+ ************************************************************************/
+
 public class Sac {
-	protected List<Lettre> lettres;
-
-	public Sac(List<Lettre> lettres) {
-		super();
-		this.lettres = new ArrayList<>();
+	
+	// Liste de tuiles
+	protected ArrayList<Tuile> lettres;
+	
+	// Constructeur sans paramètre
+	public Sac() {
+		
+		lettres = new ArrayList<Tuile>();
+		remplissage();
 	}
-
-// creation des lettres et remplissage du sac à lettre (102 lettres)
-	public void remplissageSac() {
-        //initialisation des lettres
-		Lettre JOKER = new Lettre("*",0,2);
-		Lettre A = new Lettre("A",1,9);
-		Lettre B = new Lettre("B",3,2);
-		Lettre C = new Lettre("C",3,2);
-		Lettre D = new Lettre("D",2,3);
-		Lettre E = new Lettre("E",1,51);
-        Lettre F = new Lettre("F",4,2);
-        Lettre G = new Lettre("G",2,2);
-        Lettre H = new Lettre("H",4,2);
-		Lettre I = new Lettre("I",1,8);
-		Lettre J = new Lettre("J",8,1);
-		Lettre K = new Lettre("K",10,1);
-		Lettre L = new Lettre("L",1,5);
-		Lettre M = new Lettre("M",2,3);
-		Lettre N = new Lettre("N",1,6);
-		Lettre O = new Lettre("O",1,6);
-		Lettre P = new Lettre("P",3,2);
-		Lettre Q = new Lettre("Q",8,1);
-		Lettre R = new Lettre("R",1,6);
-		Lettre S = new Lettre("S",1,6);
-		Lettre T = new Lettre("T",1,6);
-		Lettre U = new Lettre("U",1,6);
-		Lettre V = new Lettre("V",4,2);
-	    Lettre W = new Lettre("W",10,1);
-	    Lettre X = new Lettre("X",10,1);
-		Lettre Y = new Lettre("Y",10,1);
-		Lettre Z = new Lettre("Z",10,1);
-        
-		//Remplissage
-        for(int i=0; i < JOKER.nbFois; i++){
-			lettres.add(JOKER);			
-			}
-        int i;
-        for(i = 0; i < A.nbFois; i++)
-        {
-        	lettres.add(A);
-        }
-        
-        for(i = 0; i < B.nbFois; i++)
-        {
-        	lettres.add(B);
-        }
-        
-        for(i = 0; i < C.nbFois; i++)
-        {
-        	lettres.add(C);
-        }
-        
-        for(i = 0; i < D.nbFois; i++)
-        {
-        	lettres.add(D);
-        }
-        
-        for(i = 0; i < E.nbFois; i++)
-        {
-        	lettres.add(E);
-        }
-        
-        for(i = 0; i < F.nbFois; i++)
-        {
-        	lettres.add(F);
-        }
-        
-        for(i = 0; i < G.nbFois; i++)
-        {
-        	lettres.add(G);
-        }
-        
-        for(i = 0; i < H.nbFois; i++)
-        {
-        	lettres.add(H);
-        }
-        
-        for(i = 0; i < I.nbFois; i++)
-        {
-        	lettres.add(I);
-        }
-        
-        for(i = 0; i < J.nbFois; i++)
-        {
-        	lettres.add(J);
-        }
-        
-        for(i = 0; i < K.nbFois; i++)
-        {
-        	lettres.add(K);
-        }
-        
-        for(i = 0; i < L.nbFois; i++)
-        {
-        	lettres.add(L);
-        }
-        
-        for(i = 0; i < M.nbFois; i++)
-        {
-        	lettres.add(M);
-        }
-        
-        for(i = 0; i < N.nbFois; i++)
-        {
-        	lettres.add(N);
-        }
-        
-        for(i = 0; i < O.nbFois; i++)
-        {
-        	lettres.add(O);
-        }
-        
-        for(i = 0; i < P.nbFois; i++)
-        {
-        	lettres.add(P);
-        }
-        
-        for(i = 0; i < Q.nbFois; i++)
-        {
-        	lettres.add(Q);
-        }
-        
-        for(i = 0; i < R.nbFois; i++)
-        {
-        	lettres.add(R);
-        }
-        
-        for(i = 0; i < S.nbFois; i++)
-        {
-        	lettres.add(S);
-        }
-        
-        for(i = 0; i < T.nbFois; i++)
-        {
-        	lettres.add(T);
-        }
-        
-        for(i = 0; i < U.nbFois; i++)
-        {
-        	lettres.add(U);
-        }
-        
-        for(i = 0; i < V.nbFois; i++)
-        {
-        	lettres.add(V);
-        }
-        
-        for(i = 0; i < W.nbFois; i++)
-        {
-        	lettres.add(W);
-        }
-        
-        for(i = 0; i < X.nbFois; i++)
-        {
-        	lettres.add(X);
-        }
-        
-        for(i = 0; i < Y.nbFois; i++)
-        {
-        	lettres.add(Y);
-        }
-        
-        for(i = 0; i < Z.nbFois; i++)
-        {
-        	lettres.add(Z);
-        }
+	
+	// Constructeur avec une liste de tuile en entrée
+	public Sac(ArrayList<Tuile> _lettres) {
+		
+		lettres = _lettres;
+	}
+	
+	// Création des tuiles et remplissage du sac
+	public void remplissage() {
+		
+		for(int i = 1; i <= Lettre.A.nombre; i++)
+			lettres.add(new Tuile('A', Lettre.A.valeur, Lettre.A.img));
+		
+		for(int i = 1; i <= Lettre.B.nombre; i++)
+			lettres.add(new Tuile('B', Lettre.B.valeur, Lettre.B.img));
+		
+		for(int i = 1; i <= Lettre.C.nombre; i++)
+			lettres.add(new Tuile('C', Lettre.C.valeur, Lettre.C.img));
+		
+		for(int i = 1; i <= Lettre.D.nombre; i++)
+			lettres.add(new Tuile('D', Lettre.D.valeur, Lettre.D.img));
+		
+		for(int i = 1; i <= Lettre.E.nombre; i++)
+			lettres.add(new Tuile('E', Lettre.E.valeur, Lettre.E.img));
+		
+		for(int i = 1; i <= Lettre.F.nombre; i++)
+			lettres.add(new Tuile('F', Lettre.F.valeur, Lettre.F.img));
+		
+		for(int i = 1; i <= Lettre.G.nombre; i++)
+			lettres.add(new Tuile('G', Lettre.G.valeur, Lettre.G.img));
+		
+		for(int i = 1; i <= Lettre.H.nombre; i++)
+			lettres.add(new Tuile('H', Lettre.H.valeur, Lettre.H.img));
+		
+		for(int i = 1; i <= Lettre.I.nombre; i++)
+			lettres.add(new Tuile('I', Lettre.I.valeur, Lettre.I.img));
+		
+		for(int i = 1; i <= Lettre.J.nombre; i++)
+			lettres.add(new Tuile('J', Lettre.J.valeur, Lettre.J.img));
+		
+		for(int i = 1; i <= Lettre.K.nombre; i++)
+			lettres.add(new Tuile('K', Lettre.K.valeur, Lettre.K.img));
+		
+		for(int i = 1; i <= Lettre.L.nombre; i++)
+			lettres.add(new Tuile('L', Lettre.L.valeur, Lettre.L.img));
+		
+		for(int i = 1; i <= Lettre.M.nombre; i++)
+			lettres.add(new Tuile('M', Lettre.M.valeur, Lettre.M.img));
+		
+		for(int i = 1; i <= Lettre.N.nombre; i++)
+			lettres.add(new Tuile('N', Lettre.N.valeur, Lettre.N.img));
+		
+		for(int i = 1; i <= Lettre.O.nombre; i++)
+			lettres.add(new Tuile('O', Lettre.O.valeur, Lettre.O.img));
+		
+		for(int i = 1; i <= Lettre.P.nombre; i++)
+			lettres.add(new Tuile('P', Lettre.P.valeur, Lettre.P.img));
+		
+		for(int i = 1; i <= Lettre.Q.nombre; i++)
+			lettres.add(new Tuile('Q', Lettre.Q.valeur, Lettre.Q.img));
+		
+		for(int i = 1; i <= Lettre.R.nombre; i++)
+			lettres.add(new Tuile('R', Lettre.R.valeur, Lettre.R.img));
+		
+		for(int i = 1; i <= Lettre.S.nombre; i++)
+			lettres.add(new Tuile('S', Lettre.S.valeur, Lettre.S.img));
+		
+		for(int i = 1; i <= Lettre.T.nombre; i++)
+			lettres.add(new Tuile('T', Lettre.T.valeur, Lettre.T.img));
+		
+		for(int i = 1; i <= Lettre.U.nombre; i++)
+			lettres.add(new Tuile('U', Lettre.U.valeur, Lettre.U.img));
+		
+		for(int i = 1; i <= Lettre.V.nombre; i++)
+			lettres.add(new Tuile('V', Lettre.V.valeur, Lettre.V.img));
+		
+		for(int i = 1; i <= Lettre.W.nombre; i++)
+			lettres.add(new Tuile('W', Lettre.W.valeur, Lettre.W.img));
+		
+		for(int i = 1; i <= Lettre.X.nombre; i++)
+			lettres.add(new Tuile('X', Lettre.X.valeur, Lettre.X.img));
+		
+		for(int i = 1; i <= Lettre.Y.nombre; i++)
+			lettres.add(new Tuile('Y', Lettre.Y.valeur, Lettre.Y.img));
+		
+		for(int i = 1; i <= Lettre.Z.nombre; i++)
+			lettres.add(new Tuile('Z', Lettre.Z.valeur, Lettre.Z.img));
+		
+		for(int i = 1; i <= Lettre.JOCKER.nombre; i++)
+			lettres.add(new Tuile('*', Lettre.JOCKER.valeur, Lettre.JOCKER.img));
     }
 	
 	//Melange le contenu du sac pour bien piocher apres
 	public void melangerSac() {
+		
 		Collections.shuffle(lettres);
 	}
 	
 	//verification si une lettre est dans le sac
-	public boolean contientLettre(Lettre lettre) {
+	public boolean contientLettre(TuileBis lettre) {
+		
 		return lettres.contains(lettre);
 	}
 
 	//retourne le nombre de lettre dans le sac (taille du sac)
 	public int nombreDeJetons() {
+		
 		return lettres.size();
 	}
 	
 	//retourne true si le sac est vide, false sinon
 	public boolean estVide() {
-		if(lettres == null) return true;
+		
+		if(lettres == null) 
+			return true;
+		
 		return false;
 	}
 	
 	// Afficher le contenu du sac
 	public void afficherSac() {
-		for(Lettre L: lettres)
+		for(Tuile t: lettres)
 		{
-			System.out.println(L.lettre);
+			System.out.println(t);
 		}
 	}
 	
 	//tirer une lettre dans le sacAlettre
-	public Lettre tirerUneLettre() {
+	public Tuile tirerUneLettre() {
 		int taille = nombreDeJetons();
 		melangerSac(); // melange le contenu avant de tirer la lettre
 		Random rand = new Random();

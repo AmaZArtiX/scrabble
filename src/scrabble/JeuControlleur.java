@@ -1,16 +1,3 @@
-/*******************************************************************************
-Nom ................. : JeuControlleur.java
-
-Description ......... : Classe comportant les fonctions de contrôle utilisées
-						par l'application lors d'un événement (clic sur un bout
-						-on, etc...) de la scène Jeu
-
-Auteur(s) ........... : LAMPE Ronan
-
-Dernière modification : 13/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
@@ -25,21 +12,31 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/*************************************************************************
+ * Nom ...........: JeuControlleur.java
+ * Description ...: Classe comportant les fonctions de contrï¿½le utilisï¿½es
+ * ...............: par l'application lors d'un ï¿½vï¿½nement (clic sur un bout
+ * ...............: bouton, etc...) de la scï¿½ne Jeu
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: Â© 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
+
 public class JeuControlleur extends Jeu {
 
 	// Lien entre le fichier FXML et le Label lbl
 	@FXML private Label lblScoreJ;
 	
-	// Fonction permettant d'accèder au dictionnaire
+	// Fonction permettant d'accï¿½der au dictionnaire
 	public void gotoDictionnaire(ActionEvent e) throws IOException {
 		
-		// Test root créé avec Scene Builder
+		// Test root crï¿½ï¿½ avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
 		
-		// Déclaration de la scène et insertion dans le primaryStage
+		// Dï¿½claration de la scï¿½ne et insertion dans le primaryStage
 		Scene scene = new Scene(root, 300, 300);
 		
-		// Changement de la scène d'acceuil vers la scène principale
+		// Changement de la scï¿½ne d'acceuil vers la scï¿½ne principale
 		Stage stageDictionnaire = new Stage();
 		stageDictionnaire.setScene(scene);
 		stageDictionnaire.getIcons().add(new Image("S.png"));
@@ -53,7 +50,7 @@ public class JeuControlleur extends Jeu {
 		System.exit(0);
 	}
 	
-	// Fonction d'initialisation de la fenêtre de Jeu
+	// Fonction d'initialisation de la fenï¿½tre de Jeu
 	public void initialize() {
 		
 		lblScoreJ.setText("Score du Joueur \"" + nomJoueur + "\" : " + Integer.toString(scoreJoueur));

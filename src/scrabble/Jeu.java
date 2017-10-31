@@ -1,16 +1,3 @@
-/*******************************************************************************
-Nom ................. : Jeu.java
-
-Description ......... : Classe principale comportant une itération de Dictionnai
-						-re, la fonction main ainsi que la scène javafx principa
-						-le
-
-Auteur(s) ........... : LAMPE Ronan
-
-Dernière modification : 17/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
@@ -22,9 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/*************************************************************************
+ * Nom ...........: Jeu.java
+ * Description ...: Classe principale comportant une itération de Dictionnai
+ * ...............: Dictionnaire, la fonction main ainsi que la scène javafx 
+ * ...............: principale
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: © 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
+
 public class Jeu extends Application {
 	
-	// D�claration du dictionnaire
+	// D�claration du dictionnaire
 	static Dictionnaire Dictionnaire = new Dictionnaire();
 	
 	// Déclaration du nom du Joueur

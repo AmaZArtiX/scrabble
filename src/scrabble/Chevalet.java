@@ -1,18 +1,18 @@
-/**************************************************************
- * Chevalet 
- * 
- * Support contenant les 7 tuiles dont le joueur dispose 
- * tout au long du jeu.
- * 
- * Copyright © 20 octobre 2017 @author Simon BACQUET
- * @version 1.0.0
- */
 
 package scrabble;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/*************************************************************************
+ * Nom ...........: Chevalet.java
+ * Description ...: Ensemble de tuiles dont dispose le joueur durant la 
+ * ...............: partie, il en possède 7 constamment
+ * ...............:
+ * Auteur(s) .....: SIMON BACQUET
+ * Version .......: 1.0
+ * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ ************************************************************************/
 public class Chevalet {
 	
 	// ArrayList contenant les tuiles du chevalet
@@ -81,6 +81,7 @@ public class Chevalet {
 		
 		this.chevalet.remove(i);
 	}
+	
 	
 	// Mélange les tuile de la liste 
 	public void melanger() {

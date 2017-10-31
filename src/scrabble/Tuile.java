@@ -1,20 +1,19 @@
-/*******************************************************************************
-Nom ................. : Tuile.java
-
-Description ......... : Classe pr�sentant tout les �l�ments relatifs aux Tuiles
-
-Auteur(s) ........... : LAMPE Ronan
-
-Derni�re modification : 18/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
 // Imports
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+/*************************************************************************
+ * Nom ...........: Tuile.java
+ * Description ...: Classe pr�sentant tout les �l�ments relatifs aux Tuiles
+ * ...............:
+ * ...............:
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: © 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
 
 public class Tuile {
 

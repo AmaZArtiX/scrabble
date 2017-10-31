@@ -1,15 +1,3 @@
-/*******************************************************************************
-Nom ................. : Dictionnaire.java
-
-Description ......... : Classe pr�sentant tout les �l�ments relatifs au 
-						Dictionnaire
-
-Auteur(s) ........... : LAMPE Ronan
-
-Derni�re modification : 13/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
@@ -21,6 +9,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+/*************************************************************************
+ * Nom ...........: Dictionnaire.java
+ * Description ...: Classe pr�sentant tout les �l�ments relatifs au 
+ * ...............: Dictionnaire
+ * ...............:
+ * Auteur(s) .....: RONAN LAMPE, SIMON BACQUET
+ * Version .......: 1.0
+ * Copyright .....: © 2017 RONAN LAMPE, SIMON BACQUET ALL RIGHTS RESERVED
+ ************************************************************************/
 
 public class Dictionnaire {
 
@@ -49,8 +47,8 @@ public class Dictionnaire {
 			e.printStackTrace();
 		}		
 	}
+	
 	/*
-	 * 
 	// Fonction de recherche d'un mot dans le dictionnaire
 	public boolean existe(String motRech) {
 		for (String mot : Dico) {
@@ -60,33 +58,47 @@ public class Dictionnaire {
 	}
 	*/
 	
+	/*
+	 * Vérifier l'existence d'un mot dans le dictionnaire (recherche dichotomique)
+	 * @param mot Le mot à rechercher
+	 * @return trouve Le booleen utile à la recherhce 
+	 */
 	public boolean existe(String mot) {
 		
+		// Booleen de recherche
 		boolean trouve;
+		// Indice de début de liste 
 		int debut;
+		// Indice de milieu de liste 
 		int milieu;
+		// Indice de fin de liste 
 		int fin;
 		
+		// Initialisation du booleen 
 		trouve = false;
+		// Début de liste à l'indice 0
 		debut = 0;
+		// Fin de liste à l'indice nombre de valeurs 
 		fin = Dico.size();
 		
 		while(!trouve && ((fin - debut) > 1)) {
 			
+			// Indice de mileu de liste 
 			milieu = (debut+fin)/2;
+			// Mot recherché à l'indice courant
 			trouve = (Dico.get(milieu).equals(mot));
 			
+			// Si mot courant est supérieur au mot donné 
 			if(Dico.get(milieu).compareTo(mot) > 0)
 				fin = milieu;
 			else
 				debut = milieu;
 		}
 		
+		// Renvoie du booleen
 		return trouve;
 	}
 	
-	
-
 	@Override
 	public String toString() {
 		return "Dictionnaire [" + Dico + "]";
