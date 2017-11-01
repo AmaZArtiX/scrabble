@@ -30,7 +30,7 @@ public class Sac {
 		remplissage();
 	}
 	
-	// Constructeur avec une liste de tuile en entree
+	// Constructeur avec une liste de tuiles en entree
 	public Sac(ArrayList<Tuile> _lettres) {
 		
 		lettres = _lettres;
@@ -119,22 +119,34 @@ public class Sac {
 		
 		for(int i = 1; i <= Lettre.JOCKER.nombre; i++)
 			lettres.add(new Tuile('*', Lettre.JOCKER.valeur, Lettre.JOCKER.img));
-    }
+	}
 	
-	// Melange le contenu du sac pour bien piocher apres
-	public void melangerSac() {
+	// Renvoie la tuile stockée à l'indice i
+	public Tuile getTuile(int i) {
+		
+		return lettres.get(i);
+	}
+	
+	// Supprime la tuile stockée à l'indice i
+	public void supprimerTuile(int i) {
+		
+		lettres.remove(i);
+	}
+	 
+	// Melange le contenu du sac 
+	public void melanger() {
 		
 		Collections.shuffle(lettres);
 	}
 	
-	// Verification si une lettre est dans le sac
-	public boolean contientLettre(TuileBis lettre) {
+	// Verifie si une tuile est dans le sac
+	public boolean contientLettre(Tuile t) {
 		
-		return lettres.contains(lettre);
+		return lettres.contains(t);
 	}
 
-	// Retourne le nombre de lettre dans le sac (taille du sac)
-	public int nombreDeJetons() {
+	// Retourne la taille du sac
+	public int getTaille() {
 		
 		return lettres.size();
 	}
@@ -142,24 +154,22 @@ public class Sac {
 	// Retourne true si le sac est vide, false sinon
 	public boolean estVide() {
 		
-		if(lettres == null) 
-			return true;
-		
-		return false;
+		return lettres.isEmpty();
 	}
 	
-	// Afficher le contenu du sac
+	// Affiche le contenu du sac
 	public void afficherSac() {
+		
 		for(Tuile t: lettres)
 		{
 			System.out.println(t);
 		}
 	}
 	
-	// Tirer une lettre dans le Sac
+	// Tire une lettre dans le Sac
 	public Tuile tirerUneLettre() {
-		int taille = nombreDeJetons();
-		melangerSac(); // melange le contenu avant de tirer la lettre
+		int taille = getTaille();
+		melanger(); // melange le contenu avant de tirer la lettre
 		Random rand = new Random();
 		int lettre = rand.nextInt(taille) + 1;
 		return lettres.remove(lettre);

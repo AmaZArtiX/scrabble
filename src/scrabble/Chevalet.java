@@ -4,6 +4,7 @@ package scrabble;
 // Import(s)
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /*************************************************************************
  * Nom ...........: Chevalet.java
@@ -35,14 +36,14 @@ public class Chevalet {
 	}
 	
 	// Ajouter une tuile en queue de liste 
-	public void ajouterObjet(Tuile t) {
+	public void ajouterTuile(Tuile t) {
 		
 		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(t);
 	}
 	
 	// Ajoute la tuile t en indice i 
-	public void ajouterObjetIndex(Tuile t, int i) {
+	public void ajouterTuileIndex(Tuile t, int i) {
 		
 		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(i, t);
@@ -55,7 +56,7 @@ public class Chevalet {
 	}
 	
 	// Retourne la tuile correspondante a l'indice donne 
-	public Tuile getObjet(int i) {
+	public Tuile getTuile(int i) {
 		
 		return this.chevalet.get(i);
 	}
@@ -73,22 +74,46 @@ public class Chevalet {
 	}
 	
 	// Supprime toutes les tuiles du chevalet
-	public void supprimerContenu() {
+	public void supprimerTuiles() {
 		
 		this.chevalet.clear();
 	}
 	
-	// Supprime l'objet a l'indice i
-	public void supprimerObjet(int i) {
+	// Supprime une truile a l'indice i
+	public void supprimerTuile(int i) {
 		
 		this.chevalet.remove(i);
 	}
 	
 	
-	// Melange les tuile de la liste 
+	// Melange les tuiles de la liste 
 	public void melanger() {
 		
 		Collections.shuffle(chevalet);
+	}
+	
+	// Renvoie un nombre aléatoire compris entre 0 et la taille courante du sac
+	public int getRandom(Sac s) {
+		
+		Random r = new Random();
+		int valeur = 0 + r.nextInt(s.getTaille() - 0);
+		
+		return valeur;
+	}
+	
+	// Remplit le sac passé en parametre de 7 tuiles
+	public void remplir(Sac s) {
+		
+		for(int i = 1; i <= 7; i++) {
+			
+			int r = getRandom(s);
+			// Mélange du sac pour un tirage correct
+			s.melanger();
+			// Ajout de la tuile dans le chevalet
+			ajouterTuile(s.getTuile(r));
+			// Suppression de la tuile dans le sac
+			s.supprimerTuile(r);
+		}
 	}
 
 	@Override

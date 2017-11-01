@@ -1,7 +1,5 @@
 package scrabble;
 
-import java.nio.file.Paths;
-
 /*************************************************************************
  * Nom ...........: Plateau.java
  * Description ...: Plateau de jeu (15x15) contenant les bonus et les tuiles
@@ -14,7 +12,7 @@ import java.nio.file.Paths;
 
 public class Plateau {
 	
-	// Taille en longueur et largeur du plateau
+	// Taille (longueur et largeur) du plateau
 	private final int TAILLE = 15;
 	
 	// Tableau 2D de chaines correspondantes aux bonus
@@ -27,7 +25,7 @@ public class Plateau {
 			{"", "LT", "", "", "", "LT", "", "", "", "LT", "", "", "", "LT", ""},
 			{"", "", "LD", "", "", "", "LD", "", "lD", "", "", "", "LD", "", ""},
 			{"MT", "", "", "LD", "", "", "", "", "", "", "", "LD", "", "", "MT"},
-			{"", "", "LD", "", "", "", "LD", "", "lD", "", "", "", "LD", "", ""},
+			{"", "", "LD", "", "", "", "LD", "", "LD", "", "", "", "LD", "", ""},
 			{"", "LT", "", "", "", "LT", "", "", "", "LT", "", "", "", "LT", ""},
 			{"", "", "", "", "MD", "", "", "", "", "", "MD", "", "", "", ""},
 			{"LD", "", "", "MD", "", "", "", "LD", "", "", "", "MD", "", "", "LD"},
@@ -36,6 +34,9 @@ public class Plateau {
 			{"MT", "", "", "LD", "", "", "", "MT", "", "", "", "LD", "", "", "MT"},	
 	};
 	
+	// Tableau d'entiers pour savoir si un bonus a été attribué 
+	private int[][] plateauAttribution;
+	
 	// Tableau 2D contenant les tuiles 
 	private Tuile[][] plateauTuiles;
 	
@@ -43,6 +44,7 @@ public class Plateau {
 	Plateau(){
 		
 		plateauTuiles = new Tuile[TAILLE][TAILLE];
+		plateauAttribution = new int[TAILLE][TAILLE];
 		initialiser();
 	}
 	
@@ -51,24 +53,27 @@ public class Plateau {
 		
 		for(int x = 0; x < TAILLE; x++) {
 			
-			for(int y = 0; y < TAILLE; y++)
+			for(int y = 0; y < TAILLE; y++) {
+				
 				plateauTuiles[x][y] = null;
+				plateauAttribution[x][y] = 0;
+			}
 		}
 	}
 	
 	// Affichage du plateau en console 
 	public void afficher() {
 		
-		int x, y, z, w;  
+		int x, y; 
 	    
 		System.out.print("   _________________________________________________________________________________________ \n");
 		System.out.print("  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");
 	   
-		for(x = 14; x >= 0; x--) {
+		for(x = (TAILLE-1); x >= 0; x--) {
 			
 			System.out.print("  ");
 					
-			for(y = 0; y < 15; y++) {
+			for(y = 0; y < TAILLE; y++) {
 				
 				System.out.print("|  ");
 				
@@ -89,5 +94,19 @@ public class Plateau {
 			if(x==0)
 	         System.out.print("\n   ");    
 	     }
+	}
+	
+	// Crée un mot (chaine de caractères) à partir d'un tableau de tuiles
+	public String creerMot(Tuile[] tab) {
+		
+		String mot;
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i = 0; i < tab.length; i++)
+			sb.append(tab[i].getLettre());
+		
+		mot = sb.toString();
+		
+		return mot;
 	}
 }
