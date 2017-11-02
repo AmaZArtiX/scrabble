@@ -55,27 +55,35 @@ public class Jeu extends Application {
 		// Joueur 1
 		Joueur j = new Joueur(nomJoueur, scoreJoueur, c1, c1);
 		// Affichage du plateau 
-		p.afficher();
+		//p.afficher();
 		// Affichage du chevalet du joueur 1
-		System.out.println(j.getChevalet());
+		//System.out.println(j.getChevalet());
 		// Affichage du sac après après supprimé des tuiles
-		s.afficherSac();
+		//s.afficherSac();
 		
-		p.placerTuile(7, 7, 0, j.getChevalet().getTuile(0));
+		//p.placerTuile(7, 7, 0, j.getChevalet().getTuile(0));
 		//j.getChevalet().supprimerTuile(0);
-		p.placerTuile(7, 7, 0, j.getChevalet().getTuile(1));
+		//p.placerTuile(7, 7, 0, j.getChevalet().getTuile(1));
 		//j.getChevalet().supprimerTuile(1);
-		p.placerTuile(7, 7, 1, j.getChevalet().getTuile(2));
+		//p.placerTuile(7, 7, 1, j.getChevalet().getTuile(2));
 		//j.getChevalet().supprimerTuile(2);
 		//j.getChevalet().reRemplir(s);
 		
-		p.restaurerPlateauTuiles();
-		p.afficher();
 		
-		ArrayList<Tuile> l = p.getTuilesDisponibles();
-		String mot = p.concatenerChaines(l, j.getChevalet());
-		System.out.println(l);
-		System.out.println(mot);
+		ArrayList<Tuile> mots = j.getChevalet().getTuiles();
+		ArrayList <String> bonus = new ArrayList<>();
+		
+		bonus.add("");
+		bonus.add("");
+		bonus.add("MT");
+		bonus.add("");
+		bonus.add("");
+		bonus.add("");
+		bonus.add("MT");
+		
+		System.out.println(mots);
+		int score = p.calculScoreMot(mots, bonus);
+		System.out.println(score);
 	}
 
 	// Fonction permettant le lancement de l'application
