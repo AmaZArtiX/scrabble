@@ -2,6 +2,7 @@
 package scrabble;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Random;
 
 // Import(s)
@@ -35,11 +36,7 @@ public class Jeu extends Application {
 		
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {	
-		
-
-		// Initialisation du dictionnaire
-		Dictionnaire.initDico();
-		
+	
 		/*******************************************************
 		 * 
 		// Lancement de la fenetre javafx --> fonction "start"
@@ -56,13 +53,29 @@ public class Jeu extends Application {
 		// Remplissage du chevalet du joueur 1 avec 7 tuiles
 		c1.remplir(s);
 		// Joueur 1
-		Joueur j = new Joueur(nomJoueur, scoreJoueur, c1);
+		Joueur j = new Joueur(nomJoueur, scoreJoueur, c1, c1);
 		// Affichage du plateau 
 		p.afficher();
 		// Affichage du chevalet du joueur 1
 		System.out.println(j.getChevalet());
 		// Affichage du sac après après supprimé des tuiles
 		s.afficherSac();
+		
+		p.placerTuile(7, 7, 0, j.getChevalet().getTuile(0));
+		//j.getChevalet().supprimerTuile(0);
+		p.placerTuile(7, 7, 0, j.getChevalet().getTuile(1));
+		//j.getChevalet().supprimerTuile(1);
+		p.placerTuile(7, 7, 1, j.getChevalet().getTuile(2));
+		//j.getChevalet().supprimerTuile(2);
+		//j.getChevalet().reRemplir(s);
+		
+		p.restaurerPlateauTuiles();
+		p.afficher();
+		
+		ArrayList<Tuile> l = p.getTuilesDisponibles();
+		String mot = p.concatenerChaines(l, j.getChevalet());
+		System.out.println(l);
+		System.out.println(mot);
 	}
 
 	// Fonction permettant le lancement de l'application

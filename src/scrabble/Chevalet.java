@@ -43,7 +43,7 @@ public class Chevalet {
 	}
 	
 	// Ajoute la tuile t en indice i 
-	public void ajouterTuileIndex(Tuile t, int i) {
+	public void ajouterTuileIndex(int i, Tuile t) {
 		
 		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(i, t);
@@ -59,6 +59,12 @@ public class Chevalet {
 	public Tuile getTuile(int i) {
 		
 		return this.chevalet.get(i);
+	}
+	
+	// Renvoie le chevalet complet
+	public ArrayList<Tuile> getTuiles(){
+		
+		return chevalet;
 	}
 	
 	// Retourne l'indice de la tuile donnee 
@@ -101,7 +107,7 @@ public class Chevalet {
 		return valeur;
 	}
 	
-	// Remplit le sac passé en parametre de 7 tuiles
+	// Remplit le sac passé en parametre de 7 tuiles (à utiliser en début de partie)
 	public void remplir(Sac s) {
 		
 		for(int i = 1; i <= 7; i++) {
@@ -113,6 +119,26 @@ public class Chevalet {
 			ajouterTuile(s.getTuile(r));
 			// Suppression de la tuile dans le sac
 			s.supprimerTuile(r);
+		}
+	}
+	
+	// Remplit le chevalet jusqu'à atteindre sa capacité maximale
+	public void reRemplir(Sac s) {
+		
+		if(estVide())
+			remplir(s);
+		else {
+			
+			while(getTaille() != TAILLE) {
+				
+				int r = getRandom(s);
+				// Mélange du sac pour un tirage correct
+				s.melanger();
+				// Ajout de la tuile dans le chevalet
+				ajouterTuile(s.getTuile(r));
+				// Suppression de la tuile dans le sac
+				s.supprimerTuile(r);
+			}
 		}
 	}
 

@@ -23,7 +23,13 @@ import java.util.List;
 public class Dictionnaire {
 
 	// Dictionnaire vide
-	private List<String> Dico = new ArrayList<String>();
+	private List<String> Dico;
+	
+	Dictionnaire(){
+		
+		Dico = new ArrayList<>();
+		initDico();
+	}
 	
 	// Fonction "set" du dictionnaire
 	public void setDico(List<String> dico) {
@@ -33,6 +39,18 @@ public class Dictionnaire {
 	// Fonction "get" du dictionnaire
 	public List<String> getDico() {
 		return Dico;
+	}
+	
+	// Renvoie la taille du dico
+	public int getTaille() {
+		
+		return Dico.size();
+	}
+	
+	// Renvoie le mot stocké à l'indice i
+	public String getMot(int i) {
+		
+		return Dico.get(i);
 	}
 	
 	// Fonction d'initialisation du dictionnaire

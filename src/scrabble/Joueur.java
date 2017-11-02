@@ -19,6 +19,8 @@ public class Joueur {
 	private int score;
 	// Chevalet du joueur 
 	private Chevalet chevalet;
+	// Chevalet du joueur (tampon)
+	private Chevalet chevaletTampon;
 	
 	/**
 	 * TODO
@@ -32,13 +34,16 @@ public class Joueur {
 		this.nom =  "";
 		this.score = 0;
 		this.chevalet = new Chevalet();
+		this.chevaletTampon = new Chevalet();
 	}
 	
 	// Constructeur avec parametres
-	public Joueur(String nom, int score, Chevalet chevalet) {
+	public Joueur(String nom, int score, Chevalet chevalet, Chevalet chevaletTampon) {
+		
 		this.nom = nom;
 		this.score = score;
 		this.chevalet = chevalet;
+		this.chevaletTampon = chevaletTampon;
 	}
 	
 	// Renvoie le nom du joueur 
@@ -72,5 +77,17 @@ public class Joueur {
 	public Chevalet getChevalet() {
 		
 		return chevalet;
+	}
+	
+	// Modifie le chevalet tampon du joueur
+	public void setChevaletTampon(Chevalet _chevaletTampon) {
+		
+		chevaletTampon = _chevaletTampon;
+	}
+	
+	// Renvoie le chevalet tampon du joueur
+	public Chevalet getChevaletTampon() {
+		
+		return chevaletTampon;
 	}
 }
