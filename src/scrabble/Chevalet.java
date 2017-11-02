@@ -20,6 +20,7 @@ public class Chevalet {
 	
 	// ArrayList contenant les tuiles du chevalet
 	private ArrayList<Tuile> chevalet;
+	
 	// Taille constante du chevalet tout au long du jeu 
 	private final int TAILLE = 7;
 	
@@ -98,7 +99,7 @@ public class Chevalet {
 		Collections.shuffle(chevalet);
 	}
 	
-	// Renvoie un nombre aléatoire compris entre 0 et la taille courante du sac
+	// Renvoie un nombre aleatoire compris entre 0 et la taille courante du sac
 	public int getRandom(Sac s) {
 		
 		Random r = new Random();
@@ -107,7 +108,7 @@ public class Chevalet {
 		return valeur;
 	}
 	
-	// Remplit le sac passé en parametre de 7 tuiles (à utiliser en début de partie)
+	// Remplit le sac passe en parametre de 7 tuiles (A utiliser en debut de partie)
 	public void remplir(Sac s) {
 		
 		for(int i = 1; i <= 7; i++) {
@@ -122,7 +123,7 @@ public class Chevalet {
 		}
 	}
 	
-	// Remplit le chevalet jusqu'à atteindre sa capacité maximale
+	// Remplit le chevalet jusqu'a atteindre sa capacite maximale
 	public void reRemplir(Sac s) {
 		
 		if(estVide())
@@ -132,7 +133,7 @@ public class Chevalet {
 			while(getTaille() != TAILLE) {
 				
 				int r = getRandom(s);
-				// Mélange du sac pour un tirage correct
+				// Melange du sac pour un tirage correct
 				s.melanger();
 				// Ajout de la tuile dans le chevalet
 				ajouterTuile(s.getTuile(r));

@@ -3,12 +3,12 @@ package scrabble;
 
 /*************************************************************************
  * Nom ...........: Joueur.java
- * Description ...: Classe "Joueur" comprenant les caracteristiques de celui ci
- * ...............: et les fonctions qui lui sont associees
+ * Description ...: Classe comprenant les caracteristiques de celui-ci et
+ * ...............: les fonctions qui lui sont associees
  * ...............:
- * Auteur(s) .....: YACINE CHTAIRI
+ * Auteur(s) .....: YACINE CHTAIRI, RONAN LAMPE
  * Version .......: 1.0
- * Copyright .....: © 2017 YACINE CHTAIRI ALL RIGHTS RESERVED
+ * Copyright .....: © 2017 YACINE CHTAIRI, RONAN LAMPE ALL RIGHTS RESERVED
  ************************************************************************/
 
 public class Joueur {
@@ -32,6 +32,14 @@ public class Joueur {
 	public Joueur() {
 		
 		this.nom =  "";
+		this.score = 0;
+		this.chevalet = new Chevalet();
+		this.chevaletTampon = new Chevalet();
+	}
+	
+	// Constructeur avec nom du Joueur
+	public Joueur(String nom) {
+		this.nom = nom;
 		this.score = 0;
 		this.chevalet = new Chevalet();
 		this.chevaletTampon = new Chevalet();

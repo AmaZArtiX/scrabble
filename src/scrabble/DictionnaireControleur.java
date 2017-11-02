@@ -31,8 +31,10 @@ public class DictionnaireControleur extends Jeu{
 		if (txtMotRech.getText().length() == 0) {
 			
 		} else {
-			if (Dictionnaire.existe(txtMotRech.getText().toUpperCase())) lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : Existe");
-			else lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : N'existe pas");
+			if (Dictionnaire.existe(txtMotRech.getText().toUpperCase()))
+				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : Existe");
+			else 
+				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : N'existe pas");
 		}
 		
 		txtMotRech.setText("");

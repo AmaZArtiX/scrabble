@@ -34,14 +34,14 @@ public class AccueilControleur extends Jeu {
 	// Fonction permettant d'acceder à l'ecran de jeu
 	public void gotoJeu(ActionEvent e) throws IOException {
 		
-		// On recupere le nom du joueur
-		nomJoueur = nomTxtJoueur.getText();
+		// On initialise les données du Joueur
+		Joueur = new Joueur(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
 		// Declaration de la scene
-		Scene scene = new Scene(root, 1280, 980);
+		Scene scene = new Scene(root, 1280, 950);
 		
 		// Changement de la scene d'acceuil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)e.getSource()).getScene().getWindow();
@@ -49,7 +49,7 @@ public class AccueilControleur extends Jeu {
 		stageJeu.setTitle("Plateau - Scrabble");
 		stageJeu.setResizable(true);
 		stageJeu.setMaxWidth(1280);
-		stageJeu.setMaxHeight(980);
+		stageJeu.setMaxHeight(950);
 		stageJeu.setMinWidth(1024);
 		stageJeu.setMinHeight(512);
 		stageJeu.show();
