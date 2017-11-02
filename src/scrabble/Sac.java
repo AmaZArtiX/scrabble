@@ -3,15 +3,13 @@ package scrabble;
 
 // Import(s)
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /*************************************************************************
  * Nom ...........: Sac.java
  * Description ...: Sac dans lequel les joueurs piochent les tuiles (102 
- * ...............: au total) pour les ajouter à leur chevalet
+ * ...............: au total) pour les ajouter a leur chevalet
  * ...............:
  * Auteur(s) .....: MAMADOU BAH
  * Version .......: 1.0
@@ -121,13 +119,13 @@ public class Sac {
 			lettres.add(new Tuile('*', Lettre.JOCKER.valeur, Lettre.JOCKER.img));
 	}
 	
-	// Renvoie la tuile stockée à l'indice i
+	// Renvoie la tuile stockee a l'indice i
 	public Tuile getTuile(int i) {
 		
 		return lettres.get(i);
 	}
 	
-	// Supprime la tuile stockée à l'indice i
+	// Supprime la tuile stockee a l'indice i
 	public void supprimerTuile(int i) {
 		
 		lettres.remove(i);

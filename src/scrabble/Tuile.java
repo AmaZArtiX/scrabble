@@ -2,8 +2,7 @@
 package scrabble;
 
 // Import(s)
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import javafx.scene.image.Image;
 
 /*************************************************************************
  * Nom ...........: Tuile.java
@@ -20,17 +19,17 @@ public class Tuile {
 	// Proprietes de Tuile
 	private char lettre;
 	private int valeur;
-	private Path img;
+	private Image img;
 	
 	// Constructeur vide
 	public Tuile() {
 		this.lettre = ' ';
 		this.valeur = 0;
-		this.img = Paths.get("Jocker.png");
+		this.img = new Image("");
 	}
 	
 	// Constructeur par parametres
-	public Tuile(char Lettre, int Valeur, Path Img) {
+	public Tuile(char Lettre, int Valeur, Image Img) {
 		this.lettre = Lettre;
 		this.valeur = Valeur;
 		this.img = Img;
@@ -47,7 +46,7 @@ public class Tuile {
 	}
 
 	// Fonction retournant le chemin de l'image
-	public Path getImg() {
+	public Image getImg() {
 		return img;
 	}
 

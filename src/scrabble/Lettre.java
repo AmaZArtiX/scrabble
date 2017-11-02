@@ -2,8 +2,7 @@
 package scrabble;
 
 // Import(s)
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import javafx.scene.image.Image;
 
 /*************************************************************************
  * Nom ...........: Lettre.java
@@ -18,39 +17,39 @@ import java.nio.file.Paths;
 
 public enum Lettre {
 	
-	A(1, 9, Paths.get("A.png")),
-	B(3, 2, Paths.get("B.png")),
-	C(3, 2, Paths.get("C.png")),
-	D(2, 3, Paths.get("D.png")),
-	E(1, 15, Paths.get("E.png")),
-	F(4, 2, Paths.get("F.png")),
-	G(2, 2, Paths.get("G.png")),
-	H(4, 2, Paths.get("H.png")),
-	I(1, 8, Paths.get("I.png")),
-	J(8, 1, Paths.get("J.png")),
-	K(10, 1, Paths.get("K.png")),
-	L(1, 5, Paths.get("L.png")),
-	M(2, 3, Paths.get("M.png")),
-	N(1, 6, Paths.get("N.png")),
-	O(1, 6, Paths.get("O.png")),
-	P(3, 2, Paths.get("P.png")),
-	Q(8, 1, Paths.get("Q.png")),
-	R(1, 6, Paths.get("R.png")),
-	S(1, 6, Paths.get("S.png")),
-	T(1, 6, Paths.get("T.png")),
-	U(1, 6, Paths.get("U.png")),
-	V(4, 2, Paths.get("V.png")),
-	W(10, 1, Paths.get("W.png")),
-	X(10, 1, Paths.get("X.png")),
-	Y(10, 1, Paths.get("Y.png")),
-	Z(10, 1, Paths.get("Z.png")),
-	JOCKER(0, 2, Paths.get("Jocker.png"));
+	A(1, 9, new Image("A.png")),
+	B(3, 2, new Image("B.png")),
+	C(3, 2, new Image("C.png")),
+	D(2, 3, new Image("D.png")),
+	E(1, 15, new Image("E.png")),
+	F(4, 2, new Image("F.png")),
+	G(2, 2, new Image("G.png")),
+	H(4, 2, new Image("H.png")),
+	I(1, 8, new Image("I.png")),
+	J(8, 1, new Image("J.png")),
+	K(10, 1, new Image("K.png")),
+	L(1, 5, new Image("L.png")),
+	M(2, 3, new Image("M.png")),
+	N(1, 6, new Image("N.png")),
+	O(1, 6, new Image("O.png")),
+	P(3, 2, new Image("P.png")),
+	Q(8, 1, new Image("Q.png")),
+	R(1, 6, new Image("R.png")),
+	S(1, 6, new Image("S.png")),
+	T(1, 6, new Image("T.png")),
+	U(1, 6, new Image("U.png")),
+	V(4, 2, new Image("V.png")),
+	W(10, 1, new Image("W.png")),
+	X(10, 1, new Image("X.png")),
+	Y(10, 1, new Image("Y.png")),
+	Z(10, 1, new Image("Z.png")),
+	JOCKER(0, 2, new Image("Jocker.png"));
 	
 	int valeur;
 	int nombre;
-	Path img;
+	Image img;
 	
-	Lettre(int _valeur, int _nombre, Path _img){
+	Lettre(int _valeur, int _nombre, Image _img){
 		
 		valeur = _valeur;
 		nombre = _nombre;

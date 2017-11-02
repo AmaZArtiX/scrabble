@@ -1,6 +1,7 @@
+// Package
 package scrabble;
 
-import java.awt.List;
+// Import(s)
 import java.util.ArrayList;
 
 /*************************************************************************
@@ -108,9 +109,9 @@ public class Plateau {
 	}
 	
 	/**
-	 * Crée un mot (chaine de caractères) à partir d'un tableau de tuiles
-	 * @param listeTuiles Tuiles à concatener pour former un mot
-	 * @return le mot formé
+	 * Cree un mot (chaine de caracteres) a partir d'un tableau de tuiles
+	 * @param listeTuiles Tuiles a concatener pour former un mot
+	 * @return le mot forme
 	 */
 	public String creerMot(ArrayList<Tuile> listeTuiles) {
 		
@@ -135,7 +136,7 @@ public class Plateau {
 		}
 	}
 	
-	// Restaure les tuiles sauvegardées dans le plateau dans tampon vers le plateau principal
+	// Restaure les tuiles sauvegardees dans le plateau dans tampon vers le plateau principal
 	public void restaurerPlateauTuiles() {
 		
 		for(int x = 0; x < TAILLE; x++) {
@@ -161,14 +162,14 @@ public class Plateau {
 	
 	/**
 	 * Place une tuile sur le plateau tampon
-	 * @param x Coordonnée de la ligne
-	 * @param y Coordonnée de la colonne
+	 * @param x Coordonnee de la ligne
+	 * @param y Coordonnee de la colonne
 	 * @param direction Direction du mot
-	 * @param t Tuile à placer
+	 * @param t Tuile a placer
 	 */
 	public void placerTuile(int x, int y, int direction, Tuile t) {
 		
-		// Dépassement de coordonnées
+		// Depassement de coordonnees
 		if(x < 0 || x > (TAILLE-1) || y < 0 || y > (TAILLE-1))
 			return;
 		
@@ -177,10 +178,10 @@ public class Plateau {
 			plateauTuilesTampon[x][y] = t;
 		else {
 			
-			// Appel de la fonction pour placer la lettre à l'horizontal
+			// Appel de la fonction pour placer la lettre a l'horizontal
 			if(direction == 0)
 				placerTuile(x, y+1, direction, t);
-			// Appel de la fonction pour placer la lettre à la verticale
+			// Appel de la fonction pour placer la lettre a la verticale
 			else if(direction == 1)
 				placerTuile(x-1, y, direction, t);
 		}
@@ -203,10 +204,10 @@ public class Plateau {
 					// Recherche d'une tuile voisine, si pas, on sort de la boucle
 					if(plateauTuiles[x][y+1] != null && plateauTuiles[x+1][y] != null && plateauTuiles[x][y-1] != null && plateauTuiles[x-1][y] != null)
 					      break;
-					// Tuile voisine à l'horizontale
+					// Tuile voisine a l'horizontale
 					if(plateauTuiles[x][y+1] == null && plateauTuiles[x][y-1] == null)
 						liste.add(plateauTuiles[x][y]);
-					// Tuile voisine à la verticale
+					// Tuile voisine a la verticale
 					else if(plateauTuiles[x+1][y] == null && plateauTuiles[x-1][y] == null)
 						liste.add(plateauTuiles[x][y]);
 				}
@@ -220,7 +221,7 @@ public class Plateau {
 	 * Concatene les tuiles disponibles sur le plateau et les tuiles du chevalet pour former un mot
 	 * @param tuilesDisponibles Tuiles disponibles sur le pleateau
 	 * @param chevalet Chevalet du joueur
-	 * @return mot Le mot formé suite à la concaténation
+	 * @return mot Le mot forme suite a la concatenation
 	 */
 	public String concatenerChaines(ArrayList<Tuile> tuilesDisponibles, Chevalet chevalet) {
 		
@@ -265,6 +266,9 @@ public class Plateau {
 	 * @return scoreMot le score effectue 
 	 */
 	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
+
+		ArrayList<String> motsAJouer = new ArrayList<String>();
+
 		
 		// Score total m
 		int scoreMot = 0;
