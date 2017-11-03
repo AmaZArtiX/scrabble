@@ -28,6 +28,13 @@ public class Tuile {
 		this.img = new Image("");
 	}
 	
+	public Tuile(char _lettre, int _valeur) {
+		
+		lettre = _lettre;
+		valeur = _valeur;
+		this.img = new Image("A.png");
+	}
+	
 	// Constructeur par parametres
 	public Tuile(char Lettre, int Valeur, Image Img) {
 		this.lettre = Lettre;
