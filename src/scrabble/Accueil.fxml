@@ -20,7 +20,7 @@ Dernière modification : 17/10/2017
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.AccueilControlleur">
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.AccueilControleur">
    <children>
       <Button fx:id="lanJeu" disable="true" layoutX="129.0" layoutY="145.0" mnemonicParsing="false" onAction="#gotoJeu" prefHeight="41.0" prefWidth="142.0" text="Lancer le jeu" />
       <Label layoutX="83.0" layoutY="14.0" text="Accueil du Scrabble">

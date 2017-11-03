@@ -1,37 +1,35 @@
-/*******************************************************************************
-Nom ................. : Tuile.java
-
-Description ......... : Classe pr�sentant tout les �l�ments relatifs aux Tuiles
-
-Auteur(s) ........... : LAMPE Ronan
-
-Derni�re modification : 18/10/2017
-
-*******************************************************************************/
-
 // Package
 package scrabble;
 
-// Imports
-import java.nio.file.Path;
-import java.nio.file.Paths;
+// Import(s)
+import javafx.scene.image.Image;
+
+/*************************************************************************
+ * Nom ...........: Tuile.java
+ * Description ...: Classe presentant tout les elements relatifs aux Tuiles
+ * ...............:
+ * ...............:
+ * Auteur(s) .....: RONAN LAMPE
+ * Version .......: 1.0
+ * Copyright .....: © 2017 RONAN LAMPE ALL RIGHTS RESERVED
+ ************************************************************************/
 
 public class Tuile {
 
-	// Propri�t�s de Tuile
+	// Proprietes de Tuile
 	private char lettre;
 	private int valeur;
-	private Path img;
+	private Image img;
 	
 	// Constructeur vide
 	public Tuile() {
 		this.lettre = ' ';
 		this.valeur = 0;
-		this.img = Paths.get("files/tuiles/*.png");
+		this.img = new Image("");
 	}
 	
-	// Constructeur par param�tres
-	public Tuile(char Lettre, int Valeur, Path Img) {
+	// Constructeur par parametres
+	public Tuile(char Lettre, int Valeur, Image Img) {
 		this.lettre = Lettre;
 		this.valeur = Valeur;
 		this.img = Img;
@@ -47,8 +45,8 @@ public class Tuile {
 		return valeur;
 	}
 
-	// Fonction retournant le chemain de l'image
-	public Path getImg() {
+	// Fonction retournant le chemin de l'image
+	public Image getImg() {
 		return img;
 	}
 
