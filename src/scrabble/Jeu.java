@@ -42,14 +42,33 @@ public class Jeu extends Application {
 		
 		/*
 		// Affichage du plateau 
+<<<<<<< HEAD
+		//p.afficher();
+=======
 		p.afficher();
 		
+>>>>>>> refs/remotes/origin/branche-Ronan
 		// Affichage du chevalet du joueur 1
+<<<<<<< HEAD
+		//System.out.println(j.getChevalet());
+		// Affichage du sac après après supprimé des tuiles
+		//s.afficherSac();
+=======
 		System.out.println(Joueur.getChevalet());
 		
 		// Affichage du sac apres avoir supprime des tuiles
 		s.afficherSac();
+>>>>>>> refs/remotes/origin/branche-Ronan
 		
+<<<<<<< HEAD
+		//p.placerTuile(7, 7, 0, j.getChevalet().getTuile(0));
+		//j.getChevalet().supprimerTuile(0);
+		//p.placerTuile(7, 7, 0, j.getChevalet().getTuile(1));
+		//j.getChevalet().supprimerTuile(1);
+		//p.placerTuile(7, 7, 1, j.getChevalet().getTuile(2));
+		//j.getChevalet().supprimerTuile(2);
+		//j.getChevalet().reRemplir(s);
+=======
 		p.placerTuile(7, 7, 0, Joueur.getChevalet().getTuile(0));
 		//Joueur.getChevalet().supprimerTuile(0);
 		p.placerTuile(7, 7, 0, Joueur.getChevalet().getTuile(1));
@@ -57,15 +76,31 @@ public class Jeu extends Application {
 		p.placerTuile(7, 7, 1, Joueur.getChevalet().getTuile(2));
 		//Joueur.getChevalet().supprimerTuile(2);
 		//Joueur.getChevalet().reRemplir(s);
+>>>>>>> refs/remotes/origin/branche-Ronan
 		
-		p.restaurerPlateauTuiles();
-		p.afficher();
 		
+<<<<<<< HEAD
+		ArrayList<Tuile> mots = j.getChevalet().getTuiles();
+		ArrayList <String> bonus = new ArrayList<>();
+		
+		bonus.add("");
+		bonus.add("");
+		bonus.add("MT");
+		bonus.add("");
+		bonus.add("");
+		bonus.add("");
+		bonus.add("MT");
+		
+		System.out.println(mots);
+		int score = p.calculScoreMot(mots, bonus);
+		System.out.println(score);
+=======
 		ArrayList<Tuile> l = p.getTuilesDisponibles();
 		String mot = p.concatenerChaines(l, Joueur.getChevalet());
 		System.out.println(l);
 		System.out.println(mot);
 		*/
+
 	}
 
 	// Fonction permettant le lancement de l'application

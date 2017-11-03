@@ -234,15 +234,86 @@ public class Plateau {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retourne le bonus numerique correspondant au bonus litteral
+	 * @param bonus Chaine symbolisant le bonus
+	 * @return entier correspondant au bonus 
 	 */
-	public ArrayList<String> getMotsAJouer(){
+	public int getBonus(String bonus) {
 		
+		switch(bonus) {
+			
+			case "":
+				return 1;
+			case "MD":
+				return 1;
+			case "MT":
+				return 1;
+			case "LD":
+				return 2;
+			case "LT":
+				return 3;
+			default:
+				return -1;
+		}
+	}
+	
+	/**
+	 * Calcule le score effectue pour une liste de tuiles et une liste de bonus correspondants
+	 * la premiere tuile de la liste correspond à la premiere lettre du mot place, idem pour le bonus 
+	 * qui corresppond à la case ou a ete jouee la tuile
+	 * @param listeTuiles Tuiles qui forment le mot
+	 * @param listeBonus Bonus de chaque case 
+	 * @return scoreMot le score effectue 
+	 */
+	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
+
 		ArrayList<String> motsAJouer = new ArrayList<String>();
+
 		
+		// Score total m
+		int scoreMot = 0;
+		// Score pour une lettre 
+		int scoreLettre = 0;
+		// Compteur de cases "MD"
+		int cptMotDouble = 0;
+		// Compteur de case "MT"
+		int cptMotTriple = 0;
 		
-		
-		return motsAJouer;
+		// Verification de la coherence des listes
+		if(listeTuiles.size() != listeBonus.size())
+			return -1;
+		else {
+			
+			for(int i = 0; i < listeTuiles.size(); i++) {
+				
+				// Recuperation de la valeur d'une tuile
+				scoreLettre = listeTuiles.get(i).getValeur(); 
+				// Recuperation du bonus de la case
+				String bonus = listeBonus.get(i);
+				// Multiplication de la valeur de la tuile par le bonus de la case
+				scoreLettre *= getBonus(bonus);
+				// Incrémentation du score total
+				scoreMot += scoreLettre;
+				
+				// Incrémentation du compteur de cases "MD"
+				if(bonus.equals("MD"))
+					cptMotDouble++;
+				// Incrémentation du compteur de cases "MT"
+				else if(bonus.equals("MT"))
+					cptMotTriple++;
+			}
+			
+			// Mutliplication du score par le bonus 
+			if(cptMotDouble == 1)
+				scoreMot *= 2;
+			else if(cptMotDouble == 2)
+				scoreMot *= 4;
+			else if(cptMotTriple == 1)
+				scoreMot *= 3;
+			else if(cptMotTriple == 2)
+				scoreMot *= 9;
+			
+			return scoreMot;
+		}
 	}
 }
