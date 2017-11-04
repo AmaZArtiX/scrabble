@@ -17,7 +17,11 @@ import java.util.ArrayList;
 public class Plateau {
 	
 	// Taille (longueur et largeur) du plateau
-	private final int TAILLE = 15;
+	static final int TAILLE = 15;
+	
+	// Booleens HORIZONTAL et VERTICAL
+	static final boolean HORIZONTAL = false;
+	static final boolean VERTICAL = true;
 	
 	// Tableau 2D de chaines correspondantes aux bonus
 	private final String[][] plateauBonus = {
@@ -77,14 +81,17 @@ public class Plateau {
 	public void afficher() {
 		
 		int x, y; 
-	    
-		System.out.print("   _________________________________________________________________________________________ \n");
-		System.out.print("  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");
+	    System.out.print("\n      0     1     2     3     4     5     6     7     8     9     10    11    12    13    14  \n");
+		System.out.print("    _________________________________________________________________________________________ \n");
+		System.out.print("   |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");
 	   
-		for(x = (TAILLE-1); x >= 0; x--) {
+		for(x = 0; x < TAILLE; x++) {
 			
-			System.out.print("  ");
-					
+			if(x<10)
+				System.out.print(" " + x + " ");
+			else 
+				System.out.print(" " + x);
+			
 			for(y = 0; y < TAILLE; y++) {
 				
 				System.out.print("|  ");
@@ -98,12 +105,12 @@ public class Plateau {
 			}   
 			
 			System.out.print("|\n");
-	        System.out.print("  |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|");
+	        System.out.print("   |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|");
 			
-	        if(x != 0)
-	          System.out.print("\n  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");
+	        if(x != TAILLE-1)
+	          System.out.print("\n   |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");
 	       
-			if(x == 0)
+			if(x == TAILLE-1)
 	         System.out.print("\n");    
 	     }
 	}
@@ -167,7 +174,7 @@ public class Plateau {
 	 * @param direction Direction du mot
 	 * @param t Tuile a placer
 	 */
-	public void placerTuile(int x, int y, int direction, Tuile t) {
+	public void placerTuile(int x, int y, boolean direction, Tuile t) {
 		
 		// Depassement de coordonnees
 		if(x < 0 || x > (TAILLE-1) || y < 0 || y > (TAILLE-1))
@@ -179,10 +186,10 @@ public class Plateau {
 		else {
 			
 			// Appel de la fonction pour placer la lettre a l'horizontal
-			if(direction == 0)
+			if(!direction)
 				placerTuile(x, y+1, direction, t);
 			// Appel de la fonction pour placer la lettre a la verticale
-			else if(direction == 1)
+			else if(direction)
 				placerTuile(x-1, y, direction, t);
 		}
 	}
@@ -244,5 +251,16 @@ public class Plateau {
 		
 		
 		return motsAJouer;
+	}
+
+	public String[][] getPlateauBonus() {
+		return plateauBonus;
+	}
+	
+	public boolean tuileExistante(int col, int lig) {
+		if(plateauTuiles[lig][col] instanceof Tuile)
+			return true;
+		else 
+			return false;
 	}
 }

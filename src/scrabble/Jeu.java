@@ -2,7 +2,6 @@
 package scrabble;
 
 // Import(s)
-import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,10 +39,7 @@ public class Jeu extends Application {
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
 		
-		/*
-		// Affichage du plateau 
-		p.afficher();
-		
+		/*		
 		// Affichage du chevalet du joueur 1
 		System.out.println(Joueur.getChevalet());
 		

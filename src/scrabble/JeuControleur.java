@@ -6,11 +6,18 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /*************************************************************************
@@ -28,17 +35,20 @@ public class JeuControleur extends Jeu {
 	// Lien entre le fichier FXML et le Label de Score du Joueur
 	@FXML private Label lblScoreJ;
 	
-	// Lien entre le fichier FXML et les ImageView des cases du Chevalet
-	@FXML private ImageView caseChevalet0;
-	@FXML private ImageView caseChevalet1;
-	@FXML private ImageView caseChevalet2;
-	@FXML private ImageView caseChevalet3;
-	@FXML private ImageView caseChevalet4;
-	@FXML private ImageView caseChevalet5;
-	@FXML private ImageView caseChevalet6;
+	// Lien entre le fichier FXML et le GridPane du Plateau
+	@FXML private GridPane grillePlateau;
+	
+	// Tableau d'ImageView des cases du Plateau
+	private ImageView[][] casesPlateau = new ImageView[Plateau.TAILLE][Plateau.TAILLE];
+
+	// Lien entre le fichier FXML et le GridPane du Chevalet
+	@FXML private GridPane grilleChevalet;
+	
+	// Tableau d'ImageView des cases du Chevalet
+	private ImageView[] casesChevalet = new ImageView[Chevalet.TAILLE];
 	
 	// Fonction permettant d'accèder au dictionnaire
-	public void gotoDictionnaire(ActionEvent e) throws IOException {
+	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
@@ -56,7 +66,7 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction permettant de quitter l'application
-	public void quitter(ActionEvent e) {
+	@FXML private void quitter(ActionEvent e) {
 		
 		System.exit(0);
 	}
@@ -64,44 +74,172 @@ public class JeuControleur extends Jeu {
 	// Fonction d'initialisation de la fenetre de Jeu
 	public void initialize() {
 		
+		// Initialisation du Plateau de Jeu
+		p.initialiser();
+		
+		// Affichage du Score du Joueur ainsi que son nom
 		lblScoreJ.setText("Score du Joueur \"" + Joueur.getNom() + "\" : " + Integer.toString(Joueur.getScore()));
+		
+		// Initialisation de casesPlateau avec les ImageView de grillePlateau
+		for(int i=0;i<Plateau.TAILLE;i++) {
+			for(int j=0;j<Plateau.TAILLE;j++) {
+				casesPlateau[i][j] = (ImageView) grillePlateau.getChildren().get(i);
+			}
+		}
+		
+		// Initialisation de casesChevalet avec les ImageView de grilleChevalet
+		for(int i=0;i<Chevalet.TAILLE;i++) {
+			casesChevalet[i] = (ImageView) grilleChevalet.getChildren().get(i);
+		}
 	}
 	
 	// Fonction de remplissage du Chevalet
-	public void remplissageChevalet() {
+	@FXML private void remplissageChevalet() {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		Joueur.getChevalet().remplir(s);
+
+		// On raffraichit les ImageView du Chevalet
+		raffraichissementChevalet();
 		
-		// Mise à jour du Chevalet Tampon du Joueur
-		Joueur.setChevaletTampon(Joueur.getChevalet());
-		
-		// Initialisation du Chevalet Graphique avec le Chevalet remplit
-		caseChevalet0.setImage(Joueur.getChevalet().getTuile(0).getImg());
-		caseChevalet1.setImage(Joueur.getChevalet().getTuile(1).getImg());
-		caseChevalet2.setImage(Joueur.getChevalet().getTuile(2).getImg());
-		caseChevalet3.setImage(Joueur.getChevalet().getTuile(3).getImg());
-		caseChevalet4.setImage(Joueur.getChevalet().getTuile(4).getImg());
-		caseChevalet5.setImage(Joueur.getChevalet().getTuile(5).getImg());
-		caseChevalet6.setImage(Joueur.getChevalet().getTuile(6).getImg());
+		// Affichage du Chevalet du Joueur (Test Terminal)
+		System.out.println("\n" + Joueur.getChevalet() + "\n");
 	}
 	
 	// Fonction de mélange des Tuiles du Chevalet
-	public void melangeChevalet() {
+	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
 		Joueur.getChevalet().melanger();
 
-		// Mise à jour du Chevalet Tampon du Joueur
-		Joueur.setChevaletTampon(Joueur.getChevalet());
+		// On raffraichit les ImageView du Chevalet
+		raffraichissementChevalet();
 		
-		// Initialisation du Chevalet Graphique avec le Chevalet remplit
-		caseChevalet0.setImage(Joueur.getChevalet().getTuile(0).getImg());
-		caseChevalet1.setImage(Joueur.getChevalet().getTuile(1).getImg());
-		caseChevalet2.setImage(Joueur.getChevalet().getTuile(2).getImg());
-		caseChevalet3.setImage(Joueur.getChevalet().getTuile(3).getImg());
-		caseChevalet4.setImage(Joueur.getChevalet().getTuile(4).getImg());
-		caseChevalet5.setImage(Joueur.getChevalet().getTuile(5).getImg());
-		caseChevalet6.setImage(Joueur.getChevalet().getTuile(6).getImg());
+		// Affichage du Chevalet du Joueur (Test Terminal)
+		System.out.println("\n" + Joueur.getChevalet() + "\n");
+	}
+	
+	// Fonction de detection d'un drag'n'drop
+	@FXML private void dragDetected(MouseEvent event) {
+		
+		Dragboard dragboard = ((Node) event.getSource()).startDragAndDrop(TransferMode.ANY);
+		
+		ClipboardContent clipboardContent = new ClipboardContent();
+		clipboardContent.putImage(((ImageView) event.getSource()).getImage());
+		
+		dragboard.setContent(clipboardContent);
+		
+		event.consume();
+	}
+	
+	// Fonction de detection d'un drag over
+	@FXML private void dragOver(DragEvent event) {
+		
+		// On récupère les coordonnees de jeu de la Tuile (Plateau)
+		int col = GridPane.getColumnIndex((Node) event.getTarget());
+		int lig = GridPane.getRowIndex((Node) event.getTarget());
+		
+		// On verifie si le drag contient une Image
+		if(event.getDragboard().hasImage()) {
+			
+			// On verifie si aucune Tuile n'est deja presente sur la case souhaitee
+			if(!p.tuileExistante(col, lig)) {
+				
+				// On verifie si la case cible est la case de depart
+				if(col == lig && col == 7)
+					
+					// On autorise le drop
+					event.acceptTransferModes(TransferMode.ANY);
+				else {
+					
+					// On verifie que la case cible n'est pas isolee
+					if((p.tuileExistante(col, lig--)) || (p.tuileExistante(col, lig++)) || (p.tuileExistante(col--, lig)) || (p.tuileExistante(col++, lig))) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);
+					}
+				}
+			}
+		}
+	}
+	
+	// Fonction de detection d'un drag dropped
+	@FXML private void dragDropped(DragEvent event) {
+		
+		// On récupère l'indice de la Tuile jouée (Chevalet)
+		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
+		
+		// On récupère les coordonnees de jeu de la Tuile (Plateau)
+		int col = GridPane.getColumnIndex((Node) event.getSource());
+		int lig = GridPane.getRowIndex((Node) event.getSource());
+		
+		// On affiche le Tuile jouée (Test Terminal)
+		System.out.println(Joueur.getChevalet().getTuile(index) + " Jouée");
+		
+		// On ajoute la Tuile jouée a plateauTuilesTampon
+		p.placerTuile(lig, col, Plateau.HORIZONTAL, Joueur.getChevalet().getTuile(index));
+		
+		// On copie plateauTuilesTampon dans plateauTuiles
+		p.restaurerPlateauTuiles();
+		
+		// Affichage de l'image de l'ImageView source dans l'ImageView destination
+		((ImageView) event.getTarget()).setImage(event.getDragboard().getImage());
+		
+		// On affiche le Plateau (Test Terminal)
+		p.afficher();
+		
+		// On supprime la Tuile jouée du Chevalet du Joueur
+		Joueur.getChevalet().supprimerTuile(index);
+		
+		// Affichage du Chevalet du Joueur (Test Terminal)
+		System.out.println("\n" + Joueur.getChevalet() + "\n");
+	}
+	
+	// Fonction de detection d'un drag done
+	@FXML private void dragDone(DragEvent event) {
+		
+		// On raffraichit les ImageView du Chevalet
+		raffraichissementChevalet();
+		
+		// On raffraichit les ImageView du Plateau
+		raffraichissementPlateau();
+	}
+	
+	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
+	private void raffraichissementChevalet() {
+		
+		if(!Joueur.getChevalet().estVide()) {
+			// Le Chevalet du Joueur est vide
+			
+			int i; // On met à jour les ImageView du Chevalet en fonction du Chevalet du Joueur
+			for(i=0;i<Joueur.getChevalet().getTaille();i++) {
+				if(Joueur.getChevalet().getTuile(i).getImg() == null) {
+					casesChevalet[i].setImage(null);
+				} else {
+					casesChevalet[i].setImage(Joueur.getChevalet().getTuile(i).getImg());
+				}
+			}
+			
+			// Si le nombre de Tuile présent dans le Chevalet du Joueur est inférieur à la taille
+			// MAX du Chevalet alors on vide les ImageView restants
+			if(i<Chevalet.TAILLE) {
+				while (i<Chevalet.TAILLE) {
+					casesChevalet[i].setImage(null);
+					i++;
+				}
+			}
+		} else {
+			// Le Chevalet du Joueur est vide 
+			
+			// On vide les ImageView du Chevalet
+			for(int i=0;i<Chevalet.TAILLE;i++) {
+				casesChevalet[i].setImage(null);
+			}
+		}
+	}
+	
+	// Fonction de raffraichissement des ImageView du Plateau en fonction du tableau plateauTuiles
+	private void raffraichissementPlateau() {
+		// TO-DO
 	}
 }
