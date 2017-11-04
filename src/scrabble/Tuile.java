@@ -23,9 +23,9 @@ public class Tuile {
 	
 	// Constructeur vide
 	public Tuile() {
-		this.lettre = ' ';
+		this.lettre = '*';
 		this.valeur = 0;
-		this.img = new Image("");
+		this.img = new Image("Jocker.png");
 	}
 	
 	public Tuile(char _lettre, int _valeur) {

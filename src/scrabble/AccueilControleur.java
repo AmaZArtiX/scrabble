@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /*************************************************************************
@@ -32,7 +33,7 @@ public class AccueilControleur extends Jeu {
 	@FXML private Button lanJeu;
 	
 	// Fonction permettant d'acceder à l'ecran de jeu
-	public void gotoJeu(ActionEvent e) throws IOException {
+	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
 		// On initialise les données du Joueur
 		Joueur = new Joueur(nomTxtJoueur.getText());
@@ -44,7 +45,7 @@ public class AccueilControleur extends Jeu {
 		Scene scene = new Scene(root, 1280, 950);
 		
 		// Changement de la scene d'acceuil vers la scene principale
-		Stage stageJeu = (Stage) ((Node)e.getSource()).getScene().getWindow();
+		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
 		stageJeu.setResizable(true);
@@ -56,8 +57,22 @@ public class AccueilControleur extends Jeu {
 	}
 	
 	// Fonction de verification de la longueur du nom du joueur
-	public void lettreEntree(ActionEvent e) {
+	@FXML private void verifPseudo(KeyEvent event) {
 		
-		if (nomTxtJoueur.getLength() > 1) lanJeu.setDisable(false);
+		// On verifie la taille du contenu du TextView --> Si > 1 (>=2) alors le bouton
+		// de lancement sera active (cliquable) | Sinon, le bouton sera desactive
+		if (((TextField) event.getSource()).getLength() > 1) lanJeu.setDisable(false);
+		else lanJeu.setDisable(true);
+		
+		// On détruit l'evenement
+		event.consume();
+	}
+	
+	// Fonction permettant le lancement de la fonction gotoJeu depuis nomTxtJoueur 
+	@FXML private void lancerJeu(ActionEvent event) throws IOException {
+		
+		// On verifie si le bouton de lancement est active avant de lancer le Jeu
+		if(!lanJeu.isDisabled())
+			gotoJeu(event);
 	}
 }
