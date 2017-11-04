@@ -18,7 +18,11 @@ import java.util.ArrayList;
 public class Plateau {
 	
 	// Taille (longueur et largeur) du plateau
-	private final int TAILLE = 15;
+	public static final int TAILLE = 15;
+	
+	// Booleens HORIZONTAL et VERTICAL
+	static final boolean HORIZONTAL = false;
+	static final boolean VERTICAL = true;
 	
 	// Tableau 2D de chaines correspondantes aux bonus
 	private final String[][] plateauBonus = {
@@ -181,7 +185,7 @@ public class Plateau {
 	 * @param direction Direction du mot
 	 * @param t Tuile a placer
 	 */
-	public void placerTuile(int x, int y, int direction, Tuile t) {
+	public void placerTuile(int x, int y, Tuile t) {
 		
 		// Depassement de coordonnees
 		if(x < 0 || x > (TAILLE-1) || y < 0 || y > (TAILLE-1))
@@ -190,17 +194,6 @@ public class Plateau {
 		// Si case vide, on ajoute
 		if(plateauTuilesTampon[x][y] == null)
 			plateauTuilesTampon[x][y] = t;
-		/*
-		else {
-		
-			// Appel de la fonction pour placer la lettre a l'horizontal
-			if(direction == 0)
-				placerTuile(x, y+1, direction, t);
-			// Appel de la fonction pour placer la lettre a la verticale
-			else if(direction == 1)
-				placerTuile(x-1, y, direction, t);
-			
-		}*/
 	}
 	
 	/**
@@ -271,6 +264,17 @@ public class Plateau {
 			default:
 				return -1;
 		}
+	}
+	
+	public String[][] getPlateauBonus() {
+		return plateauBonus;
+	}
+	
+	public boolean existeTuile(int col, int lig) {
+		if(plateauTuilesTampon[lig][col] == null)
+			return false;
+		else
+			return true;
 	}
 	
 	/**
@@ -386,6 +390,89 @@ public class Plateau {
 		}
 		
 		return false;
+	}
+	
+	public boolean tuileSeule(int col, int lig) {
+		
+		// On verifie si la case cible ne touche pas le bord du plateau
+		if((col > 0 && col < 14) && (lig > 0 && lig < 14)) {
+
+			// On verifie les 4 cotes
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col, lig++)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else 
+
+			// On verifie si la case cible est sur la premiere colonne
+			if (col == 0 && (lig > 0 && lig < 14)) {
+
+				// On verifie au dessus, a droite et en dessous
+				if (existeTuile(col, lig--)) return false;
+				else if (existeTuile(col++, lig)) return false;
+				else if (existeTuile(col, lig++)) return false;
+			} else 
+
+				// On verifie si la case cible est sur la premiere ligne
+				if (lig == 0 && (col > 0 && col < 14)) {
+
+					// On verifie a droite, en dessous et a gauche
+					if (existeTuile(col++, lig)) return false;
+					else if (existeTuile(col, lig++)) return false;
+					else if (existeTuile(col--, lig)) return false;
+				} else 
+
+					// On verifie si la case cible est sur la derniere colonne
+					if (col == 14 && (lig > 0 && lig < 14)) {
+
+						// On verifie au dessus, a gauche et en dessous
+						if (existeTuile(col, lig--)) return false;
+						else if (existeTuile(col--, lig)) return false;
+						else if (existeTuile(col, lig++)) return false;
+					} else 
+
+						// On verifie si la case cible est sur la derniere ligne
+						if (lig == 14 && (col > 0 && col < 14)) {
+
+							// On verifie au dessus, a droite et a gauche
+							if (existeTuile(col, lig--)) return false;
+							else if (existeTuile(col++, lig)) return false;
+							else if (existeTuile(col--, lig)) return false;
+						} else
+
+							// On verifie si la case cible est le coin sup�rieur gauche
+							if(col == 0 && lig == 0) {
+
+								// On verifie a droite et en dessous
+								if (existeTuile(col++, lig)) return false;
+								else if (existeTuile(col, lig++)) return false;
+							} else
+
+								// On verifie si la case cible est le coin sup�rieur droit
+								if(col == 14 && lig == 0) {
+
+									// On verifie en dessous et a gauche
+									if (existeTuile(col, lig++)) return false;
+									else if (existeTuile(col--, lig)) return false;
+								} else
+
+									// On verifie si la case cible est le coin inf�rieur gauche
+									if(col == 0 && lig == 14) {
+
+										// On verifie au dessus et a droite
+										if (existeTuile(col, lig--)) return false;
+										else if (existeTuile(col++, lig)) return false;
+									} else
+
+										// On verifie si la case cible est le coin inf�rieur droit
+										if(col == 14 && lig == 14) {
+
+											// On verifie au dessus et a gauche
+											if (existeTuile(col, lig--)) return false;
+											else if (existeTuile(col--, lig)) return false;
+										}
+
+		return true;
 	}
 	
 	public boolean checkBoard() 

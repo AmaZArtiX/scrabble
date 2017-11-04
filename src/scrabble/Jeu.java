@@ -1,9 +1,7 @@
 // Package
 package scrabble;
 
-import java.io.FileNotFoundException;
 // Import(s)
-import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,17 +37,19 @@ public class Jeu extends Application {
 	public static void main(String[] args) {	
 	
 		// Lancement de la fenetre javafx --> fonction "start"
-		/*launch(args);*/
+		launch(args);
 		
+		/*
 		
 		// Affichage du plateau 
+		p.afficher();
 
-		
 		// Affichage du chevalet du joueur 1
-
+		System.out.println("\n" + Joueur.getChevalet() + "\n");
+		
 		// Affichage du sac après après supprimé des tuiles
 		//s.afficherSac();
-
+		
 		Joueur = new Joueur();
 		Joueur.getChevalet().remplir(s);
 		System.out.println(Joueur.getChevalet());
@@ -61,13 +61,15 @@ public class Jeu extends Application {
 		p.placerTuile(3, 2, 0, new Tuile('E', 1));
 		p.placerTuile(3, 3, 0, new Tuile('F', 1));
 		p.restaurerPlateauTuiles();
-	
+		
 		p.afficher();
 		
 		if(p.existeTuileSeule() == true)
 			System.out.println("MOVE INCORRECT");
 		else 
 			System.out.println("MOVE OK");
+		
+		*/
 	}
 
 	// Fonction permettant le lancement de l'application

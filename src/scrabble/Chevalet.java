@@ -22,7 +22,7 @@ public class Chevalet {
 	private ArrayList<Tuile> chevalet;
 	
 	// Taille constante du chevalet tout au long du jeu 
-	private final int TAILLE = 7;
+	static final int TAILLE = 7;
 	
 	// Constructeur sans parametre
 	Chevalet(){
@@ -145,6 +145,6 @@ public class Chevalet {
 
 	@Override
 	public String toString() {
-		return "Chevalet [chevalet=" + chevalet + "]";
+		return "Chevalet : " + chevalet;
 	}
 }
