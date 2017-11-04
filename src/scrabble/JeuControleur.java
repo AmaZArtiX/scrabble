@@ -137,8 +137,8 @@ public class JeuControleur extends Jeu {
 		
 		try {
 			// On récupère les coordonnees de jeu de la Tuile (Plateau)
-			int col = GridPane.getColumnIndex((Node) event.getTarget());
-			int lig = GridPane.getRowIndex((Node) event.getTarget());
+			int col = GridPane.getColumnIndex((Node) event.getSource());
+			int lig = GridPane.getRowIndex((Node) event.getSource());
 			
 			// On verifie si le drag contient une Image
 			if(event.getDragboard().hasImage()) {
@@ -151,9 +151,24 @@ public class JeuControleur extends Jeu {
 						
 						// On autorise le drop
 						event.acceptTransferModes(TransferMode.ANY);
-					} else if (p.existeTuile(col, lig--) | p.existeTuile(col++, lig) | p.existeTuile(col, lig++) | p.existeTuile(col--, lig)) {
 						
-						//System.out.println(); !p.tuileSeule(col, lig)
+					/*} else if (!p.tuileSeule(col, lig)) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);*/
+					} else if (p.existeTuile(col, --lig)) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);
+					} else if (p.existeTuile(++col, lig)) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);						
+					} else if (p.existeTuile(col, ++lig)) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);
+					} else if (p.existeTuile(--col, lig)) {
 						
 						// On autorise le drop
 						event.acceptTransferModes(TransferMode.ANY);

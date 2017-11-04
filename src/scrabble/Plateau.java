@@ -1,11 +1,9 @@
 // Package
 package scrabble;
 
-import java.io.FileNotFoundException;
 // Import(s)
 import java.util.ArrayList;
 
-import javafx.scene.input.TransferMode;
 
 /*************************************************************************
  * Nom ...........: Plateau.java
@@ -407,82 +405,82 @@ public class Plateau {
 		
 		// On verifie si la case cible ne touche pas le bord du plateau
 		if((col > 0 && col < 14) && (lig > 0 && lig < 14)) {
-			
-			// 
+
+			// On verifie les 4 cotes
 			if (existeTuile(col, lig--)) return false;
 			else if (existeTuile(col++, lig)) return false;
 			else if (existeTuile(col, lig++)) return false;
 			else if (existeTuile(col--, lig)) return false;
 		} else 
-		
-		// On verifie si la case cible est sur la premiere colonne
-		if (col == 0 && (lig > 0 && lig < 14)) {
-		
-			// 
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col++, lig)) return false;
-			else if (existeTuile(col, lig++)) return false;
-		} else 
-		
-		// On verifie si la case cible est sur la premiere ligne
-		if (lig == 0 && (col > 0 && col < 14)) {
-			
-			// 
-			if (existeTuile(col++, lig)) return false;
-			else if (existeTuile(col, lig++)) return false;
-			else if (existeTuile(col--, lig)) return false;
-		} else 
-		
-		// On verifie si la case cible est sur la derniere colonne
-		if (col == 14 && (lig > 0 && lig < 14)) {
-			
-			// 
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col, lig++)) return false;
-			else if (existeTuile(col--, lig)) return false;
-		} else 
-		
-		// On verifie si la case cible est sur la derniere ligne
-		if (lig == 14 && (col > 0 && col < 14)) {
-			
-			// 
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col++, lig)) return false;
-			else if (existeTuile(col--, lig)) return false;
-		} else
-		
-		// On verifie si la case cible est le coin supérieur gauche
-		if(col == 0 && lig == 0) {
-			
-			// 
-			if (existeTuile(col++, lig)) return false;
-			else if (existeTuile(col, lig++)) return false;
-		} else
-			
-		// On verifie si la case cible est le coin supérieur droit
-		if(col == 14 && lig == 0) {
-			
-			// 
-			if (existeTuile(col, lig++)) return false;
-			else if (existeTuile(col--, lig)) return false;
-		} else
-		
-		// On verifie si la case cible est le coin inférieur gauche
-		if(col == 0 && lig == 14) {
-			
-			// 
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col++, lig)) return false;
-		} else
-		
-		// On verifie si la case cible est le coin inférieur droit
-		if(col == 14 && lig == 14) {
-			
-			// 
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col--, lig)) return false;
-		}
-		
+
+			// On verifie si la case cible est sur la premiere colonne
+			if (col == 0 && (lig > 0 && lig < 14)) {
+
+				// On verifie au dessus, a droite et en dessous
+				if (existeTuile(col, lig--)) return false;
+				else if (existeTuile(col++, lig)) return false;
+				else if (existeTuile(col, lig++)) return false;
+			} else 
+
+				// On verifie si la case cible est sur la premiere ligne
+				if (lig == 0 && (col > 0 && col < 14)) {
+
+					// On verifie a droite, en dessous et a gauche
+					if (existeTuile(col++, lig)) return false;
+					else if (existeTuile(col, lig++)) return false;
+					else if (existeTuile(col--, lig)) return false;
+				} else 
+
+					// On verifie si la case cible est sur la derniere colonne
+					if (col == 14 && (lig > 0 && lig < 14)) {
+
+						// On verifie au dessus, a gauche et en dessous
+						if (existeTuile(col, lig--)) return false;
+						else if (existeTuile(col--, lig)) return false;
+						else if (existeTuile(col, lig++)) return false;
+					} else 
+
+						// On verifie si la case cible est sur la derniere ligne
+						if (lig == 14 && (col > 0 && col < 14)) {
+
+							// On verifie au dessus, a droite et a gauche
+							if (existeTuile(col, lig--)) return false;
+							else if (existeTuile(col++, lig)) return false;
+							else if (existeTuile(col--, lig)) return false;
+						} else
+
+							// On verifie si la case cible est le coin supérieur gauche
+							if(col == 0 && lig == 0) {
+
+								// On verifie a droite et en dessous
+								if (existeTuile(col++, lig)) return false;
+								else if (existeTuile(col, lig++)) return false;
+							} else
+
+								// On verifie si la case cible est le coin supérieur droit
+								if(col == 14 && lig == 0) {
+
+									// On verifie en dessous et a gauche
+									if (existeTuile(col, lig++)) return false;
+									else if (existeTuile(col--, lig)) return false;
+								} else
+
+									// On verifie si la case cible est le coin inférieur gauche
+									if(col == 0 && lig == 14) {
+
+										// On verifie au dessus et a droite
+										if (existeTuile(col, lig--)) return false;
+										else if (existeTuile(col++, lig)) return false;
+									} else
+
+										// On verifie si la case cible est le coin inférieur droit
+										if(col == 14 && lig == 14) {
+
+											// On verifie au dessus et a gauche
+											if (existeTuile(col, lig--)) return false;
+											else if (existeTuile(col--, lig)) return false;
+										}
+
 		return true;
 	}
 	

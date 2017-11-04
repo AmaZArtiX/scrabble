@@ -1,7 +1,6 @@
 // Package
 package scrabble;
 
-import java.io.FileNotFoundException;
 // Import(s)
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
