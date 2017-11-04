@@ -26,17 +26,22 @@ public class DictionnaireControleur extends Jeu{
 	@FXML private TextField txtMotRech;
 
 	// Fonction de verification de l'existance d'un mot dans le Dictionnaire
-	public void verifExist(ActionEvent e) {
+	@FXML private void verifExist(ActionEvent e) {
 		
+		// Si le mot recherche est null alors rien n'est fait
 		if (txtMotRech.getText().length() == 0) {
 			
 		} else {
+			
+			// Si le mot recherche n'est pas null alors le recherche dans le dictionnaire et on affiche
+			// le resultat
 			if (Dictionnaire.existe(txtMotRech.getText().toUpperCase()))
 				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : Existe");
 			else 
 				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : N'existe pas");
 		}
 		
+		// On vide le TextView txtMotRech de son contenu
 		txtMotRech.setText("");
 	}
 }

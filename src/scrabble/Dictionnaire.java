@@ -47,7 +47,7 @@ public class Dictionnaire {
 		return Dico.size();
 	}
 	
-	// Renvoie le mot stocké à l'indice i
+	// Renvoie le mot stocke a l'indice i
 	public String getMot(int i) {
 		
 		return Dico.get(i);

@@ -39,7 +39,7 @@ public class JeuControleur extends Jeu {
 	@FXML private GridPane grillePlateau;
 	
 	// Tableau d'ImageView des cases du Plateau
-	private ImageView[][] casesPlateau = new ImageView[Plateau.TAILLE][Plateau.TAILLE];
+	private ImageView[] casesPlateau = new ImageView[Plateau.TAILLE*Plateau.TAILLE];
 
 	// Lien entre le fichier FXML et le GridPane du Chevalet
 	@FXML private GridPane grilleChevalet;
@@ -47,7 +47,7 @@ public class JeuControleur extends Jeu {
 	// Tableau d'ImageView des cases du Chevalet
 	private ImageView[] casesChevalet = new ImageView[Chevalet.TAILLE];
 	
-	// Fonction permettant d'acc�der au dictionnaire
+	// Fonction permettant d'acceder au dictionnaire
 	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
 		
 		// Test root cree avec Scene Builder
@@ -81,10 +81,8 @@ public class JeuControleur extends Jeu {
 		lblScoreJ.setText("Score du Joueur \"" + Joueur.getNom() + "\" : " + Integer.toString(Joueur.getScore()));
 		
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
-		for(int i=0;i<Plateau.TAILLE;i++) {
-			for(int j=0;j<Plateau.TAILLE;j++) {
-				casesPlateau[i][j] = (ImageView) grillePlateau.getChildren().get(i);
-			}
+		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
+			casesPlateau[i] = (ImageView) grillePlateau.getChildren().get(i);
 		}
 		
 		// Initialisation de casesChevalet avec les ImageView de grilleChevalet
@@ -101,12 +99,9 @@ public class JeuControleur extends Jeu {
 
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
-		
-		// Affichage du Chevalet du Joueur (Test Terminal)
-		System.out.println("\n" + Joueur.getChevalet() + "\n");
 	}
 	
-	// Fonction de m�lange des Tuiles du Chevalet
+	// Fonction de melange des Tuiles du Chevalet
 	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
@@ -114,9 +109,6 @@ public class JeuControleur extends Jeu {
 
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
-		
-		// Affichage du Chevalet du Joueur (Test Terminal)
-		System.out.println("\n" + Joueur.getChevalet() + "\n");
 	}
 	
 	// Fonction de detection d'un drag'n'drop
@@ -136,7 +128,7 @@ public class JeuControleur extends Jeu {
 	@FXML private void dragOver(DragEvent event) {
 		
 		try {
-			// On r�cup�re les coordonnees de jeu de la Tuile (Plateau)
+			// On recupere les coordonnees de jeu de la Tuile (Plateau)
 			int col = GridPane.getColumnIndex((Node) event.getSource());
 			int lig = GridPane.getRowIndex((Node) event.getSource());
 			
@@ -147,28 +139,12 @@ public class JeuControleur extends Jeu {
 				if(!p.existeTuile(col, lig)) {
 					
 					// On verifie si la case cible est la case de depart
-					if(col == lig & col == 7) {
+					if(col == 7 & lig == 7) {
 						
 						// On autorise le drop
 						event.acceptTransferModes(TransferMode.ANY);
 						
-					/*} else if (!p.tuileSeule(col, lig)) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);*/
-					} else if (p.existeTuile(col, lig-1)) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);
-					} else if (p.existeTuile(col+1, lig)) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);						
-					} else if (p.existeTuile(col, lig+1)) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);
-					} else if (p.existeTuile(col-1, lig)) {
+					} else if (!p.tuileSeule(col, lig)) {
 						
 						// On autorise le drop
 						event.acceptTransferModes(TransferMode.ANY);
@@ -184,33 +160,21 @@ public class JeuControleur extends Jeu {
 	// Fonction de detection d'un drag dropped
 	@FXML private void dragDropped(DragEvent event) {
 		
-		// On r�cup�re l'indice de la Tuile jou�e (Chevalet)
+		// On recupere l'indice de la Tuile jouee (Chevalet)
 		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
 		
-		// On r�cup�re les coordonnees de jeu de la Tuile (Plateau)
+		// On recupere les coordonnees de jeu de la Tuile (Plateau)
 		int col = GridPane.getColumnIndex((Node) event.getSource());
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
-		// On affiche le Tuile jou�e (Test Terminal)
-		System.out.println(Joueur.getChevalet().getTuile(index) + " Jou�e");
-		
-		// On ajoute la Tuile jou�e a plateauTuilesTampon
+		// On ajoute la Tuile jouee a plateauTuilesTampon
 		p.placerTuile(lig, col, Joueur.getChevalet().getTuile(index));
 		
 		// On copie plateauTuilesTampon dans plateauTuiles
 		p.restaurerPlateauTuiles();
 		
-		// Affichage de l'image de l'ImageView source dans l'ImageView destination
-		((ImageView) event.getTarget()).setImage(event.getDragboard().getImage());
-		
-		// On affiche le Plateau (Test Terminal)
-		p.afficher();
-		
-		// On supprime la Tuile jou�e du Chevalet du Joueur
+		// On supprime la Tuile jouee du Chevalet du Joueur
 		Joueur.getChevalet().supprimerTuile(index);
-		
-		// Affichage du Chevalet du Joueur (Test Terminal)
-		System.out.println("\n" + Joueur.getChevalet() + "\n");
 	}
 	
 	// Fonction de detection d'un drag done
@@ -226,10 +190,10 @@ public class JeuControleur extends Jeu {
 	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
 	private void raffraichissementChevalet() {
 		
+		// Le Chevalet du Joueur n'est pas vide
 		if(!Joueur.getChevalet().estVide()) {
-			// Le Chevalet du Joueur est vide
 			
-			int i; // On met � jour les ImageView du Chevalet en fonction du Chevalet du Joueur
+			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet du Joueur
 			for(i=0;i<Joueur.getChevalet().getTaille();i++) {
 				if(Joueur.getChevalet().getTuile(i).getImg() == null) {
 					casesChevalet[i].setImage(null);
@@ -238,7 +202,7 @@ public class JeuControleur extends Jeu {
 				}
 			}
 			
-			// Si le nombre de Tuile pr�sent dans le Chevalet du Joueur est inf�rieur � la taille
+			// Si le nombre de Tuile present dans le Chevalet du Joueur est inferieur a la taille
 			// MAX du Chevalet alors on vide les ImageView restants
 			if(i<Chevalet.TAILLE) {
 				while (i<Chevalet.TAILLE) {
@@ -246,8 +210,7 @@ public class JeuControleur extends Jeu {
 					i++;
 				}
 			}
-		} else {
-			// Le Chevalet du Joueur est vide 
+		} else { // Le Chevalet du Joueur est vide
 			
 			// On vide les ImageView du Chevalet
 			for(int i=0;i<Chevalet.TAILLE;i++) {
@@ -258,6 +221,55 @@ public class JeuControleur extends Jeu {
 	
 	// Fonction de raffraichissement des ImageView du Plateau en fonction du tableau plateauTuiles
 	private void raffraichissementPlateau() {
-		// TO-DO
+		
+		// Le tableau plateauTuiles n'est pas vide
+		if(!p.getPlateauTuilesTampon().equals(null)) {
+			
+			// On parcours toutes les lignes
+			for(int i=0;i<Plateau.TAILLE;i++) {
+				
+				// On parcours toutes les colonnes
+				for(int j=0;j<Plateau.TAILLE;j++) {
+					
+					// Si un bonus est present mais pas de Tuile alors on entre dans le if
+					if((p.getStringBonus(i, j) != "") & !(p.getTuileTampon(i, j) != null)) {
+						
+						// On recupere le String du bonus (de plateauBonus)
+						switch (p.getStringBonus(i, j)) {
+							case "LD":
+								// On met l'Image de la lettre double dans l'ImageView du Plateau
+								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LD.png"));
+								break;
+							case "LT":
+								// On met l'Image de la lettre triple dans l'ImageView du Plateau
+								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LT.png"));
+								break;
+							case "MD":
+								// On met l'Image du mot double dans l'ImageView du Plateau
+								if(i == 7 & j == 7) casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CD.png"));
+								else casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MD.png"));
+								break;
+							case "MT":
+								// On met l'Image du mot triple dans l'ImageView du Plateau
+								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MT.png"));
+								break;
+							default:
+								break;
+						}
+					} else 
+					
+					// Si une Tuile est presente alors on entre dans le if
+					if (p.getTuileTampon(i, j) != null) {
+						
+						// On affiche son Image dans l'ImageView du Plateau
+						casesPlateau[j*Plateau.TAILLE+i].setImage(p.getTuileTampon(i, j).getImg());
+					} else {
+						
+						// La case est vide donc on met l'Image de l'ImageView a vide
+						casesPlateau[j*Plateau.TAILLE+i].setImage(null);
+					}
+				}
+			}
+		}
 	}
 }

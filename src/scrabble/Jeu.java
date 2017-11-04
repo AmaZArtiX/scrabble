@@ -43,15 +43,6 @@ public class Jeu extends Application {
 		
 		// Affichage du plateau 
 		p.afficher();
-
-		// Affichage du chevalet du joueur 1
-		//System.out.println("\n" + Joueur.getChevalet() + "\n");
-		
-		// Affichage du sac après après supprimé des tuiles
-		//s.afficherSac();
-		//Tuile t = new Tuile('*', 0, new Image("Jocker.png"));
-		//int i = s.getNombreTuile(t);
-		//System.out.println(i);
 	}
 
 	// Fonction permettant le lancement de l'application

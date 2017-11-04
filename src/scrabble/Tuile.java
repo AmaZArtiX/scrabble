@@ -23,7 +23,7 @@ public class Tuile {
 	
 	// Constructeur vide
 	public Tuile() {
-		this.lettre = ' ';
+		this.lettre = '*';
 		this.valeur = 0;
 		this.img = new Image("Jocker.png");
 	}

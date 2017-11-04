@@ -1,7 +1,6 @@
 // Package
 package scrabble;
 
-import java.io.FileNotFoundException;
 // Import(s)
 import java.util.ArrayList;
 
@@ -26,26 +25,26 @@ public class Plateau {
 	
 	// Tableau 2D de chaines correspondantes aux bonus
 	private final String[][] plateauBonus = {
-			{"MT", "", "", "LD", "", "", "", "MT", "", "", "", "LD", "", "", "MT"},
-			{"", "MD", "", "", "", "LT", "", "", "", "LT", "", "", "", "MD", ""},
-			{"", "", "MD", "", "", "", "LD", "", "LD", "", "", "", "MD", "", ""},
-			{"LD", "", "", "MD", "", "", "", "LD", "", "", "", "MD", "", "", "LD"},
-			{"", "", "", "", "MD", "", "", "", "", "", "MD", "", "", "", ""},
-			{"", "LT", "", "", "", "LT", "", "", "", "LT", "", "", "", "LT", ""},
-			{"", "", "LD", "", "", "", "LD", "", "lD", "", "", "", "LD", "", ""},
-			{"MT", "", "", "LD", "", "", "", "MD", "", "", "", "LD", "", "", "MT"},
-			{"", "", "LD", "", "", "", "LD", "", "LD", "", "", "", "LD", "", ""},
-			{"", "LT", "", "", "", "LT", "", "", "", "LT", "", "", "", "LT", ""},
-			{"", "", "", "", "MD", "", "", "", "", "", "MD", "", "", "", ""},
-			{"LD", "", "", "MD", "", "", "", "LD", "", "", "", "MD", "", "", "LD"},
-			{"", "", "MD", "", "", "", "LD", "", "LD", "", "", "", "MD", "", ""},
-			{"", "MD", "", "", "", "LT", "", "", "", "LT", "", "", "", "MD", ""},
-			{"MT", "", "", "LD", "", "", "", "MT", "", "", "", "LD", "", "", "MT"},	
+			{"MT", "  ", "  ", "LD", "  ", "  ", "  ", "MT", "  ", "  ", "  ", "LD", "  ", "  ", "MT"},
+			{"  ", "MD", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "MD", "  "},
+			{"  ", "  ", "MD", "  ", "  ", "  ", "LD", "  ", "LD", "  ", "  ", "  ", "MD", "  ", "  "},
+			{"LD", "  ", "  ", "MD", "  ", "  ", "  ", "LD", "  ", "  ", "  ", "MD", "  ", "  ", "LD"},
+			{"  ", "  ", "  ", "  ", "MD", "  ", "  ", "  ", "  ", "  ", "MD", "  ", "  ", "  ", "  "},
+			{"  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  "},
+			{"  ", "  ", "LD", "  ", "  ", "  ", "LD", "  ", "LD", "  ", "  ", "  ", "LD", "  ", "  "},
+			{"MT", "  ", "  ", "LD", "  ", "  ", "  ", "MD", "  ", "  ", "  ", "LD", "  ", "  ", "MT"},
+			{"  ", "  ", "LD", "  ", "  ", "  ", "LD", "  ", "LD", "  ", "  ", "  ", "LD", "  ", "  "},
+			{"  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  "},
+			{"  ", "  ", "  ", "  ", "MD", "  ", "  ", "  ", "  ", "  ", "MD", "  ", "  ", "  ", "  "},
+			{"LD", "  ", "  ", "MD", "  ", "  ", "  ", "LD", "  ", "  ", "  ", "MD", "  ", "  ", "LD"},
+			{"  ", "  ", "MD", "  ", "  ", "  ", "LD", "  ", "LD", "  ", "  ", "  ", "MD", "  ", "  "},
+			{"  ", "MD", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "LT", "  ", "  ", "  ", "MD", "  "},
+			{"MT", "  ", "  ", "LD", "  ", "  ", "  ", "MT", "  ", "  ", "  ", "LD", "  ", "  ", "MT"},	
 	};
 	
-	// Tableau d'entiers pour savoir si un bonus a été attribué 
+	// Tableau d'entiers pour savoir si un bonus a ete attribue 
 	private int[][] plateauAttribution;
-	// Tableau d'entiers pour savoir si un bonus a été attribué (tampon)
+	// Tableau d'entiers pour savoir si un bonus a ete attribue (tampon)
 	private int[][] plateauAttributionTampon;
 	
 	// Tableau 2D contenant les tuiles 
@@ -270,6 +269,10 @@ public class Plateau {
 		return plateauBonus;
 	}
 	
+	public String getStringBonus(int col, int lig) {
+		return plateauBonus[lig][col];
+	}
+	
 	public boolean existeTuile(int col, int lig) {
 		if(plateauTuilesTampon[lig][col] == null)
 			return false;
@@ -279,8 +282,8 @@ public class Plateau {
 	
 	/**
 	 * Calcule le score effectue pour une liste de tuiles et une liste de bonus correspondants
-	 * la premiere tuile de la liste correspond à la premiere lettre du mot place, idem pour le bonus 
-	 * qui corresppond à la case ou a ete jouee la tuile
+	 * la premiere tuile de la liste correspond a la premiere lettre du mot place, idem pour le bonus 
+	 * qui corresppond a la case ou a ete jouee la tuile
 	 * @param listeTuiles Tuiles qui forment le mot
 	 * @param listeBonus Bonus de chaque case 
 	 * @return scoreMot le score effectue 
@@ -288,7 +291,7 @@ public class Plateau {
 	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
 
 		ArrayList<String> motsAJouer = new ArrayList<String>();
-
+		
 		
 		// Score total m
 		int scoreMot = 0;
@@ -312,10 +315,10 @@ public class Plateau {
 				String bonus = listeBonus.get(i);
 				// Multiplication de la valeur de la tuile par le bonus de la case
 				scoreLettre *= getBonus(bonus);
-				// Incrémentation du score total
+				// Incrementation du score total
 				scoreMot += scoreLettre;
 				
-				// Incrémentation du compteur de cases "MD"
+				// Incrementation du compteur de cases "MD"
 				if(bonus.equals("MD"))
 					cptMotDouble++;
 				// Incrémentation du compteur de cases "MT"
@@ -338,7 +341,7 @@ public class Plateau {
 	}
 	
 	/**
-	 * Vérifie si une tuile est isolee sur le plateau
+	 * Verifie si une tuile est isolee sur le plateau
 	 * @return boolean true si une tuile a ete trouvee
 	 */
 	public boolean existeTuileSeule() {
@@ -350,19 +353,19 @@ public class Plateau {
 				// Existence d'une tuile en x, y
 				if(plateauTuilesTampon[x][y] != null) {
 					
-					// Tuile isolee dans le coin supérieur gauche
+					// Tuile isolee dans le coin superieur gauche
 					if((x == 0 && y == 0) && (plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null))
 						return true;
 					
-					// Tuile isolee dans le coin supérieur droit
+					// Tuile isolee dans le coin superieur droit
 					if((x == 0 && y == 14) && (plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x+1][y] == null))
 						return true;
 					
-					// Tuile isolee dans le coin inférieur gauche
+					// Tuile isolee dans le coin inferieur gauche
 					if((x == 14 && y == 0) &&  (plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x-1][y] == null))
 						return true;
 					
-					// Tuile isolee dans le coin inérieur droit
+					// Tuile isolee dans le coin inferieur droit
 					if((x == 14 && y == 14) &&  (plateauTuilesTampon[x-1][y] == null && plateauTuilesTampon[x][y-1] == null))
 						return true;
 					
@@ -398,78 +401,78 @@ public class Plateau {
 		if((col > 0 && col < 14) && (lig > 0 && lig < 14)) {
 
 			// On verifie les 4 cotes
-			if (existeTuile(col, lig--)) return false;
-			else if (existeTuile(col++, lig)) return false;
-			else if (existeTuile(col, lig++)) return false;
-			else if (existeTuile(col--, lig)) return false;
+			if (existeTuile(col, lig-1)) return false;
+			else if (existeTuile(col+1, lig)) return false;
+			else if (existeTuile(col, lig+1)) return false;
+			else if (existeTuile(col-1, lig)) return false;
 		} else 
 
 			// On verifie si la case cible est sur la premiere colonne
 			if (col == 0 && (lig > 0 && lig < 14)) {
 
 				// On verifie au dessus, a droite et en dessous
-				if (existeTuile(col, lig--)) return false;
-				else if (existeTuile(col++, lig)) return false;
-				else if (existeTuile(col, lig++)) return false;
+				if (existeTuile(col, lig-1)) return false;
+				else if (existeTuile(col+1, lig)) return false;
+				else if (existeTuile(col, lig+1)) return false;
 			} else 
 
 				// On verifie si la case cible est sur la premiere ligne
 				if (lig == 0 && (col > 0 && col < 14)) {
 
 					// On verifie a droite, en dessous et a gauche
-					if (existeTuile(col++, lig)) return false;
-					else if (existeTuile(col, lig++)) return false;
-					else if (existeTuile(col--, lig)) return false;
+					if (existeTuile(col+1, lig)) return false;
+					else if (existeTuile(col, lig+1)) return false;
+					else if (existeTuile(col-1, lig)) return false;
 				} else 
 
 					// On verifie si la case cible est sur la derniere colonne
 					if (col == 14 && (lig > 0 && lig < 14)) {
 
 						// On verifie au dessus, a gauche et en dessous
-						if (existeTuile(col, lig--)) return false;
-						else if (existeTuile(col--, lig)) return false;
-						else if (existeTuile(col, lig++)) return false;
+						if (existeTuile(col, lig-1)) return false;
+						else if (existeTuile(col-1, lig)) return false;
+						else if (existeTuile(col, lig+1)) return false;
 					} else 
 
 						// On verifie si la case cible est sur la derniere ligne
 						if (lig == 14 && (col > 0 && col < 14)) {
 
 							// On verifie au dessus, a droite et a gauche
-							if (existeTuile(col, lig--)) return false;
-							else if (existeTuile(col++, lig)) return false;
-							else if (existeTuile(col--, lig)) return false;
+							if (existeTuile(col, lig-1)) return false;
+							else if (existeTuile(col+1, lig)) return false;
+							else if (existeTuile(col-1, lig)) return false;
 						} else
 
-							// On verifie si la case cible est le coin sup�rieur gauche
+							// On verifie si la case cible est le coin superieur gauche
 							if(col == 0 && lig == 0) {
 
 								// On verifie a droite et en dessous
-								if (existeTuile(col++, lig)) return false;
-								else if (existeTuile(col, lig++)) return false;
+								if (existeTuile(col+1, lig)) return false;
+								else if (existeTuile(col, lig+1)) return false;
 							} else
 
-								// On verifie si la case cible est le coin sup�rieur droit
+								// On verifie si la case cible est le coin superieur droit
 								if(col == 14 && lig == 0) {
 
 									// On verifie en dessous et a gauche
-									if (existeTuile(col, lig++)) return false;
-									else if (existeTuile(col--, lig)) return false;
+									if (existeTuile(col, lig+1)) return false;
+									else if (existeTuile(col-1, lig)) return false;
 								} else
 
-									// On verifie si la case cible est le coin inf�rieur gauche
+									// On verifie si la case cible est le coin inferieur gauche
 									if(col == 0 && lig == 14) {
 
 										// On verifie au dessus et a droite
-										if (existeTuile(col, lig--)) return false;
-										else if (existeTuile(col++, lig)) return false;
+										if (existeTuile(col, lig-1)) return false;
+										else if (existeTuile(col+1, lig)) return false;
 									} else
 
-										// On verifie si la case cible est le coin inf�rieur droit
+										// On verifie si la case cible est le coin inferieur droit
 										if(col == 14 && lig == 14) {
 
 											// On verifie au dessus et a gauche
-											if (existeTuile(col, lig--)) return false;
-											else if (existeTuile(col--, lig)) return false;
+											if (existeTuile(col, lig-1)) return false;
+											else if (existeTuile(col-1, lig)) return false;
 										}
 
 		return true;
@@ -653,4 +656,44 @@ public class Plateau {
 	   //System.out.println("True");
 	   return true;
 	}//end checkBoard()
+
+	public int[][] getPlateauAttribution() {
+		return plateauAttribution;
+	}
+
+	public void setPlateauAttribution(int[][] plateauAttribution) {
+		this.plateauAttribution = plateauAttribution;
+	}
+
+	public int[][] getPlateauAttributionTampon() {
+		return plateauAttributionTampon;
+	}
+
+	public void setPlateauAttributionTampon(int[][] plateauAttributionTampon) {
+		this.plateauAttributionTampon = plateauAttributionTampon;
+	}
+
+	public Tuile[][] getPlateauTuiles() {
+		return plateauTuiles;
+	}
+	
+	public Tuile getTuile(int col, int lig) {
+		return plateauTuiles[lig][col];
+	}
+
+	public void setPlateauTuiles(Tuile[][] plateauTuiles) {
+		this.plateauTuiles = plateauTuiles;
+	}
+
+	public Tuile[][] getPlateauTuilesTampon() {
+		return plateauTuilesTampon;
+	}
+
+	public void setPlateauTuilesTampon(Tuile[][] plateauTuilesTampon) {
+		this.plateauTuilesTampon = plateauTuilesTampon;
+	}
+	
+	public Tuile getTuileTampon(int col, int lig) {
+		return plateauTuilesTampon[lig][col];
+	}
 }
