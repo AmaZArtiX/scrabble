@@ -25,7 +25,7 @@ public class Tuile {
 	public Tuile() {
 		this.lettre = ' ';
 		this.valeur = 0;
-		this.img = new Image("");
+		this.img = new Image("Jocker.png");
 	}
 	
 	public Tuile(char _lettre, int _valeur) {
@@ -55,6 +55,20 @@ public class Tuile {
 	// Fonction retournant le chemin de l'image
 	public Image getImg() {
 		return img;
+	}
+	
+	/**
+	 * Compare l'égalité de deux tuiles
+	 */
+	public boolean equals(Object o) {
+		
+		boolean rep;
+		Tuile t = (Tuile)o;
+		
+		rep = lettre == t.lettre && 
+				valeur == t.valeur;
+		
+		return rep;
 	}
 
 	@Override

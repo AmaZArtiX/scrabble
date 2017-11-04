@@ -39,37 +39,19 @@ public class Jeu extends Application {
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
 		
-		/*
+	
 		
 		// Affichage du plateau 
 		p.afficher();
 
 		// Affichage du chevalet du joueur 1
-		System.out.println("\n" + Joueur.getChevalet() + "\n");
+		//System.out.println("\n" + Joueur.getChevalet() + "\n");
 		
 		// Affichage du sac après après supprimé des tuiles
 		//s.afficherSac();
-		
-		Joueur = new Joueur();
-		Joueur.getChevalet().remplir(s);
-		System.out.println(Joueur.getChevalet());
-		
-		p.placerTuile(1, 1, 0, new Tuile('A', 1));
-		p.placerTuile(1, 2, 0, new Tuile('B', 1));
-		p.placerTuile(1, 3, 0, new Tuile('C', 1));
-		p.placerTuile(3, 1, 0, new Tuile('D', 1));
-		p.placerTuile(3, 2, 0, new Tuile('E', 1));
-		p.placerTuile(3, 3, 0, new Tuile('F', 1));
-		p.restaurerPlateauTuiles();
-		
-		p.afficher();
-		
-		if(p.existeTuileSeule() == true)
-			System.out.println("MOVE INCORRECT");
-		else 
-			System.out.println("MOVE OK");
-		
-		*/
+		//Tuile t = new Tuile('*', 0, new Image("Jocker.png"));
+		//int i = s.getNombreTuile(t);
+		//System.out.println(i);
 	}
 
 	// Fonction permettant le lancement de l'application
