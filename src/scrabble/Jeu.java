@@ -55,7 +55,11 @@ public class Jeu extends Application {
 		System.out.println(Joueur.getChevalet());
 		
 		p.placerTuile(1, 1, 0, new Tuile('A', 1));
-		p.placerTuile(3, 4, 0, new Tuile('A', 1));
+		p.placerTuile(1, 2, 0, new Tuile('B', 1));
+		p.placerTuile(1, 3, 0, new Tuile('C', 1));
+		p.placerTuile(3, 1, 0, new Tuile('D', 1));
+		p.placerTuile(3, 2, 0, new Tuile('E', 1));
+		p.placerTuile(3, 3, 0, new Tuile('F', 1));
 		p.restaurerPlateauTuiles();
 	
 		p.afficher();

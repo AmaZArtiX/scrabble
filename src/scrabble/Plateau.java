@@ -190,16 +190,17 @@ public class Plateau {
 		// Si case vide, on ajoute
 		if(plateauTuilesTampon[x][y] == null)
 			plateauTuilesTampon[x][y] = t;
+		/*
 		else {
-			/*
+		
 			// Appel de la fonction pour placer la lettre a l'horizontal
 			if(direction == 0)
 				placerTuile(x, y+1, direction, t);
 			// Appel de la fonction pour placer la lettre a la verticale
 			else if(direction == 1)
 				placerTuile(x-1, y, direction, t);
-			*/
-		}
+			
+		}*/
 	}
 	
 	/**
