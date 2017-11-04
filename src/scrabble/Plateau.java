@@ -1,8 +1,11 @@
 // Package
 package scrabble;
 
+import java.io.FileNotFoundException;
 // Import(s)
 import java.util.ArrayList;
+
+import javafx.scene.input.TransferMode;
 
 /*************************************************************************
  * Nom ...........: Plateau.java
@@ -62,7 +65,9 @@ public class Plateau {
 		initialiser();
 	}
 	
-	// Initialisation du plateau avec des objets nuls
+	/**
+	 * Initialise le plateau de scrabble avec des objets nuls
+	 */
 	public void initialiser() {
 		
 		for(int x = 0; x < TAILLE; x++) {
@@ -77,7 +82,9 @@ public class Plateau {
 		}
 	}
 	
-	// Affichage du plateau en console 
+	/**
+	 * Affiche le plateau de scrabble en console 
+	 */
 	public void afficher() {
 		
 		int x, y; 
@@ -113,6 +120,8 @@ public class Plateau {
 			if(x == TAILLE-1)
 	         System.out.print("\n");    
 	     }
+	        if (x < 14)
+	          System.out.print("\n  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |\n");   
 	}
 	
 	/**
@@ -133,7 +142,9 @@ public class Plateau {
 		return mot;
 	}
 	
-	// Sauvegarde les tuiles du plateau principal dans le plateau tampon
+	/**
+	 * Sauvegarde les tuiles du plateau principal dans le plateau tampon
+	 */
 	public void sauvegarderPlateauTuiles() {
 		
 		for(int x = 0; x < TAILLE; x++) {
@@ -143,7 +154,9 @@ public class Plateau {
 		}
 	}
 	
-	// Restaure les tuiles sauvegardees dans le plateau dans tampon vers le plateau principal
+	/**
+	 * Restaure les tuiles sauvegardees dans le plateau dans tampon vers le plateau principal
+	 */
 	public void restaurerPlateauTuiles() {
 		
 		for(int x = 0; x < TAILLE; x++) {
@@ -153,14 +166,22 @@ public class Plateau {
 		}
 	}
 	
-	// Sauvegarde les tuiles du chevalet principal dans un chevalet tampon
+	/**
+	 * Sauvegarde les tuiles du chevalet principal dans un chevalet tampon
+	 * @param chevaletPrincipal
+	 * @param chevaletTampon
+	 */
 	public void sauvegarderChevalet(Chevalet chevaletPrincipal, Chevalet chevaletTampon) {
 		
 		for(int i = 0; i < chevaletPrincipal.getTaille(); i++)
 			chevaletTampon.ajouterTuileIndex(i, chevaletPrincipal.getTuile(i));	
 	}
 	
-	// Restaure les tuiles du chevalet principal depuis le chevalet tampon
+	/**
+	 * Restaure les tuiles du chevalet principal depuis le chevalet tampon
+	 * @param chevaletPrincipal
+	 * @param chevaletTampon
+	 */
 	public void restaurerChevalet(Chevalet chevaletPrincipal, Chevalet chevaletTampon) {
 		
 		for(int i = 0; i < chevaletTampon.getTaille(); i++)
@@ -174,7 +195,7 @@ public class Plateau {
 	 * @param direction Direction du mot
 	 * @param t Tuile a placer
 	 */
-	public void placerTuile(int x, int y, boolean direction, Tuile t) {
+	public void placerTuile(int x, int y, Tuile t) {
 		
 		// Depassement de coordonnees
 		if(x < 0 || x > (TAILLE-1) || y < 0 || y > (TAILLE-1))
@@ -184,13 +205,6 @@ public class Plateau {
 		if(plateauTuilesTampon[x][y] == null)
 			plateauTuilesTampon[x][y] = t;
 		else {
-			
-			// Appel de la fonction pour placer la lettre a l'horizontal
-			if(!direction)
-				placerTuile(x, y+1, direction, t);
-			// Appel de la fonction pour placer la lettre a la verticale
-			else if(direction)
-				placerTuile(x-1, y, direction, t);
 		}
 	}
 	
@@ -241,26 +255,413 @@ public class Plateau {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retourne le bonus numerique correspondant au bonus litteral
+	 * @param bonus Chaine symbolisant le bonus
+	 * @return entier correspondant au bonus 
 	 */
-	public ArrayList<String> getMotsAJouer(){
+	public int getBonus(String bonus) {
 		
-		ArrayList<String> motsAJouer = new ArrayList<String>();
-		
-		
-		
-		return motsAJouer;
+		switch(bonus) {
+			
+			case "":
+				return 1;
+			case "MD":
+				return 1;
+			case "MT":
+				return 1;
+			case "LD":
+				return 2;
+			case "LT":
+				return 3;
+			default:
+				return -1;
+		}
 	}
 
 	public String[][] getPlateauBonus() {
 		return plateauBonus;
 	}
 	
-	public boolean tuileExistante(int col, int lig) {
-		if(plateauTuiles[lig][col] instanceof Tuile)
-			return true;
-		else 
+	public boolean existeTuile(int col, int lig) {
+		if(plateauTuilesTampon[lig][col] == null)
 			return false;
+		else
+			return true;
 	}
+	
+	/**
+	 * Calcule le score effectue pour une liste de tuiles et une liste de bonus correspondants
+	 * la premiere tuile de la liste correspond à la premiere lettre du mot place, idem pour le bonus 
+	 * qui corresppond à la case ou a ete jouee la tuile
+	 * @param listeTuiles Tuiles qui forment le mot
+	 * @param listeBonus Bonus de chaque case 
+	 * @return scoreMot le score effectue 
+	 */
+	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
+
+		ArrayList<String> motsAJouer = new ArrayList<String>();
+
+		// Score total m
+		int scoreMot = 0;
+		// Score pour une lettre 
+		int scoreLettre = 0;
+		// Compteur de cases "MD"
+		int cptMotDouble = 0;
+		// Compteur de case "MT"
+		int cptMotTriple = 0;
+		
+		// Verification de la coherence des listes
+		if(listeTuiles.size() != listeBonus.size())
+			return -1;
+		else {
+			
+			for(int i = 0; i < listeTuiles.size(); i++) {
+				
+				// Recuperation de la valeur d'une tuile
+				scoreLettre = listeTuiles.get(i).getValeur(); 
+				// Recuperation du bonus de la case
+				String bonus = listeBonus.get(i);
+				// Multiplication de la valeur de la tuile par le bonus de la case
+				scoreLettre *= getBonus(bonus);
+				// Incrémentation du score total
+				scoreMot += scoreLettre;
+				
+				// Incrémentation du compteur de cases "MD"
+				if(bonus.equals("MD"))
+					cptMotDouble++;
+				// Incrémentation du compteur de cases "MT"
+				else if(bonus.equals("MT"))
+					cptMotTriple++;
+			}
+			
+			// Mutliplication du score par le bonus 
+			if(cptMotDouble == 1)
+				scoreMot *= 2;
+			else if(cptMotDouble == 2)
+				scoreMot *= 4;
+			else if(cptMotTriple == 1)
+				scoreMot *= 3;
+			else if(cptMotTriple == 2)
+				scoreMot *= 9;
+			
+			return scoreMot;
+		}
+	}
+	
+	/**
+	 * Vérifie si une tuile est isolee sur le plateau
+	 * @return boolean true si une tuile a ete trouvee
+	 */
+	public boolean existeTuileSeule() {
+	
+		for(int x = 0; x < TAILLE; x++) {
+			
+			for(int y = 0; y < TAILLE; y++) {
+				
+				// Existence d'une tuile en x, y
+				if(plateauTuilesTampon[x][y] != null) {
+					
+					// Tuile isolee dans le coin supérieur gauche
+					if((x == 0 && y == 0) && (plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null))
+						return true;
+					
+					// Tuile isolee dans le coin supérieur droit
+					if((x == 0 && y == 14) && (plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x+1][y] == null))
+						return true;
+					
+					// Tuile isolee dans le coin inférieur gauche
+					if((x == 14 && y == 0) &&  (plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x-1][y] == null))
+						return true;
+					
+					// Tuile isolee dans le coin inérieur droit
+					if((x == 14 && y == 14) &&  (plateauTuilesTampon[x-1][y] == null && plateauTuilesTampon[x][y-1] == null))
+						return true;
+					
+					// Tuile isolee sur la premiere ligne 
+					if((x == 0 && (y > 0 && y < 14)) && (plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x+1][y] == null && plateauTuilesTampon[x][y+1] == null))
+						return true;
+					
+					// Tuile isolee sur la derniere ligne
+					if((x == 14 && (y > 0 && y < 14)) && (plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x-1][y] == null && plateauTuilesTampon[x][y+1] == null))
+						return true;
+					
+					// Tuile isolee sur la premiere colonne
+					if((y == 0 && (x > 0 && x < 14)) && (plateauTuilesTampon[x-1][y] == null && plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null))
+						return true;
+					
+					// Tuile isolee sur la derniere colonne
+					if((y == 14 && (x > 0 && x < 14)) && (plateauTuilesTampon[x-1][y] == null && plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x+1][y] == null))
+						return true;
+					
+					// Tuile isolee sur le plateau quand x > 0, x < 14, y > 0 et y < 14
+					if((x > 0 && x < 14) && (y > 0 && y < 14) && (plateauTuilesTampon[x-1][y] == null  && plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null && plateauTuilesTampon[x][y-1] == null))
+						return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean tuileSeule(int col, int lig) {
+		
+		// On verifie si la case cible ne touche pas le bord du plateau
+		if((col > 0 && col < 14) && (lig > 0 && lig < 14)) {
+			
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col, lig++)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else 
+		
+		// On verifie si la case cible est sur la premiere colonne
+		if (col == 0 && (lig > 0 && lig < 14)) {
+		
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col, lig++)) return false;
+		} else 
+		
+		// On verifie si la case cible est sur la premiere ligne
+		if (lig == 0 && (col > 0 && col < 14)) {
+			
+			// 
+			if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col, lig++)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else 
+		
+		// On verifie si la case cible est sur la derniere colonne
+		if (col == 14 && (lig > 0 && lig < 14)) {
+			
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col, lig++)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else 
+		
+		// On verifie si la case cible est sur la derniere ligne
+		if (lig == 14 && (col > 0 && col < 14)) {
+			
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else
+		
+		// On verifie si la case cible est le coin sup�rieur gauche
+		if(col == 0 && lig == 0) {
+			
+			// 
+			if (existeTuile(col++, lig)) return false;
+			else if (existeTuile(col, lig++)) return false;
+		} else
+			
+		// On verifie si la case cible est le coin sup�rieur droit
+		if(col == 14 && lig == 0) {
+			
+			// 
+			if (existeTuile(col, lig++)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		} else
+		
+		// On verifie si la case cible est le coin inf�rieur gauche
+		if(col == 0 && lig == 14) {
+			
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col++, lig)) return false;
+		} else
+		
+		// On verifie si la case cible est le coin inf�rieur droit
+		if(col == 14 && lig == 14) {
+			
+			// 
+			if (existeTuile(col, lig--)) return false;
+			else if (existeTuile(col--, lig)) return false;
+		}
+		
+		return true;
+	}
+	
+	public boolean checkBoard() 
+	{
+	   String word = "";
+	   int xStartIndex = 0, yStartIndex = 0, xEndIndex = 0, yEndIndex = 0;
+	   Dictionnaire dict = new Dictionnaire();
+	   
+	   for(int x=0;x<15;x++)
+	   {
+	   
+	      for(int y=0;y<15;y++)
+		  {
+	    	  
+	    	  	if(x > 0 && x < 14 && y > 0 && y < 14 && plateauTuilesTampon[x][y+1] != null) {
+	    	  		if(plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null && plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x-1][y] ==  null)
+	    	  		return false;
+	    	  	}
+		     
+			 if(plateauTuilesTampon[x][y] != null)
+			 {
+				 
+			    word = "";
+			    int tempX = x;
+				int tempY = y;
+				//System.out.println(x + " " + y);
+				
+			    while(plateauTuilesTampon[tempX][tempY] != null)
+				{
+				   //System.out.println(1);
+				   xStartIndex = tempX;
+				   yStartIndex = tempY;
+				   tempY--;
+				   if(tempY<0)
+					  break;
+				}
+				
+				tempY = y;
+				
+				while(plateauTuilesTampon[tempX][tempY] != null)
+				{
+				   //System.out.println(2);
+				   xEndIndex = tempX;
+				   yEndIndex = tempY;
+				   tempY++;
+				   if(tempY>14)
+					  break;
+				}
+				
+				for(int start = yStartIndex; start<=yEndIndex; start++)
+				{
+				   //System.out.println(3);
+				   word += plateauTuilesTampon[x][start].getLettre() + "";
+				}
+				
+				System.out.println("Ceci est mon mot "+word);
+				
+				if(dict.existe(word)==false)
+				{
+				   
+				   if(word.length()>1)
+					  {
+					        return false;
+					  }
+				        
+				   if(x>0&&x<14)
+				   {
+				      
+				      if(word.length()==1&&(plateauTuilesTampon[x-1][y]!= null&&plateauTuilesTampon[x+1][y]!= null))
+				      {
+				        return false;
+				      }
+					  
+				   } 
+				   else if(x==0)
+				   {
+				   
+				      if(word.length()==1&&plateauTuilesTampon[x+1][y] == null)
+				      {
+				        return false;
+				      }
+					  
+				   }
+				   else if(x==14)
+				   {
+				      if(word.length()==1&&plateauTuilesTampon[x-1][y] == null)
+				      {
+				        return false;
+				      }
+				   }
+				}//end confirm if block
+				
+				word = "";
+				
+				while(plateauTuilesTampon[tempX][y]!= null)
+				{
+				   //System.out.println(4);
+				   xStartIndex = tempX;
+				   yStartIndex = tempY;
+				   tempX--;
+				   if(tempX<0)
+					  break;
+				}
+				
+				tempX = x;
+				
+				while(plateauTuilesTampon[tempX][y]!= null)
+				{
+				
+				   //System.out.println(5);
+				   xEndIndex = tempX+1;
+				   yEndIndex = tempY;
+				   tempX++;
+				   if(tempX>14)
+					  break;
+				   
+				}
+				
+				for(int end = xStartIndex; end < xEndIndex; end++)
+				{
+				   //System.out.println(6);
+				   word += plateauTuilesTampon[end][y].getLettre() + "";
+				   System.out.println("JE SUIS DANS LA BOUCLE "+word);
+				}
+				
+				/*
+				for(int end = xEndIndex-1; end>=xStartIndex; end--)
+				{
+				   //System.out.println(6);
+				   word += plateauTuilesTampon[end][y].getLettre() + "";
+				   System.out.println("JE SUIS DANS LA BOUCLE"+word);
+				}
+				*/
+				
+				System.out.println("Ceci est mon mot2 "+word);
+				
+				if(dict.existe(word)==false)
+				{
+				   
+				   if(word.length()>1)
+					  {
+					        return false;
+					  }
+				        
+				   if(y>0&&y<15)
+				   {
+				      
+				      if(word.length()==1&&plateauTuilesTampon[x][y-1]==null&&plateauTuilesTampon[x][y+1]==null)
+				      {
+				        return false;
+				      }
+				   } 
+				   else if(y==0)
+				   {
+				   
+				      if(word.length()==1&&plateauTuilesTampon[x][y+1]==null)
+				      {
+				        return false;
+				      }
+					  
+				   }
+				   else if(y==15)
+				   {
+				      if(word.length()==1&&plateauTuilesTampon[x][y-1] == null)
+				      {
+				        return false;
+				      }
+				   }
+				}//end confirm if block
+				
+				word = "";
+				
+			 }
+			 
+		  }
+	   
+	   }
+	   //System.out.println("True");
+	   return true;
+	}//end checkBoard()
 }

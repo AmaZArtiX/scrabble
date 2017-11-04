@@ -1,6 +1,7 @@
 // Package
 package scrabble;
 
+import java.io.FileNotFoundException;
 // Import(s)
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -39,28 +40,32 @@ public class Jeu extends Application {
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
 		
-		/*		
+		/*
+		
+		// Affichage du plateau 
+		p.afficher();
+
 		// Affichage du chevalet du joueur 1
+		System.out.println("\n" + Joueur.getChevalet() + "\n");
+		
+		// Affichage du sac après après supprimé des tuiles
+		//s.afficherSac();
+		
+		Joueur = new Joueur();
+		Joueur.getChevalet().remplir(s);
 		System.out.println(Joueur.getChevalet());
 		
-		// Affichage du sac apres avoir supprime des tuiles
-		s.afficherSac();
-		
-		p.placerTuile(7, 7, 0, Joueur.getChevalet().getTuile(0));
-		//Joueur.getChevalet().supprimerTuile(0);
-		p.placerTuile(7, 7, 0, Joueur.getChevalet().getTuile(1));
-		//Joueur.getChevalet().supprimerTuile(1);
-		p.placerTuile(7, 7, 1, Joueur.getChevalet().getTuile(2));
-		//Joueur.getChevalet().supprimerTuile(2);
-		//Joueur.getChevalet().reRemplir(s);
-		
+		p.placerTuile(1, 1, 0, new Tuile('A', 1));
+		p.placerTuile(3, 4, 0, new Tuile('A', 1));
 		p.restaurerPlateauTuiles();
+		
 		p.afficher();
 		
-		ArrayList<Tuile> l = p.getTuilesDisponibles();
-		String mot = p.concatenerChaines(l, Joueur.getChevalet());
-		System.out.println(l);
-		System.out.println(mot);
+		if(p.existeTuileSeule() == true)
+			System.out.println("MOVE INCORRECT");
+		else 
+			System.out.println("MOVE OK");
+		
 		*/
 	}
 

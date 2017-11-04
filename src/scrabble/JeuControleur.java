@@ -135,31 +135,34 @@ public class JeuControleur extends Jeu {
 	// Fonction de detection d'un drag over
 	@FXML private void dragOver(DragEvent event) {
 		
-		// On récupère les coordonnees de jeu de la Tuile (Plateau)
-		int col = GridPane.getColumnIndex((Node) event.getTarget());
-		int lig = GridPane.getRowIndex((Node) event.getTarget());
-		
-		// On verifie si le drag contient une Image
-		if(event.getDragboard().hasImage()) {
+		try {
+			// On récupère les coordonnees de jeu de la Tuile (Plateau)
+			int col = GridPane.getColumnIndex((Node) event.getTarget());
+			int lig = GridPane.getRowIndex((Node) event.getTarget());
 			
-			// On verifie si aucune Tuile n'est deja presente sur la case souhaitee
-			if(!p.tuileExistante(col, lig)) {
+			// On verifie si le drag contient une Image
+			if(event.getDragboard().hasImage()) {
 				
-				// On verifie si la case cible est la case de depart
-				if(col == lig && col == 7)
+				// On verifie si aucune Tuile n'est deja presente sur la case souhaitee
+				if(!p.existeTuile(col, lig)) {
 					
-					// On autorise le drop
-					event.acceptTransferModes(TransferMode.ANY);
-				else {
-					
-					// On verifie que la case cible n'est pas isolee
-					if((p.tuileExistante(col, lig--)) || (p.tuileExistante(col, lig++)) || (p.tuileExistante(col--, lig)) || (p.tuileExistante(col++, lig))) {
+					// On verifie si la case cible est la case de depart
+					if(col == lig & col == 7) {
+						
+						// On autorise le drop
+						event.acceptTransferModes(TransferMode.ANY);
+					} else if (p.existeTuile(col, lig--) | p.existeTuile(col++, lig) | p.existeTuile(col, lig++) | p.existeTuile(col--, lig)) {
+						
+						//System.out.println(); !p.tuileSeule(col, lig)
 						
 						// On autorise le drop
 						event.acceptTransferModes(TransferMode.ANY);
 					}
 				}
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -177,7 +180,7 @@ public class JeuControleur extends Jeu {
 		System.out.println(Joueur.getChevalet().getTuile(index) + " Jouée");
 		
 		// On ajoute la Tuile jouée a plateauTuilesTampon
-		p.placerTuile(lig, col, Plateau.HORIZONTAL, Joueur.getChevalet().getTuile(index));
+		p.placerTuile(lig, col, Joueur.getChevalet().getTuile(index));
 		
 		// On copie plateauTuilesTampon dans plateauTuiles
 		p.restaurerPlateauTuiles();
