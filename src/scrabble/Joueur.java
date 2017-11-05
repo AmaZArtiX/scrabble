@@ -28,7 +28,7 @@ public class Joueur {
 	 * TODO
 	 * Ajouter un historique
 	 */
-			 
+	
 	// Constructeur sans parametres
 	public Joueur() {
 		

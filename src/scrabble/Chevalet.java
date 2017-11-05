@@ -31,7 +31,7 @@ public class Chevalet {
 	}
 	
 	// Constructeur avec un chevalet en parametre 
-	Chevalet(ArrayList<Tuile> chevalet){
+	Chevalet(ArrayList<Tuile> chevalet) {
 		
 		this.chevalet = chevalet;
 	}
@@ -92,7 +92,6 @@ public class Chevalet {
 		this.chevalet.remove(i);
 	}
 	
-	
 	// Melange les tuiles de la liste 
 	public void melanger() {
 		
@@ -114,7 +113,7 @@ public class Chevalet {
 		for(int i = 1; i <= 7; i++) {
 			
 			int r = getRandom(s);
-			// Mélange du sac pour un tirage correct
+			// Melange du sac pour un tirage correct
 			s.melanger();
 			// Ajout de la tuile dans le chevalet
 			ajouterTuile(s.getTuile(r));
@@ -142,16 +141,16 @@ public class Chevalet {
 			}
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "Chevalet : " + chevalet;
-	}
 	
 	public boolean existeTuile(int col) {
 		if(chevalet.get(col) == null)
 			return false;
 		else
 			return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Chevalet : " + chevalet;
 	}
 }

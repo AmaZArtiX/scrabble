@@ -49,6 +49,9 @@ public class JeuControleur extends Jeu {
 	// Tableau d'ImageView des cases du Chevalet
 	private ImageView[] casesChevalet = new ImageView[Chevalet.TAILLE];
 	
+	// Lien entre le fichier FXML et le Button melrec
+	@FXML private Button melrec;
+	
 	// Fonction permettant d'acceder au dictionnaire
 	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
 		
@@ -94,7 +97,8 @@ public class JeuControleur extends Jeu {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		joueur.getChevalet().remplir(sac);
-
+		joueur.setChevaletTampon(joueur.getChevalet());
+		
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 	}
@@ -146,33 +150,28 @@ public class JeuControleur extends Jeu {
 	// Fonction de detection d'un drag over
 	@FXML private void dragOver(DragEvent event) {
 		
-		try {
-			// On recupere les coordonnees de jeu de la Tuile (Plateau)
-			int col = GridPane.getColumnIndex((Node) event.getSource());
-			int lig = GridPane.getRowIndex((Node) event.getSource());
-			
-			// On verifie si le drag contient une Image
-			if(event.getDragboard().hasImage()) {
-				
-				// On verifie si aucune Tuile n'est deja presente sur la case souhaitee
-				if(!plateau.existeTuile(col, lig)) {
-					
-					// On verifie si la case cible est la case de depart
-					if(col == 7 & lig == 7) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);
-						
-					} else if (!plateau.tuileSeule(col, lig)) {
-						
-						// On autorise le drop
-						event.acceptTransferModes(TransferMode.ANY);
-					}
+		// On recupere les coordonnees de jeu de la Tuile (Plateau)
+		int col = GridPane.getColumnIndex((Node) event.getSource());
+		int lig = GridPane.getRowIndex((Node) event.getSource());
+
+		// On verifie si le drag contient une Image
+		if(event.getDragboard().hasImage()) {
+
+			// On verifie si aucune Tuile n'est deja presente sur la case souhaitee
+			if(!plateau.existeTuile(col, lig)) {
+
+				// On verifie si la case cible est la case de depart
+				if(col == 7 & lig == 7) {
+
+					// On autorise le drop
+					event.acceptTransferModes(TransferMode.ANY);
+
+				} else if (!plateau.tuileSeule(col, lig)) {
+
+					// On autorise le drop
+					event.acceptTransferModes(TransferMode.ANY);
 				}
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -189,11 +188,20 @@ public class JeuControleur extends Jeu {
 		// On ajoute la Tuile jouee a plateauTuilesTampon
 		plateau.placerTuile(lig, col, joueur.getChevalet().getTuile(index));
 		
-		// On copie plateauTuilesTampon dans plateauTuiles
-		plateau.restaurerPlateauTuiles();
+		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
+		joueur.getChevaletTampon().supprimerTuile(index);
 		
-		// On supprime la Tuile jouee du Chevalet du Joueur
-		joueur.getChevalet().supprimerTuile(index);
+		// On change le nom et la fonction du bouton Melanger
+		melrec.setText("Récupérer");
+		melrec.setOnAction(EventHandler -> {
+			
+			// 
+			recupTuilesJouee();			
+			
+			// On change le nom et la fonction du bouton Récupérer pour revenir à Melanger
+			melrec.setText("Mélanger");
+			melrec.setOnAction(e -> melangeChevalet());
+		});
 	}
 	
 	// Fonction de detection d'un drag done
@@ -206,33 +214,53 @@ public class JeuControleur extends Jeu {
 		raffraichissementPlateau();
 	}
 	
+	// Fonction de recuperation des tuiles jouees
+	private void recupTuilesJouee() {
+		
+		// On supprime les Tuiles jouees de plateauTuilesTampon
+		plateau.sauvegarderPlateauTuiles();
+
+		// On recupere l'etat du Chevalet au debut du Jeu
+		joueur.setChevaletTampon(joueur.getChevalet());
+		
+		/* PROBLEME DE RAFFRAICHISSEMENT */
+		// On raffraichit les ImageView du Chevalet
+		raffraichissementChevalet();
+
+		// On raffraichit les ImageView du Plateau
+		raffraichissementPlateau();
+	}
+	
 	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
 	private void raffraichissementChevalet() {
 		
 		// Le Chevalet du Joueur n'est pas vide
-		if(!joueur.getChevalet().estVide()) {
+		if(!joueur.getChevaletTampon().estVide()) {
 			
-			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet du Joueur
-			for(i=0;i<joueur.getChevalet().getTaille();i++) {
-				if(joueur.getChevalet().getTuile(i).getImg() == null) {
-					casesChevalet[i].setImage(null);
-				} else {
-					casesChevalet[i].setImage(joueur.getChevalet().getTuile(i).getImg());
-				}
+			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet Tampon du Joueur
+			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
+				
+				// 
+				casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
 			}
 			
 			// Si le nombre de Tuile present dans le Chevalet du Joueur est inferieur a la taille
 			// MAX du Chevalet alors on vide les ImageView restants
 			if(i<Chevalet.TAILLE) {
+				
+				// 
 				while (i<Chevalet.TAILLE) {
-					casesChevalet[i].setImage(null);
-					i++;
+					
+					// 
+					casesChevalet[i].setImage(null); i++;
 				}
 			}
 		} else { // Le Chevalet du Joueur est vide
 			
 			// On vide les ImageView du Chevalet
 			for(int i=0;i<Chevalet.TAILLE;i++) {
+				
+				// 
 				casesChevalet[i].setImage(null);
 			}
 		}
