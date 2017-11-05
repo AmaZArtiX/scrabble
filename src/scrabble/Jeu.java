@@ -38,6 +38,11 @@ public class Jeu extends Application {
 	
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
+		
+	
+		
+		// Affichage du plateau 
+		p.afficher();
 	}
 
 	// Fonction permettant le lancement de l'application

@@ -56,6 +56,20 @@ public class Tuile {
 	public Image getImg() {
 		return img;
 	}
+	
+	/**
+	 * Compare l'égalité de deux tuiles
+	 */
+	public boolean equals(Object o) {
+		
+		boolean rep;
+		Tuile t = (Tuile)o;
+		
+		rep = lettre == t.lettre && 
+				valeur == t.valeur;
+		
+		return rep;
+	}
 
 	@Override
 	public String toString() {

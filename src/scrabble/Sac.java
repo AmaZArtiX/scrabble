@@ -172,4 +172,22 @@ public class Sac {
 		int lettre = rand.nextInt(taille) + 1;
 		return lettres.remove(lettre);
 	}
+	
+	/**
+	 * Renvoie le nombre d'occurences pour une tuiles donnée
+	 * @param t Tuile à rechercher
+	 * @return compteur Nombre de tuiles trouvées
+	 */
+	public int getNombreTuile(Tuile t) {
+		
+		int compteur = 0;
+		
+		for(int i = 0; i < lettres.size(); i++) {
+			
+			if(lettres.get(i).equals(t))
+				compteur++;
+		}
+		
+		return compteur;
+	}
 }
