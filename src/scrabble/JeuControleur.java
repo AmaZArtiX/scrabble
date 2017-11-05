@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /*************************************************************************
@@ -112,6 +114,8 @@ public class JeuControleur extends Jeu {
 		stageEchange.getIcons().add(new Image("S.png"));
 		stageEchange.setTitle("Échanger des lettres");
 		stageEchange.setResizable(false);
+		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
+		stageEchange.initModality(Modality.WINDOW_MODAL);
 		stageEchange.show();
 	}
 	

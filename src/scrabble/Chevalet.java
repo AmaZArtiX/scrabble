@@ -147,4 +147,11 @@ public class Chevalet {
 	public String toString() {
 		return "Chevalet : " + chevalet;
 	}
+	
+	public boolean existeTuile(int col) {
+		if(chevalet.get(col) == null)
+			return false;
+		else
+			return true;
+	}
 }
