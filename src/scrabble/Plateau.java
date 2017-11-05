@@ -97,8 +97,8 @@ public class Plateau {
 				
 				System.out.print("|  ");
 				
-				if(plateauTuiles[x][y] instanceof Tuile)
-					System.out.print(plateauTuiles[x][y].getLettre());
+				if(plateauTuilesTampon[x][y] instanceof Tuile)
+					System.out.print(plateauTuilesTampon[x][y].getLettre());
 				else
 					System.out.print(" ");
 				

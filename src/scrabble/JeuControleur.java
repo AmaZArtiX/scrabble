@@ -94,6 +94,8 @@ public class JeuControleur extends Jeu {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		joueur.getChevalet().remplir(sac);
+		// On sauvegarde le chevalet du joueur
+		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
@@ -189,7 +191,7 @@ public class JeuControleur extends Jeu {
 		plateau.placerTuile(lig, col, joueur.getChevalet().getTuile(index));
 		
 		// On copie plateauTuilesTampon dans plateauTuiles
-		plateau.restaurerPlateauTuiles();
+		//plateau.restaurerPlateauTuiles();
 		
 		// On supprime la Tuile jouee du Chevalet du Joueur
 		joueur.getChevalet().supprimerTuile(index);
@@ -197,6 +199,9 @@ public class JeuControleur extends Jeu {
 	
 	// Fonction de detection d'un drag done
 	@FXML private void dragDone(DragEvent event) {
+		
+		System.out.println(joueur.getChevalet());
+		System.out.println("Tampon "+joueur.getChevaletTampon());
 		
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
