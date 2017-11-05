@@ -97,14 +97,14 @@ public class JeuControleur extends Jeu {
 		raffraichissementChevalet();
 	}
 	
-	// Fonction de remplissage du Chevalet
-	@FXML private void remplissageChevalet(ActionEvent e) throws IOException {
+	// Fonction permettant d'acceder a l'echange de tuiles
+	@FXML private void gotoEchange(ActionEvent e) throws IOException {
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
 				
 		// Declaration de la scene
-		Scene scene = new Scene(root, 591, 525);
+		Scene scene = new Scene(root, 600, 550);
 				
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageEchange = new Stage();

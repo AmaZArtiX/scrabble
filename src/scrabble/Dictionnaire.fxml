@@ -38,7 +38,7 @@ Dernière modification : 17/10/2017
             </HBox>
             <HBox alignment="CENTER" blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0">
                <children>
-                  <Label text="Veuillez entrer ci-dessous le mot à rechercher :" textAlignment="CENTER" wrapText="true">
+                  <Label prefHeight="50.0" prefWidth="300.0" text="Veuillez entrer ci-dessous le mot à rechercher :" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>

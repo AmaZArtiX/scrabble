@@ -709,7 +709,7 @@ Dernière modification : 3/11/2017
                                           <Font size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#remplissageChevalet" text="Sac">
+                                    <Button mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

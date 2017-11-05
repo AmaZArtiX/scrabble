@@ -1,5 +1,7 @@
+// Package
 package scrabble;
 
+// Imports
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -8,7 +10,7 @@ import javafx.fxml.FXML;
 /**
  * ***********************************************************************
  * Nom ...........: EchangeControleur.java
- * Description ...: Controleur de la scène permettant les échanges de tuiles
+ * Description ...: Controleur de la scene permettant les echanges de tuiles
  * ...............: entre le sac et le chevalet du joueur
  * ...............:
  * Auteur(s) .....: SIMON BACQUET
@@ -51,7 +53,7 @@ public class EchangeControleur extends Jeu {
 	@FXML private Label lblNbJocker;
 	
 	/**
-	 * Met la valeur du nombre d'occurences de chaque tuile dans les labels à l'initialisation de la fenetre
+	 * Met la valeur du nombre d'occurences de chaque tuile dans les labels a l'initialisation de la fenetre
 	 */
 	public void initialize() {
 		
@@ -85,7 +87,7 @@ public class EchangeControleur extends Jeu {
 	}
 	
 	/**
-	 * Ferme la fenetre d'échange
+	 * Ferme la fenetre d'echange
 	 */
 	@FXML public void fermerEchange() {
 	

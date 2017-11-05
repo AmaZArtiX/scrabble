@@ -175,8 +175,8 @@ public class Sac {
 	
 	/**
 	 * Renvoie le nombre d'occurences pour une tuiles donnée
-	 * @param t Tuile à rechercher
-	 * @return compteur Nombre de tuiles trouvées
+	 * @param t Tuile a rechercher
+	 * @return compteur Nombre de tuiles trouvees
 	 */
 	public int getNombreTuiles(Tuile t) {
 		
