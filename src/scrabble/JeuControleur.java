@@ -104,7 +104,7 @@ public class JeuControleur extends Jeu {
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
 		
 		// Declaration de la scene
-		Scene scene = new Scene(root, 591, 525);
+		Scene scene = new Scene(root, 600, 550);
 		
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageEchange = new Stage();
