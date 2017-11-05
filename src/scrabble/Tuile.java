@@ -23,9 +23,16 @@ public class Tuile {
 	
 	// Constructeur vide
 	public Tuile() {
-		this.lettre = ' ';
+		this.lettre = '*';
 		this.valeur = 0;
-		this.img = new Image("");
+		this.img = new Image("Jocker.png");
+	}
+	
+	public Tuile(char _lettre, int _valeur) {
+		
+		lettre = _lettre;
+		valeur = _valeur;
+		this.img = new Image("A.png");
 	}
 	
 	// Constructeur par parametres
@@ -52,6 +59,6 @@ public class Tuile {
 
 	@Override
 	public String toString() {
-		return "Tuile [lettre=" + lettre + ", valeur=" + valeur + ", img=" + img + "]";
+		return "Tuile [" + lettre + "]";
 	}
 }
