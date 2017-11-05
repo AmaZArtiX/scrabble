@@ -35,7 +35,7 @@ public class DictionnaireControleur extends Jeu{
 			
 			// Si le mot recherche n'est pas null alors le recherche dans le dictionnaire et on affiche
 			// le resultat
-			if (Dictionnaire.existe(txtMotRech.getText().toUpperCase()))
+			if (dictionnaire.existe(txtMotRech.getText().toUpperCase()))
 				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : Existe");
 			else 
 				lblResRech.setText("Résultat \"" + txtMotRech.getText().toUpperCase() + "\" : N'existe pas");

@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * Description ...: Plateau de jeu (15x15) contenant les bonus et les tuiles
  * ...............:
  * ...............:
- * Auteur(s) .....: SIMON BACQUET
+ * Auteur(s) .....: SIMON BACQUET, RONAN LAMPE
  * Version .......: 1.0
- * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ * Copyright .....: © 2017 SIMON BACQUET, RONAN LAMPE ALL RIGHTS RESERVED
  ************************************************************************/
 
 public class Plateau {
