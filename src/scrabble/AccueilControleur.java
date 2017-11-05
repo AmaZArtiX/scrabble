@@ -36,7 +36,7 @@ public class AccueilControleur extends Jeu {
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
 		// On initialise les données du Joueur
-		Joueur = new Joueur(nomTxtJoueur.getText());
+		joueur.setNom(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
@@ -54,6 +54,7 @@ public class AccueilControleur extends Jeu {
 		stageJeu.setMinWidth(1024);
 		stageJeu.setMinHeight(512);
 		stageJeu.show();
+		stageJeu.centerOnScreen();
 	}
 	
 	// Fonction de verification de la longueur du nom du joueur

@@ -58,7 +58,7 @@ public class Tuile {
 	}
 	
 	/**
-	 * Compare l'égalité de deux tuiles
+	 * Compare l'egalite de deux tuiles
 	 */
 	public boolean equals(Object o) {
 		

@@ -17,6 +17,8 @@ public class Joueur {
 	private String nom;
 	// Score du joueur 
 	private int score;
+	// Nombre d'indices disponibles
+	private int nbIndices;
 	// Chevalet du joueur 
 	private Chevalet chevalet;
 	// Chevalet du joueur (tampon)
@@ -24,15 +26,15 @@ public class Joueur {
 	
 	/**
 	 * TODO
-	 * Ajouter un nombre limité d'indice 
 	 * Ajouter un historique
 	 */
 					 
 	// Constructeur sans parametres
 	public Joueur() {
 		
-		this.nom =  "";
+		this.nom = "";
 		this.score = 0;
+		this.nbIndices = 5;
 		this.chevalet = new Chevalet();
 		this.chevaletTampon = new Chevalet();
 	}
@@ -97,5 +99,15 @@ public class Joueur {
 	public Chevalet getChevaletTampon() {
 		
 		return chevaletTampon;
+	}
+
+	// Renvoie le nb d'indices disponible du joueur
+	public int getNbIndices() {
+		return nbIndices;
+	}
+
+	// Modifie le nb d'indices disponible pour le joueur
+	public void setNbIndices(int nbIndices) {
+		this.nbIndices = nbIndices;
 	}
 }
