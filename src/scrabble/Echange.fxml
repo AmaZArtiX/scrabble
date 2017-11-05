@@ -44,7 +44,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -54,7 +54,7 @@
                               <Label fx:id="lblNbA" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +64,7 @@
                               <Label fx:id="lblNbB" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -74,7 +74,7 @@
                               <Label fx:id="lblNbC" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -84,7 +84,7 @@
                               <Label fx:id="lblNbD" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -94,7 +94,7 @@
                               <Label fx:id="lblNbE" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -104,7 +104,7 @@
                               <Label fx:id="lblNbF" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -164,7 +164,7 @@
                               <Label fx:id="lblNbL" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="2">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -224,7 +224,7 @@
                               <Label fx:id="lblNbR" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -284,7 +284,7 @@
                               <Label fx:id="lblNbX" text="00" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="4">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -343,7 +343,7 @@
                   </Button>
                </children>
             </HBox>
-            <GridPane gridLinesVisible="true" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
+            <GridPane fx:id="grilleEchange" gridLinesVisible="true" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
@@ -356,8 +356,17 @@
               <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletEchange" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+               </children>
             </GridPane>
-            <GridPane gridLinesVisible="true" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
+            <GridPane fx:id="grilleChevalet" gridLinesVisible="true" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
@@ -371,13 +380,13 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDroppedOnChevaletJoueur" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="0" />
                </children>
             </GridPane>
          </children>
