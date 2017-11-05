@@ -78,7 +78,7 @@ public class JeuControleur extends Jeu {
 		p.initialiser();
 		
 		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText("Score du Joueur \"" + Joueur.getNom() + "\" : " + Integer.toString(Joueur.getScore()));
+		lblScoreJ.setText(Joueur.getNom() + " : " + Integer.toString(Joueur.getScore()));
 		
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
 		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
@@ -89,16 +89,30 @@ public class JeuControleur extends Jeu {
 		for(int i=0;i<Chevalet.TAILLE;i++) {
 			casesChevalet[i] = (ImageView) grilleChevalet.getChildren().get(i);
 		}
-	}
-	
-	// Fonction de remplissage du Chevalet
-	@FXML private void remplissageChevalet() {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		Joueur.getChevalet().remplir(s);
 
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
+	}
+	
+	// Fonction de remplissage du Chevalet
+	@FXML private void remplissageChevalet(ActionEvent e) throws IOException {
+		
+		// Test root cree avec Scene Builder
+		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
+				
+		// Declaration de la scene
+		Scene scene = new Scene(root, 591, 525);
+				
+		// Changement de la scene d'accueil vers la scene principale
+		Stage stageEchange = new Stage();
+		stageEchange.setScene(scene);
+		stageEchange.getIcons().add(new Image("S.png"));
+		stageEchange.setTitle("Échanger des lettres");
+		stageEchange.setResizable(false);
+		stageEchange.show();
 	}
 	
 	// Fonction de melange des Tuiles du Chevalet

@@ -178,7 +178,7 @@ public class Sac {
 	 * @param t Tuile à rechercher
 	 * @return compteur Nombre de tuiles trouvées
 	 */
-	public int getNombreTuile(Tuile t) {
+	public int getNombreTuiles(Tuile t) {
 		
 		int compteur = 0;
 		
