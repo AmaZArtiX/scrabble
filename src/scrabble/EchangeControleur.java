@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 /**
@@ -124,11 +125,8 @@ public class EchangeControleur extends Jeu {
 	/**
 	 * Ferme la fenetre d'echange
 	 */
-	@FXML public void fermerEchange() {
-	
-		// get a handle to the stage
-	    Stage stage = (Stage) btnFermeture.getScene().getWindow();
-	    
+	@FXML private void fermerEchange(ActionEvent event) {
+		
 	    // Si le Chevalet d'echange n'est pas vide alors on redonne les tuiles au joueur
 	    if(!echange.estVide()) {
 	    	for (Tuile tuile : echange.getTuiles()) {
@@ -136,8 +134,25 @@ public class EchangeControleur extends Jeu {
 			}
 	    }
 	    
-	    // do what you have to do
-	    stage.close();
+	    // On quitte la fenêtre
+	    ((Stage) ((Button) event.getSource()).getScene().getWindow()).close();
+	}
+	
+	// Effectue l'echange des tuiles entre le chevalet du joueur et le sac
+	@FXML private void effectEchange(ActionEvent event) {
+		
+		// On ajoute les tuiles a echanger dans le sac
+		for (Tuile tuile : echange.getTuiles()) {
+			sac.ajoutTuile(tuile);
+		}
+		
+		// On recupere autant de tuiles depuis la sac que le nombre de tuile a echanger
+		for (int i = 0; i < echange.getTaille(); i++) {
+			joueur.getChevalet().ajouterTuile(sac.tirerUneLettre());
+		}
+		
+		// On quitte la fenêtre
+		((Stage) ((Button) event.getSource()).getScene().getWindow()).close();
 	}
 	
 	// Fonction de detection d'un drag'n'drop
@@ -234,7 +249,7 @@ public class EchangeControleur extends Jeu {
 	
 	private void raffraichissementEchange() {
 		
-		// 
+		// Le Chevalet d'Echange n'est pas vide
 		if(!echange.estVide()) {
 
 			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet du Joueur

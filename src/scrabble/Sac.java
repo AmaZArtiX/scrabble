@@ -169,12 +169,12 @@ public class Sac {
 		int taille = getTaille();
 		melanger(); // melange le contenu avant de tirer la lettre
 		Random rand = new Random();
-		int lettre = rand.nextInt(taille) + 1;
+		int lettre = rand.nextInt(taille);
 		return lettres.remove(lettre);
 	}
 	
 	/**
-	 * Renvoie le nombre d'occurences pour une tuiles donnée
+	 * Renvoie le nombre d'occurences pour une tuiles donnee
 	 * @param t Tuile a rechercher
 	 * @return compteur Nombre de tuiles trouvees
 	 */
@@ -189,5 +189,9 @@ public class Sac {
 		}
 		
 		return compteur;
+	}
+	
+	public void ajoutTuile(Tuile t) {
+		lettres.add(t);
 	}
 }

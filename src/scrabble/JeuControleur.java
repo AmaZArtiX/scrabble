@@ -4,6 +4,7 @@ package scrabble;
 // Import(s)
 import java.io.IOException;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +22,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /*************************************************************************
  * Nom ...........: JeuControleur.java
@@ -116,6 +118,7 @@ public class JeuControleur extends Jeu {
 		stageEchange.setResizable(false);
 		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
+		stageEchange.setOnHidden(EventHandler -> raffraichissementChevalet());
 		stageEchange.show();
 	}
 	
