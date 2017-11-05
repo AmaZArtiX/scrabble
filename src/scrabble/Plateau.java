@@ -290,7 +290,7 @@ public class Plateau {
 	 */
 	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
 
-		ArrayList<String> motsAJouer = new ArrayList<String>();
+		// ArrayList<String> motsAJouer = new ArrayList<String>();
 		
 		
 		// Score total m
