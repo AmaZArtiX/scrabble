@@ -201,9 +201,6 @@ public class JeuControleur extends Jeu {
 	// Fonction de detection d'un drag done
 	@FXML private void dragDone(DragEvent event) {
 		
-		System.out.println(joueur.getChevalet());
-		System.out.println("Tampon "+joueur.getChevaletTampon());
-		
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 		
