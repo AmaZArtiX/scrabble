@@ -70,7 +70,7 @@ Dernière modification : 3/11/2017
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboTypePartie" prefHeight="30.0" prefWidth="300.0" promptText="Nouvelle Partie" visibleRowCount="2">
+                              <ComboBox prefHeight="30.0" prefWidth="300.0" promptText="Nouvelle Partie" visibleRowCount="2">
                               	<items>
                               		<FXCollections fx:factory="observableArrayList">
                               			<String fx:value="Entrainement" />
@@ -192,7 +192,7 @@ Dernière modification : 3/11/2017
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="960.0" GridPane.rowIndex="1">
                            <children>
-                              <GridPane fx:id="grillePlateau" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #007024; -fx-border-width: 5;" HBox.hgrow="NEVER">
+                              <GridPane fx:id="grillePlateau" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" HBox.hgrow="NEVER">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
@@ -709,7 +709,7 @@ Dernière modification : 3/11/2017
                                           <Font size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
+                                    <Button fx:id="btnSac" mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -755,7 +755,7 @@ Dernière modification : 3/11/2017
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="btnReprendreMelanger" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
+                                    <Button fx:id="btnMelRec" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

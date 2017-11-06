@@ -130,7 +130,7 @@ public class EchangeControleur extends Jeu {
 	    // Si le Chevalet d'echange n'est pas vide alors on redonne les tuiles au joueur
 	    if(!echange.estVide()) {
 	    	for (Tuile tuile : echange.getTuiles()) {
-				joueur.getChevalet().ajouterTuile(tuile);
+				joueur.getChevaletTampon().ajouterTuile(tuile);
 			}
 	    }
 	    
@@ -148,7 +148,7 @@ public class EchangeControleur extends Jeu {
 		
 		// On recupere autant de tuiles depuis la sac que le nombre de tuile a echanger
 		for (int i = 0; i < echange.getTaille(); i++) {
-			joueur.getChevalet().ajouterTuile(sac.tirerUneLettre());
+			joueur.getChevaletTampon().ajouterTuile(sac.tirerUneLettre());
 		}
 		
 		// On quitte la fenêtre
@@ -186,10 +186,10 @@ public class EchangeControleur extends Jeu {
 		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
 		
 		// On ajoute la Tuile a echanger dans le Chevalet d'echange
-		echange.ajouterTuile(joueur.getChevalet().getTuile(index));
+		echange.ajouterTuile(joueur.getChevaletTampon().getTuile(index));
 		
 		// On supprime la Tuile jouee du Chevalet du Joueur
-		joueur.getChevalet().supprimerTuile(index);
+		joueur.getChevaletTampon().supprimerTuile(index);
 	}
 	
 	// Fonction de detection d'un drag dropped
@@ -199,7 +199,7 @@ public class EchangeControleur extends Jeu {
 		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
 
 		// On ajoute la Tuile a echanger dans le Chevalet d'echange
-		joueur.getChevalet().ajouterTuile(echange.getTuile(index));
+		joueur.getChevaletTampon().ajouterTuile(echange.getTuile(index));
 
 		// On supprime la Tuile jouee du Chevalet du Joueur
 		echange.supprimerTuile(index);
@@ -219,14 +219,14 @@ public class EchangeControleur extends Jeu {
 	private void raffraichissementChevalet() {
 
 		// Le Chevalet du Joueur n'est pas vide
-		if(!joueur.getChevalet().estVide()) {
+		if(!joueur.getChevaletTampon().estVide()) {
 
 			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet du Joueur
-			for(i=0;i<joueur.getChevalet().getTaille();i++) {
-				if(joueur.getChevalet().getTuile(i).getImg() == null) {
+			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
+				if(joueur.getChevaletTampon().getTuile(i).getImg() == null) {
 					casesChevalet[i].setImage(null);
 				} else {
-					casesChevalet[i].setImage(joueur.getChevalet().getTuile(i).getImg());
+					casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
 				}
 			}
 

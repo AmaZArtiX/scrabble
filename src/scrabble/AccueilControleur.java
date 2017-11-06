@@ -33,10 +33,10 @@ public class AccueilControleur extends Jeu {
 	// Lien entre le fichier FXML et le Button lanJeu
 	@FXML private Button lanJeu;
 	
-	// Fonction permettant d'acceder � l'ecran de jeu
+	// Fonction permettant d'acceder a l'ecran de jeu
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
-		// On initialise les donn�es du Joueur
+		// On initialise les donnees du Joueur
 		joueur.setNom(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder
@@ -45,7 +45,7 @@ public class AccueilControleur extends Jeu {
 		// Declaration de la scene
 		Scene scene = new Scene(root, 1280, 950);
 		
-		// Changement de la scene d'acceuil vers la scene principale
+		// Changement de la scene d'accueil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
@@ -67,7 +67,7 @@ public class AccueilControleur extends Jeu {
 		if (((TextField) event.getSource()).getLength() > 1) lanJeu.setDisable(false);
 		else lanJeu.setDisable(true);
 		
-		// On d�truit l'evenement
+		// On termine l'evenement
 		event.consume();
 	}
 	
