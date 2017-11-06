@@ -35,7 +35,7 @@ public class AccueilControleur extends Jeu {
 	// Fonction permettant d'acceder � l'ecran de jeu
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
-		// On initialise les donn�es du Joueur
+		// On initialise les donnees du Joueur
 		joueur.setNom(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder
