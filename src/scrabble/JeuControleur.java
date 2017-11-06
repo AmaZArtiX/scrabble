@@ -97,11 +97,10 @@ public class JeuControleur extends Jeu {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		joueur.getChevalet().remplir(sac);
+		joueur.setChevaletTampon(joueur.getChevalet());
 		
 		// On sauvegarde le chevalet du joueur
 		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
-
-		joueur.setChevaletTampon(joueur.getChevalet());
 		
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
@@ -192,21 +191,18 @@ public class JeuControleur extends Jeu {
 		// On ajoute la Tuile jouee a plateauTuilesTampon
 		plateau.placerTuile(lig, col, joueur.getChevalet().getTuile(index));
 		
-		// On copie plateauTuilesTampon dans plateauTuiles
-		//plateau.restaurerPlateauTuiles();
-		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);
 		
 		// On change le nom et la fonction du bouton Melanger
-		melrec.setText("Récupérer");
+		melrec.setText("Rï¿½cupï¿½rer");
 		melrec.setOnAction(EventHandler -> {
 			
 			// 
 			recupTuilesJouee();			
 			
-			// On change le nom et la fonction du bouton Récupérer pour revenir à Melanger
-			melrec.setText("Mélanger");
+			// On change le nom et la fonction du bouton Rï¿½cupï¿½rer pour revenir ï¿½ Melanger
+			melrec.setText("Mï¿½langer");
 			melrec.setOnAction(e -> melangeChevalet());
 		});
 	}
@@ -229,6 +225,9 @@ public class JeuControleur extends Jeu {
 
 		// On recupere l'etat du Chevalet au debut du Jeu
 		joueur.setChevaletTampon(joueur.getChevalet());
+		
+		System.out.println("Chevalet : " + joueur.getChevalet());
+		System.out.println("Chevalet Tampon : " + joueur.getChevaletTampon());
 		
 		/* PROBLEME DE RAFFRAICHISSEMENT */
 		// On raffraichit les ImageView du Chevalet
@@ -320,7 +319,7 @@ public class JeuControleur extends Jeu {
 					} else {
 						
 						// La case est vide donc on met l'Image de l'ImageView a vide
-						casesPlateau[j*Plateau.TAILLE+i].setImage(null);
+						casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CV.png"));
 					}
 				}
 			}
