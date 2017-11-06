@@ -128,7 +128,10 @@ public class JeuControleur extends Jeu {
 		stageEchange.setResizable(false);
 		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
-		stageEchange.setOnHidden(EventHandler -> raffraichissementChevalet());
+		stageEchange.setOnHidden(EventHandler -> {
+			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+			raffraichissementChevalet();
+		});
 		stageEchange.show();
 	}
 	
