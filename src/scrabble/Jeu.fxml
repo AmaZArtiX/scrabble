@@ -755,7 +755,7 @@ Dernière modification : 3/11/2017
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="btnReprendreMelanger" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
+                                    <Button fx:id="melrec" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

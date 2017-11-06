@@ -65,7 +65,7 @@ public class AccueilControleur extends Jeu {
 		if (((TextField) event.getSource()).getLength() > 1) lanJeu.setDisable(false);
 		else lanJeu.setDisable(true);
 		
-		// On détruit l'evenement
+		// On termine l'evenement
 		event.consume();
 	}
 	
