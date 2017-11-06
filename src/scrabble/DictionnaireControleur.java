@@ -37,11 +37,11 @@ public class DictionnaireControleur extends Jeu{
 			// Si le mot recherche n'est pas null alors le recherche dans le dictionnaire et on affiche
 			// le resultat
 			if (dictionnaire.existe(txtMotRech.getText().toUpperCase())) {
-				lblResRech.setText(txtMotRech.getText().toUpperCase() + " est un mot valide dans le dictionnaire français");
+				lblResRech.setText(txtMotRech.getText().substring(0, 1).toUpperCase() +txtMotRech.getText().substring(1).toLowerCase() + " est un mot valide dans le dictionnaire français");
 				lblResRech.setTextFill(Color.web("007024"));
 			}
 			else {
-				lblResRech.setText(txtMotRech.getText().toUpperCase() + " n'est pas un mot valide dans le dictionnaire français");
+				lblResRech.setText(txtMotRech.getText().substring(0, 1).toUpperCase() +txtMotRech.getText().substring(1).toLowerCase() + " n'est pas un mot valide dans le dictionnaire français");
 				lblResRech.setTextFill(Color.web("FF0000"));
 			}
 		}
