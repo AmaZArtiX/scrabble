@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * Description ...: Plateau de jeu (15x15) contenant les bonus et les tuiles
  * ...............:
  * ...............:
- * Auteur(s) .....: SIMON BACQUET
+ * Auteur(s) .....: SIMON BACQUET, RONAN LAMPE
  * Version .......: 1.0
- * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ * Copyright .....: © 2017 SIMON BACQUET, RONAN LAMPE ALL RIGHTS RESERVED
  ************************************************************************/
 
 public class Plateau {
@@ -97,8 +97,8 @@ public class Plateau {
 				
 				System.out.print("|  ");
 				
-				if(plateauTuiles[x][y] instanceof Tuile)
-					System.out.print(plateauTuiles[x][y].getLettre());
+				if(plateauTuilesTampon[x][y] instanceof Tuile)
+					System.out.print(plateauTuilesTampon[x][y].getLettre());
 				else
 					System.out.print(" ");
 				
@@ -290,7 +290,7 @@ public class Plateau {
 	 */
 	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
 
-		ArrayList<String> motsAJouer = new ArrayList<String>();
+		// ArrayList<String> motsAJouer = new ArrayList<String>();
 		
 		
 		// Score total m

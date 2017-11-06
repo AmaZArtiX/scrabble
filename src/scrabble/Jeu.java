@@ -22,16 +22,16 @@ import javafx.stage.Stage;
 public class Jeu extends Application {
 	
 	// Declaration du Dictionnaire
-	static Dictionnaire Dictionnaire = new Dictionnaire();
+	static Dictionnaire dictionnaire = new Dictionnaire();
 	
 	// Declaration du Joueur
-	static Joueur Joueur;
+	static Joueur joueur = new Joueur();
 	
 	// Declaration du Sac et remplissage avec les 102 Tuiles
-	static Sac s = new Sac();
+	static Sac sac = new Sac();
 	
 	// Declaration du Plateau
-	static Plateau p = new Plateau();
+	static Plateau plateau = new Plateau();
 	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {	
@@ -39,10 +39,8 @@ public class Jeu extends Application {
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
 		
-	
-		
-		// Affichage du plateau 
-		p.afficher();
+		/*// Affichage du plateau 
+		plateau.afficher();*/
 	}
 
 	// Fonction permettant le lancement de l'application

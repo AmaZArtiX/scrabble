@@ -46,7 +46,6 @@ public class Chevalet {
 	// Ajoute la tuile t en indice i 
 	public void ajouterTuileIndex(int i, Tuile t) {
 		
-		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(i, t);
 	}
 	
@@ -146,5 +145,12 @@ public class Chevalet {
 	@Override
 	public String toString() {
 		return "Chevalet : " + chevalet;
+	}
+	
+	public boolean existeTuile(int col) {
+		if(chevalet.get(col) == null)
+			return false;
+		else
+			return true;
 	}
 }
