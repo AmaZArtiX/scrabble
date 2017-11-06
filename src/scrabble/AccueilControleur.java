@@ -44,7 +44,7 @@ public class AccueilControleur extends Jeu {
 		// Declaration de la scene
 		Scene scene = new Scene(root, 1280, 950);
 		
-		// Changement de la scene d'acceuil vers la scene principale
+		// Changement de la scene d'accueil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
