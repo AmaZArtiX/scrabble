@@ -141,6 +141,7 @@ public class Chevalet {
 		}
 	}
 	
+	// Fonction permettant de verifier si une tuile est presente a la colonne indiquee
 	public boolean existeTuile(int col) {
 		if(chevalet.get(col) == null)
 			return false;

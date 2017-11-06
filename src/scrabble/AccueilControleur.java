@@ -33,7 +33,7 @@ public class AccueilControleur extends Jeu {
 	// Lien entre le fichier FXML et le Button lanJeu
 	@FXML private Button lanJeu;
 	
-	// Fonction permettant d'acceder � l'ecran de jeu
+	// Fonction permettant d'acceder a l'ecran de jeu
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
 		// On initialise les donnees du Joueur
@@ -67,11 +67,7 @@ public class AccueilControleur extends Jeu {
 		if (((TextField) event.getSource()).getLength() > 1) lanJeu.setDisable(false);
 		else lanJeu.setDisable(true);
 		
-
 		// On termine l'evenement
-
-		// On d�truit l'evenement
-
 		event.consume();
 	}
 	

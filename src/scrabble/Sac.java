@@ -191,6 +191,7 @@ public class Sac {
 		return compteur;
 	}
 	
+	// Fonction d'ajout d'une tuile au sac
 	public void ajoutTuile(Tuile t) {
 		lettres.add(t);
 	}

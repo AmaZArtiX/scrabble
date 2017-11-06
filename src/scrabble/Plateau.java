@@ -162,8 +162,12 @@ public class Plateau {
 	 */
 	public void sauvegarderChevalet(Chevalet chevaletPrincipal, Chevalet chevaletTampon) {
 		
+		// On vide le chevalet tampon
+		chevaletTampon.getTuiles().clear();
+		
+		// Et on le rempli avec le chevalet principal
 		for(int i = 0; i < chevaletPrincipal.getTaille(); i++)
-			chevaletTampon.ajouterTuileIndex(i, chevaletPrincipal.getTuile(i));	
+			chevaletTampon.getTuiles().add(chevaletPrincipal.getTuile(i));
 	}
 	
 	/**
@@ -173,8 +177,12 @@ public class Plateau {
 	 */
 	public void restaurerChevalet(Chevalet chevaletPrincipal, Chevalet chevaletTampon) {
 		
+		// On vide le chevalet principal
+		chevaletPrincipal.getTuiles().clear();
+		
+		// Et on le rempli avec le chevalet tampon
 		for(int i = 0; i < chevaletTampon.getTaille(); i++)
-			chevaletPrincipal.ajouterTuileIndex(i, chevaletTampon.getTuile(i));	
+			chevaletPrincipal.getTuiles().add(chevaletTampon.getTuile(i));	
 	}
 	
 	/**

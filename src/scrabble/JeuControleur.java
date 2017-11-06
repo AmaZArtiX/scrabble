@@ -42,6 +42,9 @@ public class JeuControleur extends Jeu {
 	
 	// Tableau d'ImageView des cases du Plateau
 	private ImageView[] casesPlateau = new ImageView[Plateau.TAILLE*Plateau.TAILLE];
+	
+	// Lien entre le fichier FXML et le Button Sac
+	@FXML private Button btnSac;
 
 	// Lien entre le fichier FXML et le GridPane du Chevalet
 	@FXML private GridPane grilleChevalet;
@@ -49,8 +52,8 @@ public class JeuControleur extends Jeu {
 	// Tableau d'ImageView des cases du Chevalet
 	private ImageView[] casesChevalet = new ImageView[Chevalet.TAILLE];
 	
-	// Lien entre le fichier FXML et le Button melrec
-	@FXML private Button melrec;
+	// Lien entre le fichier FXML et le Button Melanger/Recuperer
+	@FXML private Button btnMelRec;
 	
 	// Fonction permettant d'acceder au dictionnaire
 	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
@@ -103,6 +106,9 @@ public class JeuControleur extends Jeu {
 
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
+		
+		// On raffraichit les ImageView du Plateau
+		raffraichissementPlateau();
 	}
 	
 	// Fonction permettant d'acceder a l'echange de tuiles
@@ -118,7 +124,7 @@ public class JeuControleur extends Jeu {
 		Stage stageEchange = new Stage();
 		stageEchange.setScene(scene);
 		stageEchange.getIcons().add(new Image("S.png"));
-		stageEchange.setTitle("Échanger des lettres");
+		stageEchange.setTitle("Echanger des lettres - Scrabble");
 		stageEchange.setResizable(false);
 		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
@@ -130,8 +136,9 @@ public class JeuControleur extends Jeu {
 	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
-		joueur.getChevalet().melanger();
-
+		joueur.getChevaletTampon().melanger();
+		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 	}
@@ -188,21 +195,27 @@ public class JeuControleur extends Jeu {
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		plateau.placerTuile(lig, col, joueur.getChevalet().getTuile(index));
+		plateau.placerTuile(lig, col, joueur.getChevaletTampon().getTuile(index));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);
 		
+		// On desactive l'acces a l'echange de tuiles
+		btnSac.setDisable(true);
+		
 		// On change le nom et la fonction du bouton Melanger
-		melrec.setText("Recuperer");
-		melrec.setOnAction(EventHandler -> {
+		btnMelRec.setText("Recuperer");
+		btnMelRec.setOnAction(EventHandler -> {
 			
-			// 
-			recupTuilesJouee();			
+			// On recupere les tuiles jouees
+			recupTuilesJouee();		
 			
-			// On change le nom et la fonction du bouton R�cup�rer pour revenir � Melanger
-			melrec.setText("Melanger");
-			melrec.setOnAction(e -> melangeChevalet());
+			// On reactive l'acces a l'echange de tuiles
+			btnSac.setDisable(false);
+			
+			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
+			btnMelRec.setText("Melanger");
+			btnMelRec.setOnAction(e -> melangeChevalet());
 		});
 	}
 	
@@ -225,10 +238,6 @@ public class JeuControleur extends Jeu {
 		// On recupere l'etat du Chevalet au debut du Jeu
 		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
-		System.out.println("Chevalet : " + joueur.getChevalet());
-		System.out.println("Chevalet Tampon : " + joueur.getChevaletTampon());
-		
-		/* PROBLEME DE RAFFRAICHISSEMENT */
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 
@@ -242,10 +251,10 @@ public class JeuControleur extends Jeu {
 		// Le Chevalet du Joueur n'est pas vide
 		if(!joueur.getChevaletTampon().estVide()) {
 			
-			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet Tampon du Joueur
+			int i; // En fonction de la taille du Chevalet Tampon
 			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
 				
-				// 
+				// On met a jour les ImageView du Chevalet
 				casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
 			}
 			
@@ -253,10 +262,8 @@ public class JeuControleur extends Jeu {
 			// MAX du Chevalet alors on vide les ImageView restants
 			if(i<Chevalet.TAILLE) {
 				
-				// 
 				while (i<Chevalet.TAILLE) {
 					
-					// 
 					casesChevalet[i].setImage(null); i++;
 				}
 			}
@@ -265,7 +272,6 @@ public class JeuControleur extends Jeu {
 			// On vide les ImageView du Chevalet
 			for(int i=0;i<Chevalet.TAILLE;i++) {
 				
-				// 
 				casesChevalet[i].setImage(null);
 			}
 		}
@@ -283,38 +289,35 @@ public class JeuControleur extends Jeu {
 				// On parcours toutes les colonnes
 				for(int j=0;j<Plateau.TAILLE;j++) {
 					
-					// Si un bonus est present mais pas de Tuile alors on entre dans le if
-					if((plateau.getStringBonus(i, j) != "") & !(plateau.getTuileTampon(i, j) != null)) {
-						
-						// On recupere le String du bonus (de plateauBonus)
-						switch (plateau.getStringBonus(i, j)) {
-							case "LD":
-								// On met l'Image de la lettre double dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LD.png"));
-								break;
-							case "LT":
-								// On met l'Image de la lettre triple dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LT.png"));
-								break;
-							case "MD":
-								// On met l'Image du mot double dans l'ImageView du Plateau
-								if(i == 7 & j == 7) casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CD.png"));
-								else casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MD.png"));
-								break;
-							case "MT":
-								// On met l'Image du mot triple dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MT.png"));
-								break;
-							default:
-								break;
-						}
-					} else 
-					
-					// Si une Tuile est presente alors on entre dans le if
-					if (plateau.getTuileTampon(i, j) != null) {
-						
+					// Si l'emplacement indique contient une tuile, un bonus ou rien alors on affiche l'image appropriee
+					if(plateau.getTuileTampon(i, j) instanceof Tuile) {
+
 						// On affiche son Image dans l'ImageView du Plateau
 						casesPlateau[j*Plateau.TAILLE+i].setImage(plateau.getTuileTampon(i, j).getImg());
+					} else if(plateau.getStringBonus(i, j) != "  ") {
+
+						// On recupere le String du bonus (de plateauBonus)
+						switch (plateau.getStringBonus(i, j)) {
+						case "LD":
+							// On met l'Image de la lettre double dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LD.png"));
+							break;
+						case "LT":
+							// On met l'Image de la lettre triple dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LT.png"));
+							break;
+						case "MD":
+							// On met l'Image du mot double dans l'ImageView du Plateau
+							if(i == 7 & j == 7) casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CD.png"));
+							else casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MD.png"));
+							break;
+						case "MT":
+							// On met l'Image du mot triple dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MT.png"));
+							break;
+						default:
+							break;
+						}
 					} else {
 						
 						// La case est vide donc on met l'Image de l'ImageView a vide

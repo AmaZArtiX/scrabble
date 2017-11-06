@@ -1,3 +1,4 @@
+// Package
 package scrabble;
 
  /**
@@ -14,20 +15,19 @@ package scrabble;
 
 public class IA extends Joueur{ 
 
-	
 	public IA() { //Constructeur sans paramètres
 		super();
 	}
 	
-	//Récupérer indice jusqu'à case vide
+	//Recuperer indice jusqu'a case vide
 	//Stocker indice dans Tableau1
-	//Récupérer contenu de l'indice
+	//Recuperer contenu de l'indice
 	//Stocker contenu dans Tableau2
 	//Lire tableau2
-	//Vérifier dans dico mots commençant par contenu
-	//Choisir aléatoirement un mot
-	//Vérifier si lettre dispo dans chevalet
-	//Placer lettre à lettre ou échanger lettre
+	//Verifier dans dico mots commençant par contenu
+	//Choisir aleatoirement un mot
+	//Verifier si lettre dispo dans chevalet
+	//Placer lettre a lettre ou echanger lettre
 	
 	
 	
