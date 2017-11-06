@@ -97,11 +97,10 @@ public class JeuControleur extends Jeu {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		joueur.getChevalet().remplir(sac);
-		joueur.setChevaletTampon(joueur.getChevalet());
 		
 		// On sauvegarde le chevalet du joueur
 		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
-		
+
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 	}
@@ -195,14 +194,14 @@ public class JeuControleur extends Jeu {
 		joueur.getChevaletTampon().supprimerTuile(index);
 		
 		// On change le nom et la fonction du bouton Melanger
-		melrec.setText("R�cup�rer");
+		melrec.setText("Recuperer");
 		melrec.setOnAction(EventHandler -> {
 			
 			// 
 			recupTuilesJouee();			
 			
 			// On change le nom et la fonction du bouton R�cup�rer pour revenir � Melanger
-			melrec.setText("M�langer");
+			melrec.setText("Melanger");
 			melrec.setOnAction(e -> melangeChevalet());
 		});
 	}
@@ -224,7 +223,7 @@ public class JeuControleur extends Jeu {
 		plateau.sauvegarderPlateauTuiles();
 
 		// On recupere l'etat du Chevalet au debut du Jeu
-		joueur.setChevaletTampon(joueur.getChevalet());
+		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
 		System.out.println("Chevalet : " + joueur.getChevalet());
 		System.out.println("Chevalet Tampon : " + joueur.getChevaletTampon());
