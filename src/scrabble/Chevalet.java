@@ -46,7 +46,6 @@ public class Chevalet {
 	// Ajoute la tuile t en indice i 
 	public void ajouterTuileIndex(int i, Tuile t) {
 		
-		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(i, t);
 	}
 	

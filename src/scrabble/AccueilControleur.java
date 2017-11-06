@@ -32,10 +32,10 @@ public class AccueilControleur extends Jeu {
 	// Lien entre le fichier FXML et le Button lanJeu
 	@FXML private Button lanJeu;
 	
-	// Fonction permettant d'acceder à l'ecran de jeu
+	// Fonction permettant d'acceder ï¿½ l'ecran de jeu
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
-		// On initialise les données du Joueur
+		// On initialise les donnï¿½es du Joueur
 		joueur.setNom(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder

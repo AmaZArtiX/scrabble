@@ -97,8 +97,12 @@ public class JeuControleur extends Jeu {
 		
 		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 		joueur.getChevalet().remplir(sac);
+		
 		joueur.setChevaletTampon(joueur.getChevalet());
 		
+		// On sauvegarde le chevalet du joueur
+		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+
 		// On raffraichit les ImageView du Chevalet
 		raffraichissementChevalet();
 	}
@@ -108,15 +112,15 @@ public class JeuControleur extends Jeu {
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
-		
+				
 		// Declaration de la scene
 		Scene scene = new Scene(root, 600, 550);
-		
+				
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageEchange = new Stage();
 		stageEchange.setScene(scene);
 		stageEchange.getIcons().add(new Image("S.png"));
-		stageEchange.setTitle("Echanger des lettres");
+		stageEchange.setTitle("Ã‰changer des lettres");
 		stageEchange.setResizable(false);
 		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
@@ -191,15 +195,18 @@ public class JeuControleur extends Jeu {
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);
 		
+		// On copie plateauTuilesTampon dans plateauTuiles
+		//plateau.restaurerPlateauTuiles();
+		
 		// On change le nom et la fonction du bouton Melanger
-		melrec.setText("Récupérer");
+		melrec.setText("Rï¿½cupï¿½rer");
 		melrec.setOnAction(EventHandler -> {
 			
 			// 
 			recupTuilesJouee();			
 			
-			// On change le nom et la fonction du bouton Récupérer pour revenir à Melanger
-			melrec.setText("Mélanger");
+			// On change le nom et la fonction du bouton Rï¿½cupï¿½rer pour revenir ï¿½ Melanger
+			melrec.setText("Mï¿½langer");
 			melrec.setOnAction(e -> melangeChevalet());
 		});
 	}
@@ -222,6 +229,9 @@ public class JeuControleur extends Jeu {
 
 		// On recupere l'etat du Chevalet au debut du Jeu
 		joueur.setChevaletTampon(joueur.getChevalet());
+		
+		System.out.println("Chevalet : " + joueur.getChevalet());
+		System.out.println("Chevalet Tampon : " + joueur.getChevaletTampon());
 		
 		/* PROBLEME DE RAFFRAICHISSEMENT */
 		// On raffraichit les ImageView du Chevalet
@@ -313,7 +323,7 @@ public class JeuControleur extends Jeu {
 					} else {
 						
 						// La case est vide donc on met l'Image de l'ImageView a vide
-						casesPlateau[j*Plateau.TAILLE+i].setImage(null);
+						casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CV.png"));
 					}
 				}
 			}
