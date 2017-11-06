@@ -61,7 +61,7 @@ Dernière modification : 17/10/2017
             </HBox>
             <HBox alignment="TOP_CENTER" blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <Label fx:id="lblResRech" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" text="Résultat mot recherché : Ø" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                  <Label fx:id="lblResRech" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -19,6 +19,16 @@ public class IA extends Joueur{
 		super();
 	}
 	
+	//Récupérer indice jusqu'à case vide
+	//Stocker indice dans Tableau1
+	//Récupérer contenu de l'indice
+	//Stocker contenu dans Tableau2
+	//Lire tableau2
+	//Vérifier dans dico mots commençant par contenu
+	//Choisir aléatoirement un mot
+	//Vérifier si lettre dispo dans chevalet
+	//Placer lettre à lettre ou échanger lettre
+	
 	
 	
 }

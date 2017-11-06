@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 /*************************************************************************
  * Nom ...........: DictionnaireControleur.java
@@ -35,10 +36,14 @@ public class DictionnaireControleur extends Jeu{
 			
 			// Si le mot recherche n'est pas null alors le recherche dans le dictionnaire et on affiche
 			// le resultat
-			if (dictionnaire.existe(txtMotRech.getText().toUpperCase()))
-				lblResRech.setText("RÈsultat \"" + txtMotRech.getText().toUpperCase() + "\" : Existe");
-			else 
-				lblResRech.setText("RÈsultat \"" + txtMotRech.getText().toUpperCase() + "\" : N'existe pas");
+			if (dictionnaire.existe(txtMotRech.getText().toUpperCase())) {
+				lblResRech.setText(txtMotRech.getText().toUpperCase() + " est un mot valide dans le dictionnaire fran√ßais");
+				lblResRech.setTextFill(Color.web("007024"));
+			}
+			else {
+				lblResRech.setText(txtMotRech.getText().toUpperCase() + " n'est pas un mot valide dans le dictionnaire fran√ßais");
+				lblResRech.setTextFill(Color.web("FF0000"));
+			}
 		}
 		
 		// On vide le TextView txtMotRech de son contenu

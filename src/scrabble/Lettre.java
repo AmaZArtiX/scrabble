@@ -10,9 +10,9 @@ import javafx.scene.image.Image;
  * ...............: jeu de scrabble, avec leur valeur et leur nombre 
  * ...............: respectifs. Cette classe facilite l'ajout de tuiles
  * ...............: dans le sac.
- * Auteur(s) .....: SIMON BACQUET
+ * Auteur(s) .....: MAMADOU BAH
  * Version .......: 1.0
- * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ * Copyright .....: © 2017 MAMADOU BAH ALL RIGHTS RESERVED
  ************************************************************************/
 
 public enum Lettre {
