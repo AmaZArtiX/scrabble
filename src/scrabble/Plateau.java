@@ -144,7 +144,7 @@ public class Plateau {
 	}
 	
 	/**
-	 * Restaure les tuiles sauvegardees dans le plateau dans tampon vers le plateau principal
+	 * Restaure les tuiles sauvegardees dans le plateau tampon vers le plateau principal
 	 */
 	public void restaurerPlateauTuiles() {
 		

@@ -33,6 +33,12 @@ public class Jeu extends Application {
 	// Declaration du Plateau
 	static Plateau plateau = new Plateau();
 	
+	// Declaration du booleen de Jeu
+	static boolean jeuEnCours = false;
+	
+	// Declaration du nombre de tours
+	static int nbTours = 0;
+	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {	
 	
