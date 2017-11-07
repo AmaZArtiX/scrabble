@@ -70,11 +70,10 @@ Dernière modification : 3/11/2017
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="30.0" prefWidth="300.0" promptText="Nouvelle Partie" visibleRowCount="2">
+                              <ComboBox fx:id="cbModeJeu" onAction="#changeModeJeu" prefHeight="30.0" prefWidth="300.0" promptText="Nouvelle Partie" visibleRowCount="2">
                               	<items>
                               		<FXCollections fx:factory="observableArrayList">
                               			<String fx:value="Entrainement" />
-                              			<String fx:value="Joueur VS IA" />
                               		</FXCollections>
                               	</items>
                               </ComboBox>
@@ -181,7 +180,7 @@ Dernière modification : 3/11/2017
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Professeur">
+                                    <Button fx:id="btnProfesseur" disable="true" mnemonicParsing="false" onAction="#aideProfesseur" text="Professeur">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -704,12 +703,12 @@ Dernière modification : 3/11/2017
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Abandon">
+                                    <Button fx:id="btnAbandon" disable="true" mnemonicParsing="false" onAction="#abandonPartie" text="Abandon">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnSac" mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
+                                    <Button fx:id="btnSac" disable="true" mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -755,12 +754,12 @@ Dernière modification : 3/11/2017
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="btnMelRec" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
+                                    <Button fx:id="btnMelRec" disable="true" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" text="Jouer">
+                                    <Button fx:id="btnJouer" disable="true" mnemonicParsing="false" onAction="#finTourJeu" text="Jouer">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
