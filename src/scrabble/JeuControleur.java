@@ -3,13 +3,18 @@ package scrabble;
 
 // Import(s)
 import java.io.IOException;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Label;
@@ -151,8 +156,28 @@ public class JeuControleur extends Jeu {
 	// Fonction permettant de quitter l'application
 	@FXML private void quitter(ActionEvent e) {
 		
-		// On quitte le jeu
-		System.exit(0);
+		if (jeuEnCours) {
+			
+			// 
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Une partie est cours, voulez-vous vraiment quitter ?");
+
+			// 
+			Optional<ButtonType> resultat = alert.showAndWait();
+
+			if(resultat.get() == ButtonType.OK) {
+				
+				// On abandonne la partie
+				abandonPartie();
+				
+				// On quitte le jeu
+				System.exit(0);
+			}
+		} else {
+			
+			// On quitte le jeu
+			System.exit(0);
+		}
 	}
 	
 	// Fonction permettant d'acceder au dictionnaire
@@ -180,62 +205,62 @@ public class JeuControleur extends Jeu {
 	
 	// Fonction permettant d'abandonner la partie en cours
 	@FXML private void abandonPartie() {
-		
+	
 		// On reinitialise l'etat de la partie et le nb de tours
 		jeuEnCours = false;
 		nbTours = 0;
-		
+
 		// On raffraichi le compteur de tour
 		lblNbTour.setText("Tour : " + nbTours);
-		
+
 		// Si le bouton Sac est desactive alors des tuiles ont ete jouees et le bouton Melanger a ete modifie
 		if(btnSac.isDisable()) {
-			
+
 			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
 			btnMelRec.setText("Melanger");
 			btnMelRec.setOnAction(e -> melangeChevalet());
-			
+
 			// On desactive les boutons de jeu
 			btnProfesseur.setDisable(true);
 			btnAbandon.setDisable(true);
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
-			
+
 			// On desactive les lbl de Score de Joueur et Nb de Tour
 			lblScoreJ1.setDisable(true);
 			lblNbTour.setDisable(true);
 		} else {
-			
+
 			// On desactive les boutons de jeu
 			btnProfesseur.setDisable(true);
 			btnAbandon.setDisable(true);
 			btnSac.setDisable(true);
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
-			
+
 			// On desactive les lbl de Score de Joueur et Nb de Tour
 			lblScoreJ1.setDisable(true);
 			lblNbTour.setDisable(true);
 		}
-		
+
 		// On reinitialise le Plateau
 		plateau.initialiser();
-		
+
 		// On reinitialise les donnees du Joueur (sauf le nom)
 		joueur = new Joueur(joueur.getNom());
-		
+
 		// On rafraichit le Score du Joueur
 		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-		
+
 		// On reinitialise le Sac
 		sac = new Sac();
-		
+
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
-		
+
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
-		
+
 		// On reset le ComboBox de choix de Mode de Jeu
 		((ComboBoxBase<String>) cbModeJeu).setValue(cbModeJeu.getPromptText());
 	}
