@@ -39,8 +39,14 @@ public class JeuControleur extends Jeu {
 	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
 	@FXML private ComboBox<String> cbModeJeu;
 	
-	// Lien entre le fichier FXML et le Label de Score du Joueur
-	@FXML private Label lblScoreJ;
+	// Lien entre le fichier FXML et le Label de Score du Joueur 1
+	@FXML private Label lblScoreJ1;
+	
+	// Lien entre le fichier FXML et le Label de Score du Joueur 2
+	@FXML private Label lblScoreJ2;
+	
+	// Lien entre le fichier FXML et le Label de Nb de Tour
+	@FXML private Label lblNbTour;
 	
 	// Lien entre le fichier FXML et le Button Professeur
 	@FXML private Button btnProfesseur;
@@ -76,7 +82,7 @@ public class JeuControleur extends Jeu {
 		plateau.initialiser();
 
 		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
 
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
 		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
@@ -279,10 +285,10 @@ public class JeuControleur extends Jeu {
 		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
 		// On ajoute 1 tour au compteur
-		nbTours++;
+		lblNbTour.setText("Tour : " + nbTours++);
 		
 		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
 		
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
