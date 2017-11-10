@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/scrabble/Accueil_perso.fxml</name>
+			<type>1</type>
+			<location>C:/Users/9/Desktop/Scrabble/Accueil_perso.fxml</location>
+		</link>
+		<link>
+			<name>src/scrabble/Dictionnaire_perso.fxml</name>
+			<type>1</type>
+			<location>C:/Users/9/Desktop/Scrabble/Dictionnaire_perso.fxml</location>
+		</link>
+		<link>
+			<name>src/scrabble/Jeu_perso.fxml</name>
+			<type>1</type>
+			<location>C:/Users/9/Desktop/Scrabble/Jeu_perso.fxml</location>
+		</link>
+	</linkedResources>
 </projectDescription>
