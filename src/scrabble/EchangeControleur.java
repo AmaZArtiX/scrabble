@@ -119,7 +119,8 @@ public class EchangeControleur extends Jeu {
 			casesEchange[i] = (ImageView) grilleEchange.getChildren().get(i);
 		}
 		
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	/**
@@ -208,15 +209,15 @@ public class EchangeControleur extends Jeu {
 	// Fonction de detection d'un drag done
 	@FXML private void dragDone(DragEvent event) {
 
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 
-		// On raffraichit les ImageView du Plateau
-		raffraichissementEchange();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementEchange();
 	}
 	
-	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
-	private void raffraichissementChevalet() {
+	// Fonction de rafraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
+	private void rafraichissementChevalet() {
 
 		// Le Chevalet du Joueur n'est pas vide
 		if(!joueur.getChevaletTampon().estVide()) {
@@ -247,7 +248,7 @@ public class EchangeControleur extends Jeu {
 		}
 	}
 	
-	private void raffraichissementEchange() {
+	private void rafraichissementEchange() {
 		
 		// Le Chevalet d'Echange n'est pas vide
 		if(!echange.estVide()) {
