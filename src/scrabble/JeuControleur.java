@@ -39,8 +39,14 @@ public class JeuControleur extends Jeu {
 	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
 	@FXML private ComboBox<String> cbModeJeu;
 	
-	// Lien entre le fichier FXML et le Label de Score du Joueur
-	@FXML private Label lblScoreJ;
+	// Lien entre le fichier FXML et le Label de Score du Joueur 1
+	@FXML private Label lblScoreJ1;
+	
+	// Lien entre le fichier FXML et le Label de Score du Joueur 2
+	@FXML private Label lblScoreJ2;
+	
+	// Lien entre le fichier FXML et le Label de Nb de Tour
+	@FXML private Label lblNbTour;
 	
 	// Lien entre le fichier FXML et le Button Professeur
 	@FXML private Button btnProfesseur;
@@ -76,7 +82,7 @@ public class JeuControleur extends Jeu {
 		plateau.initialiser();
 
 		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
 
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
 		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
@@ -88,8 +94,8 @@ public class JeuControleur extends Jeu {
 			casesChevalet[i] = (ImageView) grilleChevalet.getChildren().get(i);
 		}
 
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 	}
 	
 	// Fonction de changement de mode de jeu
@@ -105,6 +111,19 @@ public class JeuControleur extends Jeu {
 				
 				// On lance le jeu
 				jeuEnCours = true;
+				nbTours = 1;
+				
+				// On active le lbl de Score du Joueur
+				lblScoreJ1.setDisable(false);
+				
+				// On rafraichi le Score du Joueur
+				lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+				
+				// On active le lbl de Nb de Tour
+				lblNbTour.setDisable(false);
+				
+				// On rafraichi le compteur de tour
+				lblNbTour.setText("Tour : " + nbTours);
 				
 				// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
 				joueur.getChevalet().remplir(sac);
@@ -112,8 +131,8 @@ public class JeuControleur extends Jeu {
 				// On sauvegarde le chevalet du joueur
 				plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 				
-				// On raffraichit les ImageView du Chevalet
-				raffraichissementChevalet();
+				// On rafraichit les ImageView du Chevalet
+				rafraichissementChevalet();
 				
 				// On active les boutons
 				btnProfesseur.setDisable(false);
@@ -166,6 +185,9 @@ public class JeuControleur extends Jeu {
 		jeuEnCours = false;
 		nbTours = 0;
 		
+		// On raffraichi le compteur de tour
+		lblNbTour.setText("Tour : " + nbTours);
+		
 		// Si le bouton Sac est desactive alors des tuiles ont ete jouees et le bouton Melanger a ete modifie
 		if(btnSac.isDisable()) {
 			
@@ -178,6 +200,10 @@ public class JeuControleur extends Jeu {
 			btnAbandon.setDisable(true);
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur et Nb de Tour
+			lblScoreJ1.setDisable(true);
+			lblNbTour.setDisable(true);
 		} else {
 			
 			// On desactive les boutons de jeu
@@ -186,6 +212,10 @@ public class JeuControleur extends Jeu {
 			btnSac.setDisable(true);
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur et Nb de Tour
+			lblScoreJ1.setDisable(true);
+			lblNbTour.setDisable(true);
 		}
 		
 		// On reinitialise le Plateau
@@ -194,14 +224,17 @@ public class JeuControleur extends Jeu {
 		// On reinitialise les donnees du Joueur (sauf le nom)
 		joueur = new Joueur(joueur.getNom());
 		
+		// On rafraichit le Score du Joueur
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		
 		// On reinitialise le Sac
 		sac = new Sac();
 		
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 		
 		// On reset le ComboBox de choix de Mode de Jeu
 		((ComboBoxBase<String>) cbModeJeu).setValue(cbModeJeu.getPromptText());
@@ -226,7 +259,7 @@ public class JeuControleur extends Jeu {
 		stageEchange.initModality(Modality.WINDOW_MODAL);
 		stageEchange.setOnHidden(EventHandler -> {
 			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
-			raffraichissementChevalet();
+			rafraichissementChevalet();
 			finTourJeu();
 		});
 		stageEchange.show();
@@ -239,8 +272,8 @@ public class JeuControleur extends Jeu {
 		joueur.getChevaletTampon().melanger();
 		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de recuperation des tuiles jouees
@@ -252,11 +285,11 @@ public class JeuControleur extends Jeu {
 		// On recupere l'etat du Chevalet au debut du Jeu
 		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de fin de tour de jeu
@@ -268,6 +301,9 @@ public class JeuControleur extends Jeu {
 		// ------------------------------------------------
 		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
 		// 
+		
+		// On rafraichit le Score du Joueur
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
 		
 		// On applique les ajouts de tuiles au Plateau
 		plateau.restaurerPlateauTuiles();
@@ -281,8 +317,8 @@ public class JeuControleur extends Jeu {
 		// On ajoute 1 tour au compteur
 		nbTours++;
 		
-		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		// On rafraichi le compteur de tour avec +1 tour
+		lblNbTour.setText("Tour : " + nbTours);
 		
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
@@ -291,11 +327,11 @@ public class JeuControleur extends Jeu {
 		btnMelRec.setText("Melanger");
 		btnMelRec.setOnAction(e -> melangeChevalet());
 		
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 				
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de detection d'un drag'n'drop
@@ -377,15 +413,15 @@ public class JeuControleur extends Jeu {
 	// Fonction de detection d'un drag done
 	@FXML private void dragDone(DragEvent event) {
 		
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
-	private void raffraichissementChevalet() {
+	private void rafraichissementChevalet() {
 		
 		// Le Chevalet du Joueur n'est pas vide
 		if(!joueur.getChevaletTampon().estVide()) {
@@ -417,7 +453,7 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction de raffraichissement des ImageView du Plateau en fonction du tableau plateauTuiles
-	private void raffraichissementPlateau() {
+	private void rafraichissementPlateau() {
 		
 		// Le tableau plateauTuiles n'est pas vide
 		if(!plateau.getPlateauTuilesTampon().equals(null)) {

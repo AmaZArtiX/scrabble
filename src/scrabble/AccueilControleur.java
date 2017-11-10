@@ -43,18 +43,14 @@ public class AccueilControleur extends Jeu {
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
 		// Declaration de la scene
-		Scene scene = new Scene(root, 1280, 950);
+		Scene scene = new Scene(root, 1080, 720);
 		
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
 		stageJeu.getIcons().add(new Image("S.png"));
-		stageJeu.setResizable(true);
-		stageJeu.setMaxWidth(1280);
-		stageJeu.setMaxHeight(950);
-		stageJeu.setMinWidth(1024);
-		stageJeu.setMinHeight(512);
+		stageJeu.setResizable(false);
 		stageJeu.show();
 		stageJeu.centerOnScreen();
 	}
