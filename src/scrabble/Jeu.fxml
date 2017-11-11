@@ -8,6 +8,7 @@ Description ......... : Fichier .fxml comportant les éléments relatifs aux vis
 						-els de l'application 
 
 Auteur(s) ........... : LAMPE Ronan
+						BAUCH François
 
 Dernière modification : 10/11/2017
 
@@ -17,12 +18,14 @@ Dernière modification : 10/11/2017
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -47,11 +50,11 @@ Dernière modification : 10/11/2017
                <children>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="290.0">
                      <children>
-                        <Label text="SCRABBLE" underline="true">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="50.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="logo.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="290.0">
@@ -63,7 +66,7 @@ Dernière modification : 10/11/2017
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="300.0" text="Mode de jeu" underline="true">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
                         <ComboBox fx:id="cbModeJeu" onAction="#changeModeJeu" prefHeight="30.0" prefWidth="290.0" promptText="Nouvelle Partie" visibleRowCount="2">
@@ -84,7 +87,7 @@ Dernière modification : 10/11/2017
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="290.0" text="Historique des mots joués" underline="true">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
                         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
@@ -108,10 +111,20 @@ Dernière modification : 10/11/2017
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#quitter" prefHeight="40.0" prefWidth="210.0" text="Quitter">
+                        <Button mnemonicParsing="false" onAction="#quitter" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="quitter.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <opaqueInsets>
@@ -129,64 +142,84 @@ Dernière modification : 10/11/2017
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="780.0" spacing="5.0" GridPane.columnIndex="1">
+            <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="780.0" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="780.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="780.0">
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="135.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="135.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#gotoDictionnaire" text="Dictionnaire">
+                              <Button fx:id="btnDico" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gotoDictionnaire" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="dico.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="10.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="10.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="475.0" spacing="5.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="475.0" spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Label fx:id="lblScoreJ1" alignment="CENTER" disable="true" text="Score du Joueur 1 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" text="|" textAlignment="CENTER" textFill="#808080">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblScoreJ2" alignment="CENTER" disable="true" text="Score du Joueur 2 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" text="|" textAlignment="CENTER" textFill="#808080">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblNbTour" alignment="CENTER" disable="true" text="Tour : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="10.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="10.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="125.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="125.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Button fx:id="btnProfesseur" disable="true" mnemonicParsing="false" onAction="#aideProfesseur" text="Professeur">
+                              <Button fx:id="btnProfesseur" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aideProfesseur" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="professeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </HBox>
@@ -455,19 +488,39 @@ Dernière modification : 10/11/2017
                         <ImageView fitHeight="40.0" fitWidth="40.0" onDragDropped="#dragDropped" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="14" />
                      </children>
                   </GridPane>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="780.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="780.0">
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Button fx:id="btnAbandon" disable="true" mnemonicParsing="false" onAction="#abandonPartie" text="Abandon">
+                              <Button fx:id="btnAbandon" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abandonPartie" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="abandon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button fx:id="btnSac" disable="true" mnemonicParsing="false" onAction="#gotoEchange" text="Sac">
+                              <Button fx:id="btnSac" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gotoEchange" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="sac.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </HBox>
@@ -476,7 +529,7 @@ Dernière modification : 10/11/2017
                               <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="300.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="330.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <GridPane fx:id="grilleChevalet" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0">
                                 <columnConstraints>
@@ -508,17 +561,37 @@ Dernière modification : 10/11/2017
                               <Separator maxHeight="78.0" orientation="VERTICAL" prefHeight="78.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" spacing="25.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Button fx:id="btnMelRec" disable="true" mnemonicParsing="false" onAction="#melangeChevalet" text="Mélanger">
+                              <Button fx:id="btnMelRec" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#melangeChevalet" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="melanger.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button fx:id="btnJouer" disable="true" mnemonicParsing="false" onAction="#finTourJeu" text="Jouer">
+                              <Button fx:id="btnJouer" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finTourJeu" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="jouer.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </HBox>

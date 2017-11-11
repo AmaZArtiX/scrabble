@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="dictionnaire"/>
 	<classpathentry kind="src" path="cases_speciales"/>
 	<classpathentry kind="src" path="etc"/>
+	<classpathentry kind="src" path="icones"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>

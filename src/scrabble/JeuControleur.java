@@ -4,7 +4,6 @@ package scrabble;
 // Import(s)
 import java.io.IOException;
 import java.util.Optional;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +42,9 @@ public class JeuControleur extends Jeu {
 
 	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
 	@FXML private ComboBox<String> cbModeJeu;
+	
+	// Lien entre le fichier FXML et le Button Dictionnaire
+	@FXML private Button btnDico;
 	
 	// Lien entre le fichier FXML et le Label de Score du Joueur 1
 	@FXML private Label lblScoreJ1;
@@ -140,7 +142,7 @@ public class JeuControleur extends Jeu {
 				rafraichissementChevalet();
 				
 				// On active les boutons
-				btnProfesseur.setDisable(false);
+				// btnProfesseur.setDisable(false);
 				btnAbandon.setDisable(false);
 				btnSac.setDisable(false);
 				btnMelRec.setDisable(false);
@@ -217,11 +219,11 @@ public class JeuControleur extends Jeu {
 		if(btnSac.isDisable()) {
 
 			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
-			btnMelRec.setText("Melanger");
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 			btnMelRec.setOnAction(e -> melangeChevalet());
 
 			// On desactive les boutons de jeu
-			btnProfesseur.setDisable(true);
+			// btnProfesseur.setDisable(true);
 			btnAbandon.setDisable(true);
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
@@ -232,7 +234,7 @@ public class JeuControleur extends Jeu {
 		} else {
 
 			// On desactive les boutons de jeu
-			btnProfesseur.setDisable(true);
+			// btnProfesseur.setDisable(true);
 			btnAbandon.setDisable(true);
 			btnSac.setDisable(true);
 			btnMelRec.setDisable(true);
@@ -348,13 +350,13 @@ public class JeuControleur extends Jeu {
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
 		
-		// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
-		btnMelRec.setText("Melanger");
+		// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 		btnMelRec.setOnAction(e -> melangeChevalet());
 		
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
-				
+		
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
 	}
@@ -420,7 +422,7 @@ public class JeuControleur extends Jeu {
 		btnSac.setDisable(true);
 		
 		// On change le nom et la fonction du bouton Melanger
-		btnMelRec.setText("Recuperer");
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("recuperer.png"));
 		btnMelRec.setOnAction(EventHandler -> {
 			
 			// On recupere les tuiles jouees
@@ -429,8 +431,8 @@ public class JeuControleur extends Jeu {
 			// On reactive l'acces a l'echange de tuiles
 			btnSac.setDisable(false);
 			
-			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
-			btnMelRec.setText("Melanger");
+			// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 			btnMelRec.setOnAction(e -> melangeChevalet());
 		});
 	}
