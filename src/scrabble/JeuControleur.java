@@ -329,6 +329,13 @@ public class JeuControleur extends Jeu {
 		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
 		// 
 		
+		/**************************************************/
+		//System.out.println(plateau.checkBoard());
+		System.out.println(joueur.getMotJoue());
+		System.out.println(joueur.verifierMotJoue(plateau));
+		joueur.effacerMotJoue();
+		/**************************************************/
+		
 		// On rafraichit le Score du Joueur
 		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
 		
@@ -413,7 +420,7 @@ public class JeuControleur extends Jeu {
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		plateau.placerTuile(lig, col, joueur.getChevaletTampon().getTuile(index));
+		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, joueur.getChevaletTampon().getTuile(index)));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);
