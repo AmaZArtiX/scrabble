@@ -192,15 +192,17 @@ public class Plateau {
 	 * @param direction Direction du mot
 	 * @param t Tuile a placer
 	 */
-	public void placerTuile(int x, int y, Tuile t) {
+	public Coordonnees placerTuile(int x, int y, Tuile t) {
 		
 		// Depassement de coordonnees
 		if(x < 0 || x > (TAILLE-1) || y < 0 || y > (TAILLE-1))
-			return;
+			return new Coordonnees();
 		
 		// Si case vide, on ajoute
 		if(plateauTuilesTampon[x][y] == null)
 			plateauTuilesTampon[x][y] = t;
+		
+		return new Coordonnees(x, y);
 	}
 	
 	/**
@@ -498,10 +500,12 @@ public class Plateau {
 	      for(int y=0;y<15;y++)
 		  {
 	    	  
+	    	  /*
 	    	  	if(x > 0 && x < 14 && y > 0 && y < 14 && plateauTuilesTampon[x][y+1] != null) {
 	    	  		if(plateauTuilesTampon[x][y+1] == null && plateauTuilesTampon[x+1][y] == null && plateauTuilesTampon[x][y-1] == null && plateauTuilesTampon[x-1][y] ==  null)
 	    	  		return false;
-	    	  	}
+	    	  	
+	    	  	}*/ 
 		     
 			 if(plateauTuilesTampon[x][y] != null)
 			 {
