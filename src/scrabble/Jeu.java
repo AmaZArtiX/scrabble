@@ -39,6 +39,9 @@ public class Jeu extends Application {
 	// Declaration du nombre de tours
 	static int nbTours = 0;
 	
+	// Declaration de la Tuile Joker
+	static Tuile joker = new Tuile();
+	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {	
 	

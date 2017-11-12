@@ -1,7 +1,7 @@
 // Package
 package scrabble;
 
-// Imports
+// Import(s)
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -10,6 +10,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -19,18 +21,24 @@ import javafx.fxml.FXML;
 /**
  * ***********************************************************************
  * Nom ...........: EchangeControleur.java
- * Description ...: Controleur de la scene permettant les echanges de tuiles
- * ...............: entre le sac et le chevalet du joueur
+ * Description ...: Controleur de la scene permettant les echanges de
+ * ...............: tuiles entre le sac et le chevalet du joueur
  * ...............:
- * Auteur(s) .....: SIMON BACQUET
+ * Auteur(s) .....: SIMON BACQUET, RONAN LAMPE
  * Version .......: 1.0
- * Copyright .....: © 2017 SIMON BACQUET ALL RIGHTS RESERVED
+ * Copyright .....: © 2017 SIMON BACQUET, RONAN LAMPE ALL RIGHTS RESERVED
  ***********************************************************************
  */
 public class EchangeControleur extends Jeu {
 
 	// On declare le Chevalet d'Echange qui nous servira a stocker les Tuiles
 	Chevalet echange = new Chevalet();
+	
+	// Lien entre le fichier FXML et le GridPane de Tuiles
+	@FXML private GridPane grilleTuiles;
+	
+	// Tableau de Label des cases de Tuiles
+	private Label[] casesLabel = new Label[27];
 	
 	// Lien entre le fichier FXML et le GridPane de l'Echange
 	@FXML private GridPane grilleEchange;
@@ -47,67 +55,25 @@ public class EchangeControleur extends Jeu {
 	// Nom du bouton permettant de fermer la fenetre
 	@FXML private Button btnFermeture;
 	
-	// Nom des labels contenant le nombre d'occurences de chaque tuile
-	@FXML private Label lblNbA;
-	@FXML private Label lblNbB;
-	@FXML private Label lblNbC;
-	@FXML private Label lblNbD;
-	@FXML private Label lblNbE;
-	@FXML private Label lblNbF;
-	@FXML private Label lblNbG;
-	@FXML private Label lblNbH;
-	@FXML private Label lblNbI;
-	@FXML private Label lblNbJ;
-	@FXML private Label lblNbK;
-	@FXML private Label lblNbL;
-	@FXML private Label lblNbM;
-	@FXML private Label lblNbN;
-	@FXML private Label lblNbO;
-	@FXML private Label lblNbP;
-	@FXML private Label lblNbQ;
-	@FXML private Label lblNbR;
-	@FXML private Label lblNbS;
-	@FXML private Label lblNbT;
-	@FXML private Label lblNbU;
-	@FXML private Label lblNbV;
-	@FXML private Label lblNbW;
-	@FXML private Label lblNbX;
-	@FXML private Label lblNbY;
-	@FXML private Label lblNbZ;
-	@FXML private Label lblNbJocker;
-	
 	/**
 	 * Met la valeur du nombre d'occurences de chaque tuile dans les labels a l'initialisation de la fenetre
 	 */
 	public void initialize() {
-		
-		lblNbA.setText(String.valueOf(sac.getNombreTuiles(new Tuile('A', Lettre.A.valeur))));
-		lblNbB.setText(String.valueOf(sac.getNombreTuiles(new Tuile('B', Lettre.B.valeur))));
-		lblNbC.setText(String.valueOf(sac.getNombreTuiles(new Tuile('C', Lettre.C.valeur))));
-		lblNbD.setText(String.valueOf(sac.getNombreTuiles(new Tuile('D', Lettre.D.valeur))));
-		lblNbE.setText(String.valueOf(sac.getNombreTuiles(new Tuile('E', Lettre.E.valeur))));
-		lblNbF.setText(String.valueOf(sac.getNombreTuiles(new Tuile('F', Lettre.F.valeur))));
-		lblNbG.setText(String.valueOf(sac.getNombreTuiles(new Tuile('G', Lettre.G.valeur))));
-		lblNbH.setText(String.valueOf(sac.getNombreTuiles(new Tuile('H', Lettre.H.valeur))));
-		lblNbI.setText(String.valueOf(sac.getNombreTuiles(new Tuile('I', Lettre.I.valeur))));
-		lblNbJ.setText(String.valueOf(sac.getNombreTuiles(new Tuile('J', Lettre.J.valeur))));
-		lblNbK.setText(String.valueOf(sac.getNombreTuiles(new Tuile('K', Lettre.K.valeur))));
-		lblNbL.setText(String.valueOf(sac.getNombreTuiles(new Tuile('L', Lettre.L.valeur))));
-		lblNbM.setText(String.valueOf(sac.getNombreTuiles(new Tuile('M', Lettre.M.valeur))));
-		lblNbN.setText(String.valueOf(sac.getNombreTuiles(new Tuile('N', Lettre.N.valeur))));
-		lblNbO.setText(String.valueOf(sac.getNombreTuiles(new Tuile('O', Lettre.O.valeur))));
-		lblNbP.setText(String.valueOf(sac.getNombreTuiles(new Tuile('P', Lettre.P.valeur))));
-		lblNbQ.setText(String.valueOf(sac.getNombreTuiles(new Tuile('Q', Lettre.Q.valeur))));
-		lblNbR.setText(String.valueOf(sac.getNombreTuiles(new Tuile('R', Lettre.R.valeur))));
-		lblNbS.setText(String.valueOf(sac.getNombreTuiles(new Tuile('S', Lettre.S.valeur))));
-		lblNbT.setText(String.valueOf(sac.getNombreTuiles(new Tuile('T', Lettre.T.valeur))));
-		lblNbU.setText(String.valueOf(sac.getNombreTuiles(new Tuile('U', Lettre.U.valeur))));
-		lblNbV.setText(String.valueOf(sac.getNombreTuiles(new Tuile('V', Lettre.V.valeur))));
-		lblNbW.setText(String.valueOf(sac.getNombreTuiles(new Tuile('W', Lettre.W.valeur))));
-		lblNbX.setText(String.valueOf(sac.getNombreTuiles(new Tuile('X', Lettre.X.valeur))));
-		lblNbY.setText(String.valueOf(sac.getNombreTuiles(new Tuile('Y', Lettre.Y.valeur))));
-		lblNbZ.setText(String.valueOf(sac.getNombreTuiles(new Tuile('Z', Lettre.Z.valeur))));
-		lblNbJocker.setText(String.valueOf(sac.getNombreTuiles(new Tuile('*', Lettre.JOCKER.valeur))));
+				
+		// Initialisation de casesLabel avec les Label de grilleTuiles et affichage du nombre de tuile
+		for(int i=0;i<27;i++) {
+
+			// On recupere le nb d'occurence de la Tuile en question
+			int nbTuiles = sac.getNombreTuiles(new Tuile(((ImageView) ((HBox) grilleTuiles.getChildren().get(i)).getChildren().get(0)).getImage()));
+			
+			// On affiche le nb d'occurence dans le Label
+			casesLabel[i] = (Label) ((HBox) grilleTuiles.getChildren().get(i)).getChildren().get(1);
+			casesLabel[i].setText(String.valueOf(nbTuiles));
+			
+			// On change la couleur du Label en fonction du nb d'occurence
+			if(nbTuiles < 1) casesLabel[i].setTextFill(Color.web("FF0000"));
+			else casesLabel[i].setTextFill(Color.web("007024"));
+		}
 		
 		// Initialisation de casesChevalet avec les ImageView de grilleChevalet
 		for(int i=0;i<Chevalet.TAILLE;i++) {

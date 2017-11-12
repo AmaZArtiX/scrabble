@@ -158,15 +158,17 @@ public class JeuControleur extends Jeu {
 	// Fonction permettant de quitter l'application
 	@FXML private void quitter(ActionEvent e) {
 		
+		// On verifie si une partie est en cours
 		if (jeuEnCours) {
 			
-			// 
+			// On declare une nouvelle Alert de type CONFIRMATION
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Une partie est cours, voulez-vous vraiment quitter ?");
 
-			// 
+			// On recupere le booleen resultat de cette Alert
 			Optional<ButtonType> resultat = alert.showAndWait();
 
+			// Si la reponse est OK alors on continue
 			if(resultat.get() == ButtonType.OK) {
 				
 				// On abandonne la partie
@@ -268,28 +270,48 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction permettant d'acceder a l'echange de tuiles
-	@FXML private void gotoEchange(ActionEvent e) throws IOException {
+	@FXML private void gotoEchange(ActionEvent event) throws IOException {
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
-				
+		
 		// Declaration de la scene
 		Scene scene = new Scene(root, 600, 550);
-				
+		
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageEchange = new Stage();
 		stageEchange.setScene(scene);
 		stageEchange.getIcons().add(new Image("S.png"));
 		stageEchange.setTitle("Echanger des lettres - Scrabble");
 		stageEchange.setResizable(false);
-		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
+		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
 		stageEchange.setOnHidden(EventHandler -> {
 			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 			rafraichissementChevalet();
 			finTourJeu();
 		});
-		stageEchange.show();
+		stageEchange.showAndWait();
+	}
+	
+	// Fonction de choix d'une tuile pour le placement d'un Joker
+	@FXML private void choixTuileJoker(DragEvent event) throws IOException {
+		
+		// Test root cree avec Scene Builder
+		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Joker.fxml"));
+		
+		// Declaration de la scene
+		Scene scene = new Scene(root, 600, 500);
+		
+		// Changement de la scene d'accueil vers la scene principale
+		Stage stageJoker = new Stage();
+		stageJoker.setScene(scene);
+		stageJoker.getIcons().add(new Image("S.png"));
+		stageJoker.setTitle("Choix d'une Tuile - Scrabble");
+		stageJoker.setResizable(false);
+		stageJoker.initOwner(((ImageView) event.getSource()).getScene().getWindow());
+		stageJoker.initModality(Modality.WINDOW_MODAL);
+		stageJoker.showAndWait();
 	}
 	
 	// Fonction de melange des Tuiles du Chevalet
@@ -329,12 +351,12 @@ public class JeuControleur extends Jeu {
 		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
 		// 
 		
-		/**************************************************/
+		/**************************************************
 		//System.out.println(plateau.checkBoard());
 		System.out.println(joueur.getMotJoue());
 		System.out.println(joueur.verifierMotJoue(plateau));
 		joueur.effacerMotJoue();
-		/**************************************************/
+		**************************************************/
 		
 		// On rafraichit le Score du Joueur
 		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
@@ -410,7 +432,7 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction de detection d'un drag dropped
-	@FXML private void dragDropped(DragEvent event) {
+	@FXML private void dragDropped(DragEvent event) throws IOException {
 		
 		// On recupere l'indice de la Tuile jouee (Chevalet)
 		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
@@ -419,8 +441,23 @@ public class JeuControleur extends Jeu {
 		int col = GridPane.getColumnIndex((Node) event.getSource());
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
+		// On affecte le Tuile jouee a tuile
+		Tuile tuile = joueur.getChevaletTampon().getTuile(index);
+		
+		// On verifie si la Tuile posee est un Joker
+		if (tuile.getLettre() == '*') {
+			
+			// On affiche la fenêtre de choix de Tuile
+			choixTuileJoker(event);
+			
+			// On affecte la Tuile Joker choisie a tuile
+			tuile = joker;
+		}
+		
+		System.out.println(tuile);
+		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, joueur.getChevaletTampon().getTuile(index)));
+		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);

@@ -27,7 +27,7 @@
             </HBox>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="560.0" style="-fx-background-color: #d2d4dc;">
                <children>
-                  <GridPane hgap="5.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="555.0">
+                  <GridPane fx:id="grilleTuiles" hgap="5.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="555.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,270 +48,270 @@
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/A.png" />
+                                    <Image url="A.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbA" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/B.png" />
+                                    <Image url="B.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbB" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/C.png" />
+                                    <Image url="C.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbC" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/D.png" />
+                                    <Image url="D.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbD" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/E.png" />
+                                    <Image url="E.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbE" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/F.png" />
+                                    <Image url="F.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbF" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/G.png" />
+                                    <Image url="G.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbG" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/H.png" />
+                                    <Image url="H.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbH" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/I.png" />
+                                    <Image url="I.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbI" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/J.png" />
+                                    <Image url="J.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbJ" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/K.png" />
+                                    <Image url="K.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbK" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/L.png" />
+                                    <Image url="L.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbL" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/M.png" />
+                                    <Image url="M.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbM" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/N.png" />
+                                    <Image url="N.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbN" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/O.png" />
+                                    <Image url="O.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbO" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/P.png" />
+                                    <Image url="P.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbP" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/Q.png" />
+                                    <Image url="Q.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbQ" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/R.png" />
+                                    <Image url="R.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbR" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/S.png" />
+                                    <Image url="S.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbS" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/T.png" />
+                                    <Image url="T.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbT" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/U.png" />
+                                    <Image url="U.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbU" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/V.png" />
+                                    <Image url="V.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbV" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/W.png" />
+                                    <Image url="W.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbW" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/X.png" />
+                                    <Image url="X.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbX" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/Y.png" />
+                                    <Image url="Y.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbY" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/Z.png" />
+                                    <Image url="Z.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbZ" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../tuiles/Jocker.png" />
+                                    <Image url="Joker.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNbJocker" text="00" />
+                              <Label text="00" />
                            </children>
                         </HBox>
                      </children>

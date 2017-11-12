@@ -25,14 +25,25 @@ public class Tuile {
 	public Tuile() {
 		this.lettre = '*';
 		this.valeur = 0;
-		this.img = new Image("Jocker.png");
+		this.img = new Image("Joker.png");
 	}
 	
 	public Tuile(char _lettre, int _valeur) {
-		
-		lettre = _lettre;
-		valeur = _valeur;
-		this.img = new Image("A.png");
+		this.lettre = _lettre;
+		this.valeur = _valeur;
+		this.img = Lettre.img(_lettre);
+	}
+	
+	public Tuile(Image _img) {
+		this.lettre = Lettre.ltr(_img);
+		this.valeur = Lettre.vlr(_img);
+		this.img = _img;
+	}
+	
+	public Tuile(int _valeur, Image _img) {
+		this.lettre = Lettre.ltr(_img);
+		this.valeur = _valeur;
+		this.img = _img;
 	}
 	
 	// Constructeur par parametres
@@ -73,6 +84,6 @@ public class Tuile {
 
 	@Override
 	public String toString() {
-		return "Tuile [" + lettre + "]";
+		return "Tuile [" + lettre + " " + valeur + " " + img + "]";
 	}
 }
