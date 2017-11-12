@@ -3,6 +3,7 @@ package scrabble;
 
 // Import(s)
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -328,9 +329,34 @@ public class JeuControleur extends Jeu {
 		// 
 		
 		/**************************************************/
-		//System.out.println(plateau.checkBoard());
-		System.out.println(joueur.getMotJoue());
-		System.out.println(joueur.verifierMotJoue(plateau));
+		// On verifie le bon placement du des tuiles placees
+		if(joueur.verifierMotJoue(plateau)) {
+			
+			// On récupère toutes les coordonnees des tuiles qui forment le mot 
+			ArrayList <Coordonnees> listeCoordonnees = joueur.getMotJoueComplet(plateau);
+			// On récupere toutes les tuiles qui forment le mot
+			ArrayList<Tuile> liste = joueur.getTuilesJouees(plateau, listeCoordonnees);
+			// On initialise le bonus scrabble à faux
+			boolean scrabble = false;
+			// Mot formé
+			String mot = plateau.creerMot(liste);
+			
+			// On verifie que le mot joue existe dans le dico
+			if(dictionnaire.existe(mot.toUpperCase())) {
+
+				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
+				if(joueur.getMotJoue().size() == 7)
+					scrabble = true;
+					
+				// On récupère le score du mot joué
+				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);	
+				// Affichage en console du mot joué et du score obtenu
+				System.out.println("Mot joué : "+mot);
+				System.out.println("Score du mot joué : "+ score);
+			}
+		}
+		
+		// On efface le mot joue 
 		joueur.effacerMotJoue();
 		/**************************************************/
 		
