@@ -3,6 +3,7 @@ package scrabble;
 
 // Import(s)
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -351,12 +352,36 @@ public class JeuControleur extends Jeu {
 		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
 		// 
 		
-		/**************************************************
-		//System.out.println(plateau.checkBoard());
-		System.out.println(joueur.getMotJoue());
-		System.out.println(joueur.verifierMotJoue(plateau));
+		// On verifie le bon placement des tuiles placees
+		if(joueur.verifierMotJoue(plateau)) {
+			
+			// On récupère toutes les coordonnees des tuiles qui forment le mot 
+			ArrayList <Coordonnees> listeCoordonnees = joueur.getMotJoueComplet(plateau);
+			// On récupere toutes les tuiles qui forment le mot
+			ArrayList<Tuile> liste = joueur.getTuilesJouees(plateau, listeCoordonnees);
+			// On initialise le bonus scrabble à faux
+			boolean scrabble = false;
+			// Mot formé
+			String mot = plateau.creerMot(liste);
+			
+			// On verifie que le mot joue existe dans le dico
+			if(dictionnaire.existe(mot.toUpperCase())) {
+
+				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
+				if(joueur.getChevaletTampon().getTaille() == 0)
+					scrabble = true;
+					
+				// On récupère le score du mot joué
+				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
+				joueur.setScore(joueur.getScore() + score);
+				// Affichage en console du mot joué et du score obtenu
+				System.out.println("Mot joué : "+mot);
+				System.out.println("Score du mot joué : "+ score);
+			}
+		}
+		
+		// On efface le mot joue 
 		joueur.effacerMotJoue();
-		**************************************************/
 		
 		// On rafraichit le Score du Joueur
 		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
@@ -447,7 +472,7 @@ public class JeuControleur extends Jeu {
 		// On verifie si la Tuile posee est un Joker
 		if (tuile.getLettre() == '*') {
 			
-			// On affiche la fen�tre de choix de Tuile
+			// On affiche la fen�tre de choix de Tuile
 			choixTuileJoker(event);
 			
 			// On affecte la Tuile Joker choisie a tuile

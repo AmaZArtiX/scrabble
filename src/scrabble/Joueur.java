@@ -2,6 +2,8 @@
 package scrabble;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /*************************************************************************
  * Nom ...........: Joueur.java
@@ -249,5 +251,223 @@ public class Joueur {
 		}
 		
 		return resultat;
+	}
+	
+	/**
+	 * Renvoie la direction dans laquelle le mot a été joué
+	 * @param p Plateau de jeu
+	 * @param x Coordonnee en abscisse
+	 * @param y Coordonnee en ordonee
+	 * @return diction Chaine de caractère indiquant la direction
+	 * @author Simon Bacquet
+	 */
+	public String getDirection(Plateau p, int x, int y) {
+		
+		String direction = "";
+		
+		// Mot placé de gauche à droite
+		if(p.getTuileTampon(y+1, x) != null && p.getTuileTampon(y, x+1) == null && p.getTuileTampon(y-1, x) == null && p.getTuileTampon(y, x-1) == null)
+			direction = "droite";
+		// Mot placé de droite à gauche
+		else if(p.getTuileTampon(y-1, x) != null && p.getTuileTampon(y, x-1) == null && p.getTuileTampon(y+1, x) == null && p.getTuileTampon(y, x+1) == null)
+			direction = "gauche";
+		// Mot placé de haut en bas
+		else if(p.getTuileTampon(y, x+1) != null && p.getTuileTampon(y-1, x) == null && p.getTuileTampon(y, x-1) == null && p.getTuileTampon(y+1, x) == null)
+			direction = "bas";
+		// Mot placé de bas en haut
+		else if(p.getTuileTampon(y, x-1) != null && p.getTuileTampon(y+1, x) == null && p.getTuileTampon(y, x+1) == null && p.getTuileTampon(y-1, x) == null)
+			direction = "haut";
+		
+		return direction;
+	}
+	
+	/**
+	 * Renvoie les coordonnees du mot complet formé par le joueur
+	 * @param p Plateau de jeu
+	 * @return motJoueComplet les coordonnees dans l'ordre d'un mot formé
+	 * @author Simon Bacquet
+	 */
+	public ArrayList<Coordonnees> getMotJoueComplet(Plateau p){
+		
+		// Liste des coordonnees des tuiles
+		ArrayList <Coordonnees> motJoueComplet = new ArrayList<>();
+		// x de la premiere tuile jouee
+		int xDebut = motJoue.get(0).getX();
+		// y de la premiere tuile jouee 
+		int yDebut = motJoue.get(0).getY();
+		// x de la derniere tuile jouee
+		int xFin = motJoue.get(motJoue.size()-1).getX();
+		// y de la derniere tuile jouee
+		int yFin = motJoue.get(motJoue.size()-1).getY();
+		// direction dans laquelle le mot a ete joue
+		String direction = "";
+		
+		// Une seule tuile placée par le joueur
+		if(motJoue.size() == 1) {
+			
+			// On recupere la direction
+			direction = getDirection(p, motJoue.get(0).getX(), motJoue.get(0).getY());
+			
+			// Recherche des coordonnees de gauche à droite
+			if(direction.equals("droite")) {
+				
+				int y = yDebut;
+				
+				// Vérification de l'existence d'une tuile voisine
+				while(p.getTuileTampon(y+1, xDebut) != null) {
+					
+					// Ajout des coordonnes
+					motJoueComplet.add(new Coordonnees(xDebut, y));
+					y++;
+				}
+				
+				motJoueComplet.add(new Coordonnees(xDebut, y));
+			}
+			// Recherche des coordonnees de droite à gauche
+			else if(direction.equals("gauche")) {
+				
+				int y = yDebut;
+				
+				// Vérification de l'existence d'une tuile voisine
+				while(p.getTuileTampon(y-1, xDebut) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(xDebut, y));
+					y--;
+				}
+				
+				motJoueComplet.add(new Coordonnees(xDebut, y));
+				
+				// Inversion des coordonnees, pour former le mot dans le bon sens
+				Collections.reverse(motJoueComplet);
+			}
+			// Recherche des coordonnees de haut en bas 
+			else if(direction.equals("bas")) {
+				
+				int x = xDebut;
+				
+				// Vérification de l'existence d'une tuile voisine
+				while(p.getTuileTampon(yDebut, x+1) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(x, yDebut));
+					x++;
+				}
+				
+				motJoueComplet.add(new Coordonnees(x, yDebut));
+			}
+			// Recherche des coordonnees de bas en haut
+			else if(direction.equals("haut")) {
+				
+				int x = xDebut;
+				
+				// Vérification de l'existence d'une tuile voisine
+				while(p.getTuileTampon(yDebut, x-1) != null){
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(x, yDebut));
+					x--;
+				}
+				
+				motJoueComplet.add(new Coordonnees(x, yDebut));
+				
+				// Inversion des coordonnees, pour former le mot dans le bon sens
+				Collections.reverse(motJoueComplet);
+			}
+		}
+		// Tuiles placees > 1
+		else {
+			
+			// Recherche de coordonnees en x (chemin horizontal)
+			if(xDebut == xFin) {
+				
+				int y = yDebut;
+				
+				// Recherche d'une tuile vosine sur les colonnes inferieures a la tuile de depart
+				while(p.getTuileTampon(y-1, xDebut) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(xDebut, y-1));
+					y--;
+				}
+				
+				// Ajout des coordonnees de la tuile de depart
+				motJoueComplet.add(new Coordonnees(xDebut, yDebut));
+				
+				y = yDebut;
+				
+				// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
+				while(p.getTuileTampon(y+1, xDebut) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(xDebut, y+1));
+					y++;
+				}
+				
+				// Tri des coordonnees en y pour mettre le mot dans le bon sens
+				Collections.sort(motJoueComplet, new Comparator<Coordonnees>() {
+
+					@Override
+					public int compare(Coordonnees c1, Coordonnees c2) {
+						return c1.getY() - c2.getY();
+					}
+				});
+			}
+			// Recherche de coordonnees en y (chemin vertical)
+			else if(yDebut == yFin) {
+				
+				int x = xDebut;
+				
+				// Recherche d'une tuile vosine sur les lignes inferieures a la tuile de depart
+				while(p.getTuileTampon(yDebut, x-1) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(x-1, yDebut));
+					x--;
+				}
+				
+				// Ajout des coordonnees de la tuile de depart
+				motJoueComplet.add(new Coordonnees(xDebut, yDebut));
+				
+				x = xDebut;
+				
+				// Recherche d'une tuile vosine sur les lignes superieures a la tuile de depart
+				while(p.getTuileTampon(yDebut, x+1) != null) {
+					
+					// Ajout des coordonnees
+					motJoueComplet.add(new Coordonnees(x+1, yDebut));
+					x++;
+				}
+				
+				// Tri des coordonnees en x pour mettre le mot dans le bon sens
+				Collections.sort(motJoueComplet, new Comparator<Coordonnees>() {
+					
+					@Override
+					public int compare(Coordonnees c1, Coordonnees c2) {
+						return c1.getX() - c2.getX();
+					}
+				});
+			}
+		}
+			
+		return motJoueComplet;
+	}
+	
+	/**
+	 * Renvoie la liste des tuiles jouees selon leurs coordonnees
+	 * @param p Plateau de jeu
+	 * @param motJoueComplet Coordonnees des tuiles placees 
+	 * @return Tuiles placées
+	 */
+	public ArrayList<Tuile> getTuilesJouees(Plateau p, ArrayList<Coordonnees> motJoueComplet){
+		
+		ArrayList<Tuile> mot = new ArrayList<>();
+		
+		for(Coordonnees c : motJoueComplet) {
+			
+			mot.add(p.getTuileTampon(c.getY(),c.getX()));
+		}
+			
+		return mot;
 	}
 }

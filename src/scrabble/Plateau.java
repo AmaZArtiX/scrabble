@@ -97,6 +97,7 @@ public class Plateau {
 				
 				System.out.print("|  ");
 				
+				
 				if(plateauTuilesTampon[x][y] instanceof Tuile)
 					System.out.print(plateauTuilesTampon[x][y].getLettre());
 				else
@@ -260,7 +261,7 @@ public class Plateau {
 		
 		switch(bonus) {
 			
-			case "":
+			case "  ":
 				return 1;
 			case "MD":
 				return 1;
@@ -271,7 +272,7 @@ public class Plateau {
 			case "LT":
 				return 3;
 			default:
-				return -1;
+				return 0;
 		}
 	}
 	
@@ -294,15 +295,12 @@ public class Plateau {
 	 * Calcule le score effectue pour une liste de tuiles et une liste de bonus correspondants
 	 * la premiere tuile de la liste correspond a la premiere lettre du mot place, idem pour le bonus 
 	 * qui corresppond a la case ou a ete jouee la tuile
-	 * @param listeTuiles Tuiles qui forment le mot
-	 * @param listeBonus Bonus de chaque case 
+	 * @param tuilesJouees Liste des coordonnees ou sont placées les tuiles qui forment le mot
+	 * @param scrabble Bonus de scrabble
 	 * @return scoreMot le score effectue 
 	 */
-	public int calculScoreMot(ArrayList<Tuile> listeTuiles, ArrayList<String> listeBonus) {
-
-		// ArrayList<String> motsAJouer = new ArrayList<String>();
-		
-		
+	public int calculScoreMot(ArrayList<Coordonnees> tuilesJouees, boolean scrabble) {
+	
 		// Score total m
 		int scoreMot = 0;
 		// Score pour une lettre 
@@ -312,42 +310,49 @@ public class Plateau {
 		// Compteur de case "MT"
 		int cptMotTriple = 0;
 		
-		// Verification de la coherence des listes
-		if(listeTuiles.size() != listeBonus.size())
-			return -1;
-		else {
+		for(Coordonnees c : tuilesJouees) {
 			
-			for(int i = 0; i < listeTuiles.size(); i++) {
+			// On récupere les coordonnees
+			int x = c.getX();
+			int y = c.getY();
+			
+			// Recuperation de la valeur d'une tuile
+			scoreLettre = plateauTuilesTampon[x][y].getValeur();
+			
+			if(plateauAttribution[x][y] == 0) {
 				
-				// Recuperation de la valeur d'une tuile
-				scoreLettre = listeTuiles.get(i).getValeur(); 
-				// Recuperation du bonus de la case
-				String bonus = listeBonus.get(i);
 				// Multiplication de la valeur de la tuile par le bonus de la case
-				scoreLettre *= getBonus(bonus);
-				// Incrementation du score total
-				scoreMot += scoreLettre;
+				scoreLettre *= getBonus(plateauBonus[x][y]);
 				
 				// Incrementation du compteur de cases "MD"
-				if(bonus.equals("MD"))
+				if(plateauBonus[x][y].equals("MD"))
 					cptMotDouble++;
 				// Incrémentation du compteur de cases "MT"
-				else if(bonus.equals("MT"))
+				else if(plateauBonus[x][y].equals("MT"))
 					cptMotTriple++;
+				
+				// Bonus attribué
+				plateauAttribution[x][y] = 1;
 			}
 			
-			// Mutliplication du score par le bonus 
-			if(cptMotDouble == 1)
-				scoreMot *= 2;
-			else if(cptMotDouble == 2)
-				scoreMot *= 4;
-			else if(cptMotTriple == 1)
-				scoreMot *= 3;
-			else if(cptMotTriple == 2)
-				scoreMot *= 9;
-			
-			return scoreMot;
+			// Incrementation du score total
+			scoreMot += scoreLettre;
 		}
+		
+		// Mutliplication du score par le bonus 
+		if(cptMotDouble == 1)
+			scoreMot *= 2;
+		else if(cptMotDouble == 2)
+			scoreMot *= 4;
+		else if(cptMotTriple == 1)
+			scoreMot *= 3;
+		else if(cptMotTriple == 2)
+			scoreMot *= 9;
+		
+		if(scrabble)
+			scoreMot += 50;
+			
+		return scoreMot;
 	}
 	
 	/**
