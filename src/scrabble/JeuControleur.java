@@ -342,6 +342,16 @@ public class JeuControleur extends Jeu {
 		rafraichissementChevalet();
 	}
 	
+	// Fonction de passage de tour de jeu
+	@FXML private void passerTourJeu() {
+		
+		// On ajoute 1 tour au compteur
+		nbTours++;
+		
+		// On rafraichi le compteur de tour avec +1 tour
+		lblNbTour.setText("Tour : " + nbTours);
+	}
+	
 	// Fonction de fin de tour de jeu
 	@FXML private void finTourJeu() {
 		
@@ -407,6 +417,10 @@ public class JeuControleur extends Jeu {
 		// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
 		((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 		btnMelRec.setOnAction(e -> melangeChevalet());
+		
+		// On change l'image et la fonction du bouton Jouer pour revenir a Passer
+		//((ImageView) btnJouer.getGraphic()).setImage(new Image("passer.png"));
+		btnJouer.setOnAction(e -> passerTourJeu());
 		
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
@@ -504,6 +518,10 @@ public class JeuControleur extends Jeu {
 			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 			btnMelRec.setOnAction(e -> melangeChevalet());
 		});
+		
+		// On change le nom et la fonction du bouton Melanger
+		//((ImageView) btnJouer.getGraphic()).setImage(new Image("jouer.png"));
+		btnJouer.setOnAction(e -> finTourJeu());
 	}
 	
 	// Fonction de detection d'un drag done
