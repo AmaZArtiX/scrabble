@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.JokerControleur">
+   <children>
+      <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="560.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="560.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Choix d'une Tuile" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <GridPane fx:id="grilleTuiles" hgap="5.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="555.0" style="-fx-background-color: #d2d4dc;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="A.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="B.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="C.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="D.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="E.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="F.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="G.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="H.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="I.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="J.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="K.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="L.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="M.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="N.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="O.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="P.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="Q.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="R.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="S.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="T.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="U.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="V.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="W.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="X.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="Y.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="42.0" onMouseClicked="#choixTuile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="Z.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="00" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <GridPane fx:id="grilleJoker" gridLinesVisible="true" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="560.0">
+               <children>
+                  <Label text="Ce choix est définitif" textFill="RED" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="560.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmChoixTuile" prefHeight="27.0" prefWidth="150.0" text="Confirmer le choix" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -67,16 +67,6 @@ public class Dictionnaire {
 	}
 	
 	/*
-	// Fonction de recherche d'un mot dans le dictionnaire
-	public boolean existe(String motRech) {
-		for (String mot : Dico) {
-			if(mot.equals(motRech)) return true;
-		}
-		return false;
-	}
-	*/
-	
-	/*
 	 * Verifier l'existence d'un mot dans le dictionnaire (recherche dichotomique)
 	 * @param mot Le mot a rechercher
 	 * @return trouve Le booleen utile a la recherhce 

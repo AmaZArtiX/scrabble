@@ -46,7 +46,6 @@ public class Chevalet {
 	// Ajoute la tuile t en indice i 
 	public void ajouterTuileIndex(int i, Tuile t) {
 		
-		if(this.chevalet.size() < TAILLE)
 			this.chevalet.add(i, t);
 	}
 	
@@ -142,6 +141,7 @@ public class Chevalet {
 		}
 	}
 	
+	// Fonction permettant de verifier si une tuile est presente a la colonne indiquee
 	public boolean existeTuile(int col) {
 		if(chevalet.get(col) == null)
 			return false;

@@ -33,14 +33,20 @@ public class Jeu extends Application {
 	// Declaration du Plateau
 	static Plateau plateau = new Plateau();
 	
+	// Declaration du booleen de Jeu
+	static boolean jeuEnCours = false;
+	
+	// Declaration du nombre de tours
+	static int nbTours = 0;
+	
+	// Declaration de la Tuile Joker
+	static Tuile joker = new Tuile();
+	
 	// Ceci est la fonction principale du jeu
 	public static void main(String[] args) {	
 	
 		// Lancement de la fenetre javafx --> fonction "start"
 		launch(args);
-		
-		/*// Affichage du plateau 
-		plateau.afficher();*/
 	}
 
 	// Fonction permettant le lancement de l'application

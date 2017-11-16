@@ -3,6 +3,7 @@ package scrabble;
 
 // Import(s)
 import java.io.IOException;
+import javafx.scene.image.Image;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,27 +33,24 @@ public class AccueilControleur extends Jeu {
 	// Lien entre le fichier FXML et le Button lanJeu
 	@FXML private Button lanJeu;
 	
-	// Fonction permettant d'acceder à l'ecran de jeu
+	// Fonction permettant d'acceder a l'ecran de jeu
 	@FXML private void gotoJeu(ActionEvent event) throws IOException {
 		
-		// On initialise les données du Joueur
+		// On initialise les donnees du Joueur
 		joueur.setNom(nomTxtJoueur.getText());
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
 		// Declaration de la scene
-		Scene scene = new Scene(root, 1280, 950);
+		Scene scene = new Scene(root, 1080, 720);
 		
-		// Changement de la scene d'acceuil vers la scene principale
+		// Changement de la scene d'accueil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
 		stageJeu.setTitle("Plateau - Scrabble");
-		stageJeu.setResizable(true);
-		stageJeu.setMaxWidth(1280);
-		stageJeu.setMaxHeight(950);
-		stageJeu.setMinWidth(1024);
-		stageJeu.setMinHeight(512);
+		stageJeu.getIcons().add(new Image("S.png"));
+		stageJeu.setResizable(false);
 		stageJeu.show();
 		stageJeu.centerOnScreen();
 	}

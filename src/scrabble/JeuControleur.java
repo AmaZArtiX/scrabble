@@ -3,13 +3,20 @@ package scrabble;
 
 // Import(s)
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,14 +41,35 @@ import javafx.stage.Stage;
 
 public class JeuControleur extends Jeu {
 
-	// Lien entre le fichier FXML et le Label de Score du Joueur
-	@FXML private Label lblScoreJ;
+	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
+	@FXML private ComboBox<String> cbModeJeu;
+	
+	// Lien entre le fichier FXML et le Button Dictionnaire
+	@FXML private Button btnDico;
+	
+	// Lien entre le fichier FXML et le Label de Score du Joueur 1
+	@FXML private Label lblScoreJ1;
+	
+	// Lien entre le fichier FXML et le Label de Score du Joueur 2
+	@FXML private Label lblScoreJ2;
+	
+	// Lien entre le fichier FXML et le Label de Nb de Tour
+	@FXML private Label lblNbTour;
+	
+	// Lien entre le fichier FXML et le Button Professeur
+	@FXML private Button btnProfesseur;
 	
 	// Lien entre le fichier FXML et le GridPane du Plateau
 	@FXML private GridPane grillePlateau;
 	
 	// Tableau d'ImageView des cases du Plateau
 	private ImageView[] casesPlateau = new ImageView[Plateau.TAILLE*Plateau.TAILLE];
+	
+	// Lien entre le fichier FXML et le Button Abandon
+	@FXML private Button btnAbandon;
+	
+	// Lien entre le fichier FXML et le Button Sac
+	@FXML private Button btnSac;
 
 	// Lien entre le fichier FXML et le GridPane du Chevalet
 	@FXML private GridPane grilleChevalet;
@@ -49,8 +77,113 @@ public class JeuControleur extends Jeu {
 	// Tableau d'ImageView des cases du Chevalet
 	private ImageView[] casesChevalet = new ImageView[Chevalet.TAILLE];
 	
-	// Lien entre le fichier FXML et le Button melrec
-	@FXML private Button melrec;
+	// Lien entre le fichier FXML et le Button Melanger/Recuperer
+	@FXML private Button btnMelRec;
+	
+	// Lien entre le fichier FXML et le Button Jouer
+	@FXML private Button btnJouer;
+	
+	// Fonction d'initialisation de la fenetre de Jeu
+	public void initialize() {
+
+		// Initialisation du Plateau de Jeu
+		plateau.initialiser();
+
+		// Affichage du Score du Joueur ainsi que son nom
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+
+		// Initialisation de casesPlateau avec les ImageView de grillePlateau
+		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
+			casesPlateau[i] = (ImageView) grillePlateau.getChildren().get(i);
+		}
+
+		// Initialisation de casesChevalet avec les ImageView de grilleChevalet
+		for(int i=0;i<Chevalet.TAILLE;i++) {
+			casesChevalet[i] = (ImageView) grilleChevalet.getChildren().get(i);
+		}
+
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
+	}
+	
+	// Fonction de changement de mode de jeu
+	@FXML private void changeModeJeu() {
+		
+		// On verifie si une partie n'est pas deja en cours
+		if(!jeuEnCours) {
+			
+			// Selon le mode de jeu choisi, on initialise et affiche le chevalet du joueur
+			// et on active les boutons
+			switch (cbModeJeu.getValue()) {
+			case "Entrainement":
+				
+				// On lance le jeu
+				jeuEnCours = true;
+				nbTours = 1;
+				
+				// On active le lbl de Score du Joueur
+				lblScoreJ1.setDisable(false);
+				
+				// On rafraichi le Score du Joueur
+				lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+				
+				// On active le lbl de Nb de Tour
+				lblNbTour.setDisable(false);
+				
+				// On rafraichi le compteur de tour
+				lblNbTour.setText("Tour : " + nbTours);
+				
+				// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
+				joueur.getChevalet().remplir(sac);
+				
+				// On sauvegarde le chevalet du joueur
+				plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+				
+				// On rafraichit les ImageView du Chevalet
+				rafraichissementChevalet();
+				
+				// On active les boutons
+				// btnProfesseur.setDisable(false);
+				btnAbandon.setDisable(false);
+				btnSac.setDisable(false);
+				btnMelRec.setDisable(false);
+				btnJouer.setDisable(false);
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	
+	// Fonction permettant de quitter l'application
+	@FXML private void quitter(ActionEvent e) {
+		
+		// On verifie si une partie est en cours
+		if (jeuEnCours) {
+			
+			// On declare une nouvelle Alert de type CONFIRMATION
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Une partie est cours, voulez-vous vraiment quitter ?");
+
+			// On recupere le booleen resultat de cette Alert
+			Optional<ButtonType> resultat = alert.showAndWait();
+
+			// Si la reponse est OK alors on continue
+			if(resultat.get() == ButtonType.OK) {
+				
+				// On abandonne la partie
+				abandonPartie();
+				
+				// On quitte le jeu
+				System.exit(0);
+			}
+		} else {
+			
+			// On quitte le jeu
+			System.exit(0);
+		}
+	}
 	
 	// Fonction permettant d'acceder au dictionnaire
 	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
@@ -70,41 +203,75 @@ public class JeuControleur extends Jeu {
 		stageDictionnaire.show();
 	}
 	
-	// Fonction permettant de quitter l'application
-	@FXML private void quitter(ActionEvent e) {
-		
-		System.exit(0);
+	// Fonction d'aide au placement de tuile
+	@FXML private void aideProfesseur() {
+		// TODO
 	}
 	
-	// Fonction d'initialisation de la fenetre de Jeu
-	public void initialize() {
-		
-		// Initialisation du Plateau de Jeu
+	// Fonction permettant d'abandonner la partie en cours
+	@FXML private void abandonPartie() {
+	
+		// On reinitialise l'etat de la partie et le nb de tours
+		jeuEnCours = false;
+		nbTours = 0;
+
+		// On raffraichi le compteur de tour
+		lblNbTour.setText("Tour : " + nbTours);
+
+		// Si le bouton Sac est desactive alors des tuiles ont ete jouees et le bouton Melanger a ete modifie
+		if(btnSac.isDisable()) {
+
+			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+			btnMelRec.setOnAction(e -> melangeChevalet());
+
+			// On desactive les boutons de jeu
+			// btnProfesseur.setDisable(true);
+			btnAbandon.setDisable(true);
+			btnMelRec.setDisable(true);
+			btnJouer.setDisable(true);
+
+			// On desactive les lbl de Score de Joueur et Nb de Tour
+			lblScoreJ1.setDisable(true);
+			lblNbTour.setDisable(true);
+		} else {
+
+			// On desactive les boutons de jeu
+			// btnProfesseur.setDisable(true);
+			btnAbandon.setDisable(true);
+			btnSac.setDisable(true);
+			btnMelRec.setDisable(true);
+			btnJouer.setDisable(true);
+
+			// On desactive les lbl de Score de Joueur et Nb de Tour
+			lblScoreJ1.setDisable(true);
+			lblNbTour.setDisable(true);
+		}
+
+		// On reinitialise le Plateau
 		plateau.initialiser();
-		
-		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-		
-		// Initialisation de casesPlateau avec les ImageView de grillePlateau
-		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
-			casesPlateau[i] = (ImageView) grillePlateau.getChildren().get(i);
-		}
-		
-		// Initialisation de casesChevalet avec les ImageView de grilleChevalet
-		for(int i=0;i<Chevalet.TAILLE;i++) {
-			casesChevalet[i] = (ImageView) grilleChevalet.getChildren().get(i);
-		}
-		
-		// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
-		joueur.getChevalet().remplir(sac);
-		joueur.setChevaletTampon(joueur.getChevalet());
-		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+
+		// On reinitialise les donnees du Joueur (sauf le nom)
+		joueur = new Joueur(joueur.getNom());
+
+		// On rafraichit le Score du Joueur
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+
+		// On reinitialise le Sac
+		sac = new Sac();
+
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
+
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
+
+		// On reset le ComboBox de choix de Mode de Jeu
+		((ComboBoxBase<String>) cbModeJeu).setValue(cbModeJeu.getPromptText());
 	}
 	
 	// Fonction permettant d'acceder a l'echange de tuiles
-	@FXML private void gotoEchange(ActionEvent e) throws IOException {
+	@FXML private void gotoEchange(ActionEvent event) throws IOException {
 		
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
@@ -116,22 +283,150 @@ public class JeuControleur extends Jeu {
 		Stage stageEchange = new Stage();
 		stageEchange.setScene(scene);
 		stageEchange.getIcons().add(new Image("S.png"));
-		stageEchange.setTitle("Echanger des lettres");
+		stageEchange.setTitle("Echanger des lettres - Scrabble");
 		stageEchange.setResizable(false);
-		stageEchange.initOwner(((Button) e.getSource()).getScene().getWindow());
+		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
-		stageEchange.setOnHidden(EventHandler -> raffraichissementChevalet());
-		stageEchange.show();
+		stageEchange.setOnHidden(EventHandler -> {
+			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+			rafraichissementChevalet();
+			finTourJeu();
+		});
+		stageEchange.showAndWait();
+	}
+	
+	// Fonction de choix d'une tuile pour le placement d'un Joker
+	@FXML private void choixTuileJoker(DragEvent event) throws IOException {
+		
+		// Test root cree avec Scene Builder
+		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Joker.fxml"));
+		
+		// Declaration de la scene
+		Scene scene = new Scene(root, 600, 500);
+		
+		// Changement de la scene d'accueil vers la scene principale
+		Stage stageJoker = new Stage();
+		stageJoker.setScene(scene);
+		stageJoker.getIcons().add(new Image("S.png"));
+		stageJoker.setTitle("Choix d'une Tuile - Scrabble");
+		stageJoker.setResizable(false);
+		stageJoker.initOwner(((ImageView) event.getSource()).getScene().getWindow());
+		stageJoker.initModality(Modality.WINDOW_MODAL);
+		stageJoker.showAndWait();
 	}
 	
 	// Fonction de melange des Tuiles du Chevalet
 	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
-		joueur.getChevalet().melanger();
+		joueur.getChevaletTampon().melanger();
+		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
+	}
+	
+	// Fonction de recuperation des tuiles jouees
+	private void recupTuilesJouee() {
 
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On supprime les Tuiles jouees de plateauTuilesTampon
+		plateau.sauvegarderPlateauTuiles();
+
+		// On recupere l'etat du Chevalet au debut du Jeu
+		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
+		
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
+	}
+	
+	// Fonction de passage de tour de jeu
+	@FXML private void passerTourJeu() {
+		
+		// On ajoute 1 tour au compteur
+		nbTours++;
+		
+		// On rafraichi le compteur de tour avec +1 tour
+		lblNbTour.setText("Tour : " + nbTours);
+	}
+	
+	// Fonction de fin de tour de jeu
+	@FXML private void finTourJeu() {
+		
+		// On calcul le score du mot joue par le Joueur
+		// ------------------------------------------------
+		// |                    TODO                      |
+		// ------------------------------------------------
+		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
+		// 
+		
+		// On verifie le bon placement des tuiles placees
+		if(joueur.verifierMotJoue(plateau)) {
+			
+			// On récupère toutes les coordonnees des tuiles qui forment le mot 
+			ArrayList <Coordonnees> listeCoordonnees = joueur.getMotJoueComplet(plateau);
+			// On récupere toutes les tuiles qui forment le mot
+			ArrayList<Tuile> liste = joueur.getTuilesJouees(plateau, listeCoordonnees);
+			// On initialise le bonus scrabble à faux
+			boolean scrabble = false;
+			// Mot formé
+			String mot = plateau.creerMot(liste);
+			
+			// On verifie que le mot joue existe dans le dico
+			if(dictionnaire.existe(mot.toUpperCase())) {
+
+				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
+				if(joueur.getChevaletTampon().getTaille() == 0)
+					scrabble = true;
+					
+				// On récupère le score du mot joué
+				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
+				joueur.setScore(joueur.getScore() + score);
+				// Affichage en console du mot joué et du score obtenu
+				System.out.println("Mot joué : "+mot);
+				System.out.println("Score du mot joué : "+ score);
+			}
+		}
+		
+		// On efface le mot joue 
+		joueur.effacerMotJoue();
+		
+		// On rafraichit le Score du Joueur
+		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		
+		// On applique les ajouts de tuiles au Plateau
+		plateau.restaurerPlateauTuiles();
+		
+		// On remplit le Chevalet du Joueur
+		joueur.getChevaletTampon().reRemplir(sac);
+		
+		// On applique les suppressions de tuiles au Chevalet du Joueur
+		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		
+		// On ajoute 1 tour au compteur
+		nbTours++;
+		
+		// On rafraichi le compteur de tour avec +1 tour
+		lblNbTour.setText("Tour : " + nbTours);
+		
+		// On reactive l'acces a l'echange de tuiles
+		btnSac.setDisable(false);
+		
+		// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+		btnMelRec.setOnAction(e -> melangeChevalet());
+		
+		// On change l'image et la fonction du bouton Jouer pour revenir a Passer
+		//((ImageView) btnJouer.getGraphic()).setImage(new Image("passer.png"));
+		btnJouer.setOnAction(e -> passerTourJeu());
+		
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
+		
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de detection d'un drag'n'drop
@@ -176,7 +471,7 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction de detection d'un drag dropped
-	@FXML private void dragDropped(DragEvent event) {
+	@FXML private void dragDropped(DragEvent event) throws IOException {
 		
 		// On recupere l'indice de la Tuile jouee (Chevalet)
 		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
@@ -185,62 +480,70 @@ public class JeuControleur extends Jeu {
 		int col = GridPane.getColumnIndex((Node) event.getSource());
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
+		// On affecte le Tuile jouee a tuile
+		Tuile tuile = joueur.getChevaletTampon().getTuile(index);
+		
+		// On verifie si la Tuile posee est un Joker
+		if (tuile.getLettre() == '*') {
+			
+			// On affiche la fen�tre de choix de Tuile
+			choixTuileJoker(event);
+			
+			// On affecte la Tuile Joker choisie a tuile
+			tuile = joker;
+		}
+		
+		System.out.println(tuile);
+		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		plateau.placerTuile(lig, col, joueur.getChevalet().getTuile(index));
+		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
 		joueur.getChevaletTampon().supprimerTuile(index);
 		
+		// On desactive l'acces a l'echange de tuiles
+		btnSac.setDisable(true);
+		
 		// On change le nom et la fonction du bouton Melanger
-		melrec.setText("R�cup�rer");
-		melrec.setOnAction(EventHandler -> {
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("recuperer.png"));
+		btnMelRec.setOnAction(EventHandler -> {
 			
-			// 
-			recupTuilesJouee();			
+			// On recupere les tuiles jouees
+			recupTuilesJouee();		
 			
-			// On change le nom et la fonction du bouton R�cup�rer pour revenir � Melanger
-			melrec.setText("M�langer");
-			melrec.setOnAction(e -> melangeChevalet());
+			// On reactive l'acces a l'echange de tuiles
+			btnSac.setDisable(false);
+			
+			// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+			btnMelRec.setOnAction(e -> melangeChevalet());
 		});
+		
+		// On change le nom et la fonction du bouton Melanger
+		//((ImageView) btnJouer.getGraphic()).setImage(new Image("jouer.png"));
+		btnJouer.setOnAction(e -> finTourJeu());
 	}
 	
 	// Fonction de detection d'un drag done
 	@FXML private void dragDone(DragEvent event) {
 		
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
+		// On rafraichit les ImageView du Plateau
+		rafraichissementPlateau();
 		
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
-	}
-	
-	// Fonction de recuperation des tuiles jouees
-	private void recupTuilesJouee() {
-		
-		// On supprime les Tuiles jouees de plateauTuilesTampon
-		plateau.sauvegarderPlateauTuiles();
-
-		// On recupere l'etat du Chevalet au debut du Jeu
-		joueur.setChevaletTampon(joueur.getChevalet());
-		
-		/* PROBLEME DE RAFFRAICHISSEMENT */
-		// On raffraichit les ImageView du Chevalet
-		raffraichissementChevalet();
-
-		// On raffraichit les ImageView du Plateau
-		raffraichissementPlateau();
+		// On rafraichit les ImageView du Chevalet
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de raffraichissement des ImageView du Chevalet en fonction du Chevalet du Joueur
-	private void raffraichissementChevalet() {
+	private void rafraichissementChevalet() {
 		
 		// Le Chevalet du Joueur n'est pas vide
 		if(!joueur.getChevaletTampon().estVide()) {
 			
-			int i; // On met a jour les ImageView du Chevalet en fonction du Chevalet Tampon du Joueur
+			int i; // En fonction de la taille du Chevalet Tampon
 			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
 				
-				// 
+				// On met a jour les ImageView du Chevalet
 				casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
 			}
 			
@@ -248,10 +551,8 @@ public class JeuControleur extends Jeu {
 			// MAX du Chevalet alors on vide les ImageView restants
 			if(i<Chevalet.TAILLE) {
 				
-				// 
 				while (i<Chevalet.TAILLE) {
 					
-					// 
 					casesChevalet[i].setImage(null); i++;
 				}
 			}
@@ -260,14 +561,13 @@ public class JeuControleur extends Jeu {
 			// On vide les ImageView du Chevalet
 			for(int i=0;i<Chevalet.TAILLE;i++) {
 				
-				// 
 				casesChevalet[i].setImage(null);
 			}
 		}
 	}
 	
 	// Fonction de raffraichissement des ImageView du Plateau en fonction du tableau plateauTuiles
-	private void raffraichissementPlateau() {
+	private void rafraichissementPlateau() {
 		
 		// Le tableau plateauTuiles n'est pas vide
 		if(!plateau.getPlateauTuilesTampon().equals(null)) {
@@ -278,42 +578,39 @@ public class JeuControleur extends Jeu {
 				// On parcours toutes les colonnes
 				for(int j=0;j<Plateau.TAILLE;j++) {
 					
-					// Si un bonus est present mais pas de Tuile alors on entre dans le if
-					if((plateau.getStringBonus(i, j) != "") & !(plateau.getTuileTampon(i, j) != null)) {
-						
-						// On recupere le String du bonus (de plateauBonus)
-						switch (plateau.getStringBonus(i, j)) {
-							case "LD":
-								// On met l'Image de la lettre double dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LD.png"));
-								break;
-							case "LT":
-								// On met l'Image de la lettre triple dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LT.png"));
-								break;
-							case "MD":
-								// On met l'Image du mot double dans l'ImageView du Plateau
-								if(i == 7 & j == 7) casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CD.png"));
-								else casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MD.png"));
-								break;
-							case "MT":
-								// On met l'Image du mot triple dans l'ImageView du Plateau
-								casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MT.png"));
-								break;
-							default:
-								break;
-						}
-					} else 
-					
-					// Si une Tuile est presente alors on entre dans le if
-					if (plateau.getTuileTampon(i, j) != null) {
-						
+					// Si l'emplacement indique contient une tuile, un bonus ou rien alors on affiche l'image appropriee
+					if(plateau.getTuileTampon(i, j) instanceof Tuile) {
+
 						// On affiche son Image dans l'ImageView du Plateau
 						casesPlateau[j*Plateau.TAILLE+i].setImage(plateau.getTuileTampon(i, j).getImg());
+					} else if(plateau.getStringBonus(i, j) != "  ") {
+
+						// On recupere le String du bonus (de plateauBonus)
+						switch (plateau.getStringBonus(i, j)) {
+						case "LD":
+							// On met l'Image de la lettre double dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LD.png"));
+							break;
+						case "LT":
+							// On met l'Image de la lettre triple dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("LT.png"));
+							break;
+						case "MD":
+							// On met l'Image du mot double dans l'ImageView du Plateau
+							if(i == 7 & j == 7) casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CD.png"));
+							else casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MD.png"));
+							break;
+						case "MT":
+							// On met l'Image du mot triple dans l'ImageView du Plateau
+							casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("MT.png"));
+							break;
+						default:
+							break;
+						}
 					} else {
 						
 						// La case est vide donc on met l'Image de l'ImageView a vide
-						casesPlateau[j*Plateau.TAILLE+i].setImage(null);
+						casesPlateau[j*Plateau.TAILLE+i].setImage(new Image("CV.png"));
 					}
 				}
 			}

@@ -8,6 +8,7 @@ Description ......... : Fichier .fxml comportant les éléments relatifs aux vis
 						-els de l'application
 
 Auteur(s) ........... : LAMPE Ronan
+						BAUCH François
 
 Dernière modification : 17/10/2017
 
@@ -31,7 +32,7 @@ Dernière modification : 17/10/2017
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" text="DICTIONNAIRE" textAlignment="CENTER" underline="true">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="Arial Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
@@ -40,7 +41,7 @@ Dernière modification : 17/10/2017
                <children>
                   <Label prefHeight="50.0" prefWidth="300.0" text="Veuillez entrer ci-dessous le mot à rechercher :" textAlignment="CENTER" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -54,22 +55,25 @@ Dernière modification : 17/10/2017
                <children>
                   <Button mnemonicParsing="false" onAction="#verifExist" prefHeight="40.0" prefWidth="280.0" text="Rechercher">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <Label fx:id="lblResRech" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" text="Résultat mot recherché : Ø" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                  <Label fx:id="lblResRech" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="290.0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Arial" size="18.0" />
                      </font>
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
                </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

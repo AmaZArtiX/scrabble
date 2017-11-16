@@ -38,85 +38,85 @@ public class Sac {
 	public void remplissage() {
 		
 		for(int i = 1; i <= Lettre.A.nombre; i++)
-			lettres.add(new Tuile('A', Lettre.A.valeur, Lettre.A.img));
+			lettres.add(new Tuile(Lettre.A.lettre, Lettre.A.valeur, Lettre.A.img));
 		
 		for(int i = 1; i <= Lettre.B.nombre; i++)
-			lettres.add(new Tuile('B', Lettre.B.valeur, Lettre.B.img));
+			lettres.add(new Tuile(Lettre.B.lettre, Lettre.B.valeur, Lettre.B.img));
 		
 		for(int i = 1; i <= Lettre.C.nombre; i++)
-			lettres.add(new Tuile('C', Lettre.C.valeur, Lettre.C.img));
+			lettres.add(new Tuile(Lettre.C.lettre, Lettre.C.valeur, Lettre.C.img));
 		
 		for(int i = 1; i <= Lettre.D.nombre; i++)
-			lettres.add(new Tuile('D', Lettre.D.valeur, Lettre.D.img));
+			lettres.add(new Tuile(Lettre.D.lettre, Lettre.D.valeur, Lettre.D.img));
 		
 		for(int i = 1; i <= Lettre.E.nombre; i++)
-			lettres.add(new Tuile('E', Lettre.E.valeur, Lettre.E.img));
+			lettres.add(new Tuile(Lettre.E.lettre, Lettre.E.valeur, Lettre.E.img));
 		
 		for(int i = 1; i <= Lettre.F.nombre; i++)
-			lettres.add(new Tuile('F', Lettre.F.valeur, Lettre.F.img));
+			lettres.add(new Tuile(Lettre.F.lettre, Lettre.F.valeur, Lettre.F.img));
 		
 		for(int i = 1; i <= Lettre.G.nombre; i++)
-			lettres.add(new Tuile('G', Lettre.G.valeur, Lettre.G.img));
+			lettres.add(new Tuile(Lettre.G.lettre, Lettre.G.valeur, Lettre.G.img));
 		
 		for(int i = 1; i <= Lettre.H.nombre; i++)
-			lettres.add(new Tuile('H', Lettre.H.valeur, Lettre.H.img));
+			lettres.add(new Tuile(Lettre.H.lettre, Lettre.H.valeur, Lettre.H.img));
 		
 		for(int i = 1; i <= Lettre.I.nombre; i++)
-			lettres.add(new Tuile('I', Lettre.I.valeur, Lettre.I.img));
+			lettres.add(new Tuile(Lettre.I.lettre, Lettre.I.valeur, Lettre.I.img));
 		
 		for(int i = 1; i <= Lettre.J.nombre; i++)
-			lettres.add(new Tuile('J', Lettre.J.valeur, Lettre.J.img));
+			lettres.add(new Tuile(Lettre.J.lettre, Lettre.J.valeur, Lettre.J.img));
 		
 		for(int i = 1; i <= Lettre.K.nombre; i++)
-			lettres.add(new Tuile('K', Lettre.K.valeur, Lettre.K.img));
+			lettres.add(new Tuile(Lettre.K.lettre, Lettre.K.valeur, Lettre.K.img));
 		
 		for(int i = 1; i <= Lettre.L.nombre; i++)
-			lettres.add(new Tuile('L', Lettre.L.valeur, Lettre.L.img));
+			lettres.add(new Tuile(Lettre.L.lettre, Lettre.L.valeur, Lettre.L.img));
 		
 		for(int i = 1; i <= Lettre.M.nombre; i++)
-			lettres.add(new Tuile('M', Lettre.M.valeur, Lettre.M.img));
+			lettres.add(new Tuile(Lettre.M.lettre, Lettre.M.valeur, Lettre.M.img));
 		
 		for(int i = 1; i <= Lettre.N.nombre; i++)
-			lettres.add(new Tuile('N', Lettre.N.valeur, Lettre.N.img));
+			lettres.add(new Tuile(Lettre.N.lettre, Lettre.N.valeur, Lettre.N.img));
 		
 		for(int i = 1; i <= Lettre.O.nombre; i++)
-			lettres.add(new Tuile('O', Lettre.O.valeur, Lettre.O.img));
+			lettres.add(new Tuile(Lettre.O.lettre, Lettre.O.valeur, Lettre.O.img));
 		
 		for(int i = 1; i <= Lettre.P.nombre; i++)
-			lettres.add(new Tuile('P', Lettre.P.valeur, Lettre.P.img));
+			lettres.add(new Tuile(Lettre.P.lettre, Lettre.P.valeur, Lettre.P.img));
 		
 		for(int i = 1; i <= Lettre.Q.nombre; i++)
-			lettres.add(new Tuile('Q', Lettre.Q.valeur, Lettre.Q.img));
+			lettres.add(new Tuile(Lettre.Q.lettre, Lettre.Q.valeur, Lettre.Q.img));
 		
 		for(int i = 1; i <= Lettre.R.nombre; i++)
-			lettres.add(new Tuile('R', Lettre.R.valeur, Lettre.R.img));
+			lettres.add(new Tuile(Lettre.R.lettre, Lettre.R.valeur, Lettre.R.img));
 		
 		for(int i = 1; i <= Lettre.S.nombre; i++)
-			lettres.add(new Tuile('S', Lettre.S.valeur, Lettre.S.img));
+			lettres.add(new Tuile(Lettre.S.lettre, Lettre.S.valeur, Lettre.S.img));
 		
 		for(int i = 1; i <= Lettre.T.nombre; i++)
-			lettres.add(new Tuile('T', Lettre.T.valeur, Lettre.T.img));
+			lettres.add(new Tuile(Lettre.T.lettre, Lettre.T.valeur, Lettre.T.img));
 		
 		for(int i = 1; i <= Lettre.U.nombre; i++)
-			lettres.add(new Tuile('U', Lettre.U.valeur, Lettre.U.img));
+			lettres.add(new Tuile(Lettre.U.lettre, Lettre.U.valeur, Lettre.U.img));
 		
 		for(int i = 1; i <= Lettre.V.nombre; i++)
-			lettres.add(new Tuile('V', Lettre.V.valeur, Lettre.V.img));
+			lettres.add(new Tuile(Lettre.V.lettre, Lettre.V.valeur, Lettre.V.img));
 		
 		for(int i = 1; i <= Lettre.W.nombre; i++)
-			lettres.add(new Tuile('W', Lettre.W.valeur, Lettre.W.img));
+			lettres.add(new Tuile(Lettre.W.lettre, Lettre.W.valeur, Lettre.W.img));
 		
 		for(int i = 1; i <= Lettre.X.nombre; i++)
-			lettres.add(new Tuile('X', Lettre.X.valeur, Lettre.X.img));
+			lettres.add(new Tuile(Lettre.X.lettre, Lettre.X.valeur, Lettre.X.img));
 		
 		for(int i = 1; i <= Lettre.Y.nombre; i++)
-			lettres.add(new Tuile('Y', Lettre.Y.valeur, Lettre.Y.img));
+			lettres.add(new Tuile(Lettre.Y.lettre, Lettre.Y.valeur, Lettre.Y.img));
 		
 		for(int i = 1; i <= Lettre.Z.nombre; i++)
-			lettres.add(new Tuile('Z', Lettre.Z.valeur, Lettre.Z.img));
+			lettres.add(new Tuile(Lettre.Z.lettre, Lettre.Z.valeur, Lettre.Z.img));
 		
-		for(int i = 1; i <= Lettre.JOCKER.nombre; i++)
-			lettres.add(new Tuile('*', Lettre.JOCKER.valeur, Lettre.JOCKER.img));
+		for(int i = 1; i <= Lettre.JOKER.nombre; i++)
+			lettres.add(new Tuile(Lettre.JOKER.lettre, Lettre.JOKER.valeur, Lettre.JOKER.img));
 	}
 	
 	// Renvoie la tuile stockee a l'indice i
@@ -191,6 +191,7 @@ public class Sac {
 		return compteur;
 	}
 	
+	// Fonction d'ajout d'une tuile au sac
 	public void ajoutTuile(Tuile t) {
 		lettres.add(t);
 	}
