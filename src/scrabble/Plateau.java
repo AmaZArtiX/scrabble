@@ -492,7 +492,7 @@ public class Plateau {
 
 		return true;
 	}
-	
+
 	public boolean checkBoard() 
 	{
 	   String word = "";

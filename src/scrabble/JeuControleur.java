@@ -28,6 +28,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /*************************************************************************
  * Nom ...........: JeuControleur.java
@@ -293,6 +294,7 @@ public class JeuControleur extends Jeu {
 		stageEchange.setResizable(false);
 		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
+		stageEchange.initStyle(StageStyle.UNDECORATED);
 		stageEchange.setOnHidden(EventHandler -> {
 			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 			rafraichissementChevalet();
@@ -321,6 +323,7 @@ public class JeuControleur extends Jeu {
 		stageJoker.setResizable(false);
 		stageJoker.initOwner(((ImageView) event.getSource()).getScene().getWindow());
 		stageJoker.initModality(Modality.WINDOW_MODAL);
+		stageJoker.initStyle(StageStyle.UNDECORATED);
 		stageJoker.showAndWait();
 	}
 	
@@ -372,6 +375,7 @@ public class JeuControleur extends Jeu {
 		// 
 		
 		// On verifie le bon placement des tuiles placees
+		
 		if(joueur.verifierMotJoue(plateau)) {
 			
 			// On récupère toutes les coordonnees des tuiles qui forment le mot 
