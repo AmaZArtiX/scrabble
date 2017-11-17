@@ -327,7 +327,7 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction de recuperation des tuiles jouees
-	private void recupTuilesJouee() {
+	private void recupTuilesJouees() {
 
 		// On supprime les Tuiles jouees de plateauTuilesTampon
 		plateau.sauvegarderPlateauTuiles();
@@ -387,6 +387,16 @@ public class JeuControleur extends Jeu {
 				// Affichage en console du mot joué et du score obtenu
 				System.out.println("Mot joué : "+mot);
 				System.out.println("Score du mot joué : "+ score);
+				// On ajoute 1 tour au compteur
+				nbTours++;
+				
+				// On rafraichi le compteur de tour avec +1 tour
+				lblNbTour.setText("Tour : " + nbTours);
+				
+			}
+			else {
+				
+				recupTuilesJouees();
 			}
 		}
 		
@@ -404,12 +414,6 @@ public class JeuControleur extends Jeu {
 		
 		// On applique les suppressions de tuiles au Chevalet du Joueur
 		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
-		
-		// On ajoute 1 tour au compteur
-		nbTours++;
-		
-		// On rafraichi le compteur de tour avec +1 tour
-		lblNbTour.setText("Tour : " + nbTours);
 		
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
@@ -509,7 +513,7 @@ public class JeuControleur extends Jeu {
 		btnMelRec.setOnAction(EventHandler -> {
 			
 			// On recupere les tuiles jouees
-			recupTuilesJouee();		
+			recupTuilesJouees();		
 			
 			// On reactive l'acces a l'echange de tuiles
 			btnSac.setDisable(false);
