@@ -172,7 +172,7 @@ Dernière modification : 10/11/2017
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="475.0" spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Label fx:id="lblScoreJ1" alignment="CENTER" disable="true" text="Score du Joueur 1 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                              <Label fx:id="lblScoreJ1" alignment="CENTER" disable="true" maxHeight="60.0" text="Score du Joueur 1 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Arial" size="18.0" />
                                  </font>
@@ -182,7 +182,7 @@ Dernière modification : 10/11/2017
                                     <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblScoreJ2" alignment="CENTER" disable="true" text="Score du Joueur 2 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                              <Label fx:id="lblScoreJ2" alignment="CENTER" disable="true" maxHeight="60.0" text="Score du Joueur 2 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Arial" size="18.0" />
                                  </font>
@@ -192,7 +192,7 @@ Dernière modification : 10/11/2017
                                     <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblNbTour" alignment="CENTER" disable="true" text="Tour : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                              <Label fx:id="lblNbTour" alignment="CENTER" disable="true" maxHeight="60.0" text="Tour : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Arial" size="18.0" />
                                  </font>
@@ -507,9 +507,9 @@ Dernière modification : 10/11/2017
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="btnSac" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gotoEchange" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;">
+                              <Button fx:id="btnSac" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gotoEchange" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-background-size: 0;" text="0" textFill="#a48600">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Arial" size="14.0" />
                                  </font>
                                  <graphic>
                                     <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
@@ -570,7 +570,7 @@ Dernière modification : 10/11/2017
                                  <graphic>
                                     <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="melanger.png" />
+                                          <Image url="mélanger.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -585,7 +585,7 @@ Dernière modification : 10/11/2017
                                  <graphic>
                                     <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="jouer.png" />
+                                          <Image url="passer.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

@@ -148,6 +148,9 @@ public class JeuControleur extends Jeu {
 				btnSac.setDisable(false);
 				btnMelRec.setDisable(false);
 				btnJouer.setDisable(false);
+				
+				// On rafraichit le nb de tuile affiche sur le sac
+				btnSac.setText(Integer.toString(sac.getTaille()));
 				break;
 
 			default:
@@ -222,7 +225,7 @@ public class JeuControleur extends Jeu {
 		if(btnSac.isDisable()) {
 
 			// On change le nom et la fonction du bouton Recuperer pour revenir a Melanger
-			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("mélanger.png"));
 			btnMelRec.setOnAction(e -> melangeChevalet());
 
 			// On desactive les boutons de jeu
@@ -259,6 +262,9 @@ public class JeuControleur extends Jeu {
 
 		// On reinitialise le Sac
 		sac = new Sac();
+		
+		// On vide le nb de tuile affiche sur le sac
+		btnSac.setText("0");
 
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
@@ -290,7 +296,10 @@ public class JeuControleur extends Jeu {
 		stageEchange.setOnHidden(EventHandler -> {
 			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 			rafraichissementChevalet();
-			finTourJeu();
+			btnJouer.fire();
+			
+			// On rafraichit le nb de tuile affiche sur le sac
+			btnSac.setText(Integer.toString(sac.getTaille()));
 		});
 		stageEchange.showAndWait();
 	}
@@ -412,6 +421,9 @@ public class JeuControleur extends Jeu {
 		// On remplit le Chevalet du Joueur
 		joueur.getChevaletTampon().reRemplir(sac);
 		
+		// On rafraichit le nb de tuile affiche sur le sac
+		btnSac.setText(Integer.toString(sac.getTaille()));
+		
 		// On applique les suppressions de tuiles au Chevalet du Joueur
 		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
 		
@@ -419,11 +431,11 @@ public class JeuControleur extends Jeu {
 		btnSac.setDisable(false);
 		
 		// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
-		((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("mélanger.png"));
 		btnMelRec.setOnAction(e -> melangeChevalet());
 		
 		// On change l'image et la fonction du bouton Jouer pour revenir a Passer
-		//((ImageView) btnJouer.getGraphic()).setImage(new Image("passer.png"));
+		((ImageView) btnJouer.getGraphic()).setImage(new Image("passer.png"));
 		btnJouer.setOnAction(e -> passerTourJeu());
 		
 		// On rafraichit les ImageView du Plateau
@@ -509,7 +521,7 @@ public class JeuControleur extends Jeu {
 		btnSac.setDisable(true);
 		
 		// On change le nom et la fonction du bouton Melanger
-		((ImageView) btnMelRec.getGraphic()).setImage(new Image("recuperer.png"));
+		((ImageView) btnMelRec.getGraphic()).setImage(new Image("récupérer.png"));
 		btnMelRec.setOnAction(EventHandler -> {
 			
 			// On recupere les tuiles jouees
@@ -519,12 +531,12 @@ public class JeuControleur extends Jeu {
 			btnSac.setDisable(false);
 			
 			// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
-			((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
+			((ImageView) btnMelRec.getGraphic()).setImage(new Image("mélanger.png"));
 			btnMelRec.setOnAction(e -> melangeChevalet());
 		});
 		
-		// On change le nom et la fonction du bouton Melanger
-		//((ImageView) btnJouer.getGraphic()).setImage(new Image("jouer.png"));
+		// On change le nom et la fonction du bouton Passer
+		((ImageView) btnJouer.getGraphic()).setImage(new Image("jouer.png"));
 		btnJouer.setOnAction(e -> finTourJeu());
 	}
 	
