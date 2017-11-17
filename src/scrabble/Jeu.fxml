@@ -570,7 +570,7 @@ Dernière modification : 10/11/2017
                                  <graphic>
                                     <ImageView disable="true" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="mélanger.png" />
+                                          <Image url="melanger.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
