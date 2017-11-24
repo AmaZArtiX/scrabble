@@ -26,6 +26,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -158,6 +160,9 @@ public class JeuControleur extends Jeu {
 					
 				}
 				
+				// 
+				joueurEnCours(joueur);
+				
 				// On active le lbl de Nb de Tour
 				lblNbTour.setDisable(false);
 				
@@ -255,7 +260,13 @@ public class JeuControleur extends Jeu {
 
 		// On raffraichi le compteur de tour
 		lblNbTour.setText("Tour : " + nbTours);
-
+		
+		// 
+		lblScoreJ1.setTextFill(Color.BLACK);
+		lblScoreJ1.setFont(new Font("Arial", 18));
+		lblScoreJ2.setTextFill(Color.BLACK);
+		lblScoreJ2.setFont(new Font("Arial", 18));
+		
 		// Si le bouton Sac est desactive alors des tuiles ont ete jouees et le bouton Melanger a ete modifie
 		if(btnSac.isDisable()) {
 
@@ -439,6 +450,9 @@ public class JeuControleur extends Jeu {
 			joueur = 1;
 		} else joueur = 0;
 		
+		// 
+		joueurEnCours(joueur);
+		
 		rafraichissementChevalet();
 	}
 	
@@ -518,6 +532,9 @@ public class JeuControleur extends Jeu {
 			joueur = 1;
 		} else joueur = 0;
 		
+		// 
+		joueurEnCours(joueur);
+		
 		// On rafraichi le compteur de tour avec +1 tour
 		lblNbTour.setText("Tour : " + nbTours);
 		
@@ -537,6 +554,22 @@ public class JeuControleur extends Jeu {
 		
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
+	}
+	
+	private void joueurEnCours(int i) {
+		
+		// 
+		if(i == 0) {
+			lblScoreJ1.setTextFill(Color.web("007024"));
+			lblScoreJ1.setFont(new Font("Arial", 22));
+			lblScoreJ2.setTextFill(Color.web("000000"));
+			lblScoreJ2.setFont(new Font("Arial", 18));
+		} else if(i == 1) {
+			lblScoreJ1.setTextFill(Color.web("000000"));
+			lblScoreJ1.setFont(new Font("Arial", 18));
+			lblScoreJ2.setTextFill(Color.web("007024"));
+			lblScoreJ2.setFont(new Font("Arial", 22));
+		}
 	}
 	
 	// Fonction de detection d'un drag'n'drop
