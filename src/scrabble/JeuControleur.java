@@ -89,9 +89,21 @@ public class JeuControleur extends Jeu {
 		// Initialisation du Plateau de Jeu
 		plateau.initialiser();
 
-		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		if(Joueurs.size() == 1) {
+			
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 
+		} else if(Joueurs.size() == 2) {
+			
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+
+		}
+		
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
 		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
 			casesPlateau[i] = (ImageView) grillePlateau.getChildren().get(i);
@@ -121,11 +133,30 @@ public class JeuControleur extends Jeu {
 				jeuEnCours = true;
 				nbTours = 1;
 				
-				// On active le lbl de Score du Joueur
-				lblScoreJ1.setDisable(false);
+				if(Joueurs.size() == 1) {
+					
+					// On active le lbl de Score du Joueur
+					lblScoreJ1.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+					
+					
+				} else if(Joueurs.size() == 2) {
 				
-				// On rafraichi le Score du Joueur
-				lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+					// On active le lbl de Score du Joueur
+					lblScoreJ1.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+					
+					// On active le lbl de Score du Joueur
+					lblScoreJ2.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+					
+				}
 				
 				// On active le lbl de Nb de Tour
 				lblNbTour.setDisable(false);
@@ -134,10 +165,14 @@ public class JeuControleur extends Jeu {
 				lblNbTour.setText("Tour : " + nbTours);
 				
 				// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
-				joueur.getChevalet().remplir(sac);
+				for (Joueur joueur : Joueurs) {
+					joueur.getChevalet().remplir(sac);
+				}
 				
 				// On sauvegarde le chevalet du joueur
-				plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+				for (Joueur joueur : Joueurs) {
+					plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+				}
 				
 				// On rafraichit les ImageView du Chevalet
 				rafraichissementChevalet();
@@ -234,9 +269,22 @@ public class JeuControleur extends Jeu {
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
 
-			// On desactive les lbl de Score de Joueur et Nb de Tour
-			lblScoreJ1.setDisable(true);
+			// 
 			lblNbTour.setDisable(true);
+			
+			// 
+			if(Joueurs.size() == 1) {
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ1.setDisable(true);
+			} else if (Joueurs.size() == 2) {
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ1.setDisable(true);
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ2.setDisable(true);
+			}
 		} else {
 
 			// On desactive les boutons de jeu
@@ -246,20 +294,46 @@ public class JeuControleur extends Jeu {
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
 
-			// On desactive les lbl de Score de Joueur et Nb de Tour
-			lblScoreJ1.setDisable(true);
+			// 
 			lblNbTour.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur
+			if(Joueurs.size() == 1) {
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ1.setDisable(true);
+			} else if (Joueurs.size() == 2) {
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ1.setDisable(true);
+				
+				// On desactive les lbl de Score de Joueur
+				lblScoreJ2.setDisable(true);
+			}
 		}
 
 		// On reinitialise le Plateau
 		plateau.initialiser();
 
 		// On reinitialise les donnees du Joueur (sauf le nom)
-		joueur = new Joueur(joueur.getNom());
+		for (int i=0;i<2;i++) {
+		
+			Joueurs.set(i, new Joueur(Joueurs.get(i).getNom()));
+		}
 
-		// On rafraichit le Score du Joueur
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-
+		if(Joueurs.size() == 1) {
+		
+			// On rafraichit le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+		} else if (Joueurs.size() == 2) {
+			
+			// On rafraichit le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// On rafraichit le Score du Joueur
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+		}
+		
 		// On reinitialise le Sac
 		sac = new Sac();
 		
@@ -294,7 +368,7 @@ public class JeuControleur extends Jeu {
 		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
 		stageEchange.initModality(Modality.WINDOW_MODAL);
 		stageEchange.setOnHidden(EventHandler -> {
-			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+			plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 			rafraichissementChevalet();
 			btnJouer.fire();
 			
@@ -328,8 +402,8 @@ public class JeuControleur extends Jeu {
 	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
-		joueur.getChevaletTampon().melanger();
-		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		Joueurs.get(joueur).getChevaletTampon().melanger();
+		plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
@@ -342,7 +416,7 @@ public class JeuControleur extends Jeu {
 		plateau.sauvegarderPlateauTuiles();
 
 		// On recupere l'etat du Chevalet au debut du Jeu
-		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		plateau.sauvegarderChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
@@ -359,6 +433,13 @@ public class JeuControleur extends Jeu {
 		
 		// On rafraichi le compteur de tour avec +1 tour
 		lblNbTour.setText("Tour : " + nbTours);
+		
+		// 
+		if(joueur == 0) {
+			joueur = 1;
+		} else joueur = 0;
+		
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de fin de tour de jeu
@@ -372,12 +453,12 @@ public class JeuControleur extends Jeu {
 		// 
 		
 		// On verifie le bon placement des tuiles placees
-		if(joueur.verifierMotJoue(plateau)) {
+		if(Joueurs.get(joueur).verifierMotJoue(plateau)) {
 			
 			// On récupère toutes les coordonnees des tuiles qui forment le mot 
-			ArrayList <Coordonnees> listeCoordonnees = joueur.getMotJoueComplet(plateau);
+			ArrayList <Coordonnees> listeCoordonnees = Joueurs.get(joueur).getMotJoueComplet(plateau);
 			// On récupere toutes les tuiles qui forment le mot
-			ArrayList<Tuile> liste = joueur.getTuilesJouees(plateau, listeCoordonnees);
+			ArrayList<Tuile> liste = Joueurs.get(joueur).getTuilesJouees(plateau, listeCoordonnees);
 			// On initialise le bonus scrabble à faux
 			boolean scrabble = false;
 			// Mot formé
@@ -387,38 +468,55 @@ public class JeuControleur extends Jeu {
 			if(dictionnaire.existe(mot.toUpperCase())) {
 
 				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
-				if(joueur.getChevaletTampon().getTaille() == 0)
+				if(Joueurs.get(joueur).getChevaletTampon().getTaille() == 0)
 					scrabble = true;
 					
 				// On récupère le score du mot joué
 				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
-				joueur.setScore(joueur.getScore() + score);
+				Joueurs.get(joueur).setScore(Joueurs.get(joueur).getScore() + score);
 				// Affichage en console du mot joué et du score obtenu
 				System.out.println("Mot joué : "+mot);
-				System.out.println("Score du mot joué : "+ score);
+				System.out.println("Score du mot jou� : "+ score);
 			}
 		}
 		
 		// On efface le mot joue 
-		joueur.effacerMotJoue();
+		Joueurs.get(joueur).effacerMotJoue();
 		
-		// On rafraichit le Score du Joueur
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-		
+		if(Joueurs.size() == 1) {
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			
+		} else if(Joueurs.size() == 2) {
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+			
+		}
 		// On applique les ajouts de tuiles au Plateau
 		plateau.restaurerPlateauTuiles();
 		
 		// On remplit le Chevalet du Joueur
-		joueur.getChevaletTampon().reRemplir(sac);
+		Joueurs.get(joueur).getChevaletTampon().reRemplir(sac);
 		
 		// On rafraichit le nb de tuile affiche sur le sac
 		btnSac.setText(Integer.toString(sac.getTaille()));
 		
 		// On applique les suppressions de tuiles au Chevalet du Joueur
-		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On ajoute 1 tour au compteur
 		nbTours++;
+		
+		// 
+		if(joueur == 0) {
+			joueur = 1;
+		} else joueur = 0;
 		
 		// On rafraichi le compteur de tour avec +1 tour
 		lblNbTour.setText("Tour : " + nbTours);
@@ -493,7 +591,7 @@ public class JeuControleur extends Jeu {
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
 		// On affecte le Tuile jouee a tuile
-		Tuile tuile = joueur.getChevaletTampon().getTuile(index);
+		Tuile tuile = Joueurs.get(joueur).getChevaletTampon().getTuile(index);
 		
 		// On verifie si la Tuile posee est un Joker
 		if (tuile.getLettre() == '*') {
@@ -508,10 +606,10 @@ public class JeuControleur extends Jeu {
 		System.out.println(tuile);
 		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
+		Joueurs.get(joueur).ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
-		joueur.getChevaletTampon().supprimerTuile(index);
+		Joueurs.get(joueur).getChevaletTampon().supprimerTuile(index);
 		
 		// On desactive l'acces a l'echange de tuiles
 		btnSac.setDisable(true);
@@ -550,13 +648,13 @@ public class JeuControleur extends Jeu {
 	private void rafraichissementChevalet() {
 		
 		// Le Chevalet du Joueur n'est pas vide
-		if(!joueur.getChevaletTampon().estVide()) {
+		if(!Joueurs.get(joueur).getChevaletTampon().estVide()) {
 			
 			int i; // En fonction de la taille du Chevalet Tampon
-			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
+			for(i=0;i<Joueurs.get(joueur).getChevaletTampon().getTaille();i++) {
 				
 				// On met a jour les ImageView du Chevalet
-				casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
+				casesChevalet[i].setImage(Joueurs.get(joueur).getChevaletTampon().getTuile(i).getImg());
 			}
 			
 			// Si le nombre de Tuile present dans le Chevalet du Joueur est inferieur a la taille

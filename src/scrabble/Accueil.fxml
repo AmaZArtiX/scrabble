@@ -2,7 +2,7 @@
 
 <!-- 
 /*******************************************************************************
-Nom ................. : Accueil.fxml
+Nom ................. : AccueilJ1.fxml
 
 Description ......... : Fichier .fxml comportant les éléments relatifs aux visu
 						-els de l'application
@@ -15,8 +15,11 @@ Dernière modification : 04/11/2017
 *******************************************************************************/
 -->
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,18 +27,40 @@ Dernière modification : 04/11/2017
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.AccueilControleur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.AccueilControleur">
    <children>
-      <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="15.0" style="-fx-background-image: url(&quot;accueil.jpg&quot;); -fx-background-repeat: stretch; -fx-background-position: center; -fx-background-size: cover;">
+      <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="15.0" style="-fx-background-image: url(&quot;accueil.jpg&quot;); -fx-background-repeat: stretch; -fx-background-position: center; -fx-background-size: cover;" AnchorPane.topAnchor="25.0">
          <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="25.0">
+               <children>
+                  <ComboBox fx:id="cbNombreJoueurs" onAction="#nbrJoueurs" prefWidth="200.0">
+                  	<items>
+                  		<FXCollections fx:factory="observableArrayList">
+                  			<String fx:value="1 Joueur" />
+                  			<String fx:value="2 Joueurs" />
+                  		</FXCollections>
+                  	</items>
+                  </ComboBox>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label text="Pseudo du joueur :" textFill="WHITE">
+                  <Label text="Pseudo du joueur 1 :" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nomTxtJoueur" onAction="#lancerJeu" onKeyReleased="#verifPseudo" promptText="Entrez votre pseudo" />
+                  <TextField fx:id="nomTxtJoueur1" onAction="#lancerJeu" onKeyReleased="#verifPseudo" promptText="Entrez votre pseudo" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label text="Pseudo du joueur 2 :" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nomTxtJoueur2" disable="true" onAction="#lancerJeu" onKeyReleased="#verifPseudo" promptText="Entrez votre pseudo" />
                </children>
             </HBox>
             <Button fx:id="lanJeu" disable="true" mnemonicParsing="false" onAction="#gotoJeu" prefHeight="41.0" prefWidth="142.0" text="Lancer le jeu" />
