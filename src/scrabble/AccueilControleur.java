@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /*************************************************************************
@@ -68,6 +67,8 @@ public class AccueilControleur extends Jeu {
 		// Declaration de la scene
 		Scene scene = new Scene(root, 1080, 720);
 		
+		//((Node) event.getSource()).getScene().setRoot(root);
+		
 		// Changement de la scene d'accueil vers la scene principale
 		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stageJeu.setScene(scene);
@@ -114,12 +115,13 @@ public class AccueilControleur extends Jeu {
 	
 	@FXML private void nbrJoueurs() {
 		
+		// 
 		switch(cbNombreJoueurs.getValue()) {
-		
 		case "1 Joueur":
 			
 			// 
 			nomTxtJoueur2.setDisable(true);
+			nomTxtJoueur2.clear();
 			verifPseudo();
 			break;
 		case "2 Joueurs":

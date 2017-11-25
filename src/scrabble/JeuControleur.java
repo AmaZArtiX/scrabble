@@ -95,6 +95,9 @@ public class JeuControleur extends Jeu {
 			
 			// Affichage du Score du Joueur ainsi que son nom
 			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// 
+			lblScoreJ2.setText("IA : 0");
 
 		} else if(Joueurs.size() == 2) {
 			
@@ -327,7 +330,7 @@ public class JeuControleur extends Jeu {
 		plateau.initialiser();
 
 		// On reinitialise les donnees du Joueur (sauf le nom)
-		for (int i=0;i<2;i++) {
+		for (int i=0;i<Joueurs.size();i++) {
 		
 			Joueurs.set(i, new Joueur(Joueurs.get(i).getNom()));
 		}
@@ -336,6 +339,9 @@ public class JeuControleur extends Jeu {
 		
 			// On rafraichit le Score du Joueur
 			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+		
+			// 
+			lblScoreJ2.setText("IA : 0");
 		} else if (Joueurs.size() == 2) {
 			
 			// On rafraichit le Score du Joueur
@@ -446,12 +452,16 @@ public class JeuControleur extends Jeu {
 		lblNbTour.setText("Tour : " + nbTours);
 		
 		// 
-		if(joueur == 0) {
-			joueur = 1;
-		} else joueur = 0;
-		
-		// 
-		joueurEnCours(joueur);
+		if(Joueurs.size() == 2) {
+			
+			// 
+			if(joueur == 0) {
+				joueur = 1;
+			} else joueur = 0;
+			
+			// 
+			joueurEnCours(joueur);
+		}
 		
 		rafraichissementChevalet();
 	}
@@ -528,12 +538,16 @@ public class JeuControleur extends Jeu {
 		nbTours++;
 		
 		// 
-		if(joueur == 0) {
-			joueur = 1;
-		} else joueur = 0;
-		
-		// 
-		joueurEnCours(joueur);
+		if(Joueurs.size() == 2) {
+
+			// 
+			if(joueur == 0) {
+				joueur = 1;
+			} else joueur = 0;
+
+			// 
+			joueurEnCours(joueur);
+		}
 		
 		// On rafraichi le compteur de tour avec +1 tour
 		lblNbTour.setText("Tour : " + nbTours);

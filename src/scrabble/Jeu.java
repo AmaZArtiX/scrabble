@@ -62,7 +62,7 @@ public class Jeu extends Application {
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
 		// Declaration de la scene javafx
-		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
+		Scene sceneAccueil = new Scene(rootAccueil, 1080, 720);
 		
 		// Visualisation de stageAccueil
 		stageAccueil.setScene(sceneAccueil);

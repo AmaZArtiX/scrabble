@@ -172,7 +172,7 @@ Dernière modification : 10/11/2017
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="475.0" spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Label fx:id="lblScoreJ1" alignment="CENTER" disable="true" maxHeight="60.0" text="Score du Joueur 1 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                              <Label fx:id="lblScoreJ1" alignment="CENTER" disable="true" maxHeight="60.0" text="Joueur 1 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Arial" size="18.0" />
                                  </font>
@@ -182,7 +182,7 @@ Dernière modification : 10/11/2017
                                     <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblScoreJ2" alignment="CENTER" disable="true" maxHeight="60.0" text="Score du Joueur 2 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                              <Label fx:id="lblScoreJ2" alignment="CENTER" disable="true" maxHeight="60.0" text="Joueur 2 : 0" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Arial" size="18.0" />
                                  </font>
