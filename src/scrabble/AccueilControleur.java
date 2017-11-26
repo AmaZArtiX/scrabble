@@ -4,16 +4,18 @@ package scrabble;
 // Import(s)
 import java.io.IOException;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /*************************************************************************
  * Nom ...........: AccueilControleur.java
@@ -27,6 +29,9 @@ import javafx.stage.Stage;
 
 public class AccueilControleur extends Jeu {
 
+	// 
+	@FXML private AnchorPane anchorPane;
+	
 	// Lien entre le fichier FXML et le TextField nomTxtJoueur
 	@FXML private TextField nomTxtJoueur1;
 	
@@ -45,7 +50,7 @@ public class AccueilControleur extends Jeu {
 	}
 	
 	// Fonction permettant d'acceder a l'ecran de jeu
-	@FXML private void gotoJeu(ActionEvent event) throws IOException {
+	@FXML private void gotoJeu(ActionEvent event) {
 		
 		if(cbNombreJoueurs.getValue().equals("1 Joueur")) {
 			
@@ -60,23 +65,8 @@ public class AccueilControleur extends Jeu {
 			// On initialise les donnees du Joueur
 			Joueurs.add(new Joueur(nomTxtJoueur2.getText()));
 		}
-
-		// Test root cree avec Scene Builder
-		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
 		
-		// Declaration de la scene
-		Scene scene = new Scene(root, 1080, 720);
-		
-		//((Node) event.getSource()).getScene().setRoot(root);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageJeu = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		stageJeu.setScene(scene);
-		stageJeu.setTitle("Plateau - Scrabble");
-		stageJeu.getIcons().add(new Image("S.png"));
-		stageJeu.setResizable(false);
-		stageJeu.show();
-		stageJeu.centerOnScreen();
+		disparitionScene();
 	}
 	
 	// Fonction de verification de la longueur du nom du joueur
@@ -130,6 +120,43 @@ public class AccueilControleur extends Jeu {
 			nomTxtJoueur2.setDisable(false);
 			verifPseudo();
 			break;
+		}
+	}
+	
+	// 
+	private void disparitionScene() {
+		
+		// 
+		FadeTransition transition = new FadeTransition();
+		transition.setDuration(Duration.millis(500));
+		transition.setNode(anchorPane);
+		transition.setFromValue(1);
+		transition.setToValue(0);
+		transition.setOnFinished(e -> chargementJeu());
+		transition.play();
+	}
+	
+	// 
+	private void chargementJeu() {
+		 
+		try {
+			// Test root cree avec Scene Builder
+			Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Jeu.fxml"));
+			
+			// Declaration de la scene
+			Scene scene = new Scene(root);
+
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageJeu = (Stage) anchorPane.getScene().getWindow();
+			stageJeu.setScene(scene);
+			stageJeu.setTitle("Plateau - Scrabble");
+			stageJeu.getIcons().add(new Image("S.png"));
+			stageJeu.setResizable(false);
+			stageJeu.show();
+			stageJeu.centerOnScreen();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

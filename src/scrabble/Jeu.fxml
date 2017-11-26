@@ -25,6 +25,7 @@ Dernière modification : 10/11/2017
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +36,7 @@ Dernière modification : 10/11/2017
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.JeuControleur">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scrabble.JeuControleur">
    <children>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="-0.5" layoutY="-0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0">
         <columnConstraints>
@@ -602,4 +603,7 @@ Dernière modification : 10/11/2017
          </children>
       </GridPane>
    </children>
+   <effect>
+      <InnerShadow choke="0.01" height="24.07" radius="12.3025" width="27.14" />
+   </effect>
 </AnchorPane>

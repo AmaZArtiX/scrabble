@@ -5,6 +5,7 @@ package scrabble;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,11 +25,13 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /*************************************************************************
  * Nom ...........: JeuControleur.java
@@ -43,6 +45,9 @@ import javafx.stage.Stage;
 
 public class JeuControleur extends Jeu {
 
+	// 
+	@FXML private AnchorPane anchorPane;
+	
 	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
 	@FXML private ComboBox<String> cbModeJeu;
 	
@@ -88,6 +93,9 @@ public class JeuControleur extends Jeu {
 	// Fonction d'initialisation de la fenetre de Jeu
 	public void initialize() {
 
+		// 
+		apparitionScene();
+		
 		// Initialisation du Plateau de Jeu
 		plateau.initialiser();
 
@@ -123,11 +131,26 @@ public class JeuControleur extends Jeu {
 		rafraichissementPlateau();
 	}
 	
+	// 
+	private void apparitionScene() {
+		
+		// 
+		anchorPane.setOpacity(0);
+		
+		// 
+		FadeTransition transition = new FadeTransition();
+		transition.setDuration(Duration.millis(500));
+		transition.setNode(anchorPane);
+		transition.setFromValue(0);
+		transition.setToValue(1);
+		transition.play();
+	}
+	
 	// Fonction de changement de mode de jeu
 	@FXML private void changeModeJeu() {
 		
 		// On verifie si une partie n'est pas deja en cours
-		if(!jeuEnCours) {
+		if(!jeuEnCours & !cbModeJeu.getSelectionModel().isEmpty()) {
 			
 			// Selon le mode de jeu choisi, on initialise et affiche le chevalet du joueur
 			// et on active les boutons
@@ -146,7 +169,7 @@ public class JeuControleur extends Jeu {
 					// On rafraichi le Score du Joueur
 					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 					
-					
+					lblScoreJ2.setDisable(false);
 				} else if(Joueurs.size() == 2) {
 				
 					// On active le lbl de Score du Joueur
@@ -232,21 +255,26 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction permettant d'acceder au dictionnaire
-	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
+	@FXML private void gotoDictionnaire(){
 		
-		// Test root cree avec Scene Builder
-		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
-		
-		// Declaration de la scene
-		Scene scene = new Scene(root, 300, 300);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageDictionnaire = new Stage();
-		stageDictionnaire.setScene(scene);
-		stageDictionnaire.getIcons().add(new Image("S.png"));
-		stageDictionnaire.setTitle("Dictionnaire - Scrabble");
-		stageDictionnaire.setResizable(false);
-		stageDictionnaire.show();
+		try {
+			// Test root cree avec Scene Builder
+			Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
+			
+			// Declaration de la scene
+			Scene scene = new Scene(root, 300, 300);
+			
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageDictionnaire = new Stage();
+			stageDictionnaire.setScene(scene);
+			stageDictionnaire.getIcons().add(new Image("S.png"));
+			stageDictionnaire.setTitle("Dictionnaire - Scrabble");
+			stageDictionnaire.setResizable(false);
+			stageDictionnaire.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Fonction d'aide au placement de tuile
@@ -285,20 +313,12 @@ public class JeuControleur extends Jeu {
 
 			// 
 			lblNbTour.setDisable(true);
+				
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ1.setDisable(true);
 			
-			// 
-			if(Joueurs.size() == 1) {
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ1.setDisable(true);
-			} else if (Joueurs.size() == 2) {
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ1.setDisable(true);
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ2.setDisable(true);
-			}
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ2.setDisable(true);
 		} else {
 
 			// On desactive les boutons de jeu
@@ -312,18 +332,10 @@ public class JeuControleur extends Jeu {
 			lblNbTour.setDisable(true);
 			
 			// On desactive les lbl de Score de Joueur
-			if(Joueurs.size() == 1) {
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ1.setDisable(true);
-			} else if (Joueurs.size() == 2) {
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ1.setDisable(true);
-				
-				// On desactive les lbl de Score de Joueur
-				lblScoreJ2.setDisable(true);
-			}
+			lblScoreJ1.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ2.setDisable(true);
 		}
 
 		// On reinitialise le Plateau
@@ -363,56 +375,66 @@ public class JeuControleur extends Jeu {
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
 
-		// On reset le ComboBox de choix de Mode de Jeu
-		((ComboBoxBase<String>) cbModeJeu).setValue(cbModeJeu.getPromptText());
+		// On reset le ComboBox de choix de Mode de Jeu		
+		cbModeJeu.getSelectionModel().clearSelection();
 	}
 	
 	// Fonction permettant d'acceder a l'echange de tuiles
-	@FXML private void gotoEchange(ActionEvent event) throws IOException {
+	@FXML private void gotoEchange(){
 		
-		// Test root cree avec Scene Builder
-		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
-		
-		// Declaration de la scene
-		Scene scene = new Scene(root, 600, 550);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageEchange = new Stage();
-		stageEchange.setScene(scene);
-		stageEchange.getIcons().add(new Image("S.png"));
-		stageEchange.setTitle("Echanger des lettres - Scrabble");
-		stageEchange.setResizable(false);
-		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
-		stageEchange.initModality(Modality.WINDOW_MODAL);
-		stageEchange.setOnHidden(EventHandler -> {
-			plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
-			rafraichissementChevalet();
-			btnJouer.fire();
+		try {
+			// Test root cree avec Scene Builder
+			Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
 			
-			// On rafraichit le nb de tuile affiche sur le sac
-			btnSac.setText(Integer.toString(sac.getTaille()));
-		});
-		stageEchange.showAndWait();
+			// Declaration de la scene
+			Scene scene = new Scene(root, 600, 550);
+			
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageEchange = new Stage();
+			stageEchange.setScene(scene);
+			stageEchange.getIcons().add(new Image("S.png"));
+			stageEchange.setTitle("Echanger des lettres - Scrabble");
+			stageEchange.setResizable(false);
+			stageEchange.initOwner(btnSac.getScene().getWindow());
+			stageEchange.initModality(Modality.WINDOW_MODAL);
+			stageEchange.setOnHidden(EventHandler -> {
+				plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
+				rafraichissementChevalet();
+				btnJouer.fire();
+				
+				// On rafraichit le nb de tuile affiche sur le sac
+				btnSac.setText(Integer.toString(sac.getTaille()));
+			});
+			stageEchange.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Fonction de choix d'une tuile pour le placement d'un Joker
-	@FXML private void choixTuileJoker(DragEvent event) throws IOException {
+	@FXML private void choixTuileJoker(DragEvent event) {
 		
-		// Test root cree avec Scene Builder
-		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Joker.fxml"));
-		
-		// Declaration de la scene
-		Scene scene = new Scene(root, 600, 500);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageJoker = new Stage();
-		stageJoker.setScene(scene);
-		stageJoker.getIcons().add(new Image("S.png"));
-		stageJoker.setTitle("Choix d'une Tuile - Scrabble");
-		stageJoker.setResizable(false);
-		stageJoker.initOwner(((ImageView) event.getSource()).getScene().getWindow());
-		stageJoker.initModality(Modality.WINDOW_MODAL);
-		stageJoker.showAndWait();
+		try {
+			// Test root cree avec Scene Builder
+			Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Joker.fxml"));
+
+			// Declaration de la scene
+			Scene scene = new Scene(root, 600, 500);
+			
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageJoker = new Stage();
+			stageJoker.setScene(scene);
+			stageJoker.getIcons().add(new Image("S.png"));
+			stageJoker.setTitle("Choix d'une Tuile - Scrabble");
+			stageJoker.setResizable(false);
+			stageJoker.initOwner(((ImageView) event.getSource()).getScene().getWindow());
+			stageJoker.initModality(Modality.WINDOW_MODAL);
+			stageJoker.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Fonction de melange des Tuiles du Chevalet
@@ -650,7 +672,7 @@ public class JeuControleur extends Jeu {
 			tuile = joker;
 		}
 		
-		System.out.println(tuile);
+		//System.out.println(tuile);
 		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
 		Joueurs.get(joueur).ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
