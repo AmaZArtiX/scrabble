@@ -305,16 +305,95 @@ public class Joueur {
 		// Une seule tuile placée par le joueur
 		if(motJoue.size() == 1) {
 			
-			// On recupere la direction
-			direction = getDirection(p, motJoue.get(0).getX(), motJoue.get(0).getY());
+			int xBis = motJoue.get(0).getX(), yBis = motJoue.get(0).getY();
 			
+			// On recupere la direction si x et y ne sont pas les bords du plateau
+			if(xBis > 0  && xBis < 14 && yBis > 0 && yBis < 14)
+					direction = getDirection(p, xBis, yBis);
+			else {
+				
+				// Tuile unique placée dans sur la colonne 0
+				if((xBis > 0 && xBis < 14) && yBis == 0) {
+					
+					if(p.getTuileTampon(yBis, xBis-1) == null && p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "bas";
+					else if(p.getTuileTampon(yBis, xBis-1) == null && p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "droite";
+					else if(p.getTuileTampon(yBis, xBis+1) == null && p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "haut";
+				}
+				// Tuile unique placée sur la ligne 0
+				else if((yBis > 0 && yBis < 14) && xBis == 0) {
+					
+					if(p.getTuileTampon(yBis+1, xBis) == null && p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "gauche";
+					else if(p.getTuileTampon(yBis-1, xBis) == null && p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "droite";
+					else if(p.getTuileTampon(yBis-1, xBis) == null && p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "bas";
+				}
+				// Tuile unique placée sur la colonne 14
+				else if((xBis > 0 && xBis < 14) && yBis == 14) {
+					
+					if(p.getTuileTampon(yBis-1, xBis) == null && p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "haut";
+					else if(p.getTuileTampon(yBis-1, xBis) == null && p.getTuileTampon(yBis, xBis-1) == null)
+						direction = "bas";
+					else if(p.getTuileTampon(yBis, xBis-1) == null && p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "gauche";
+				}
+				// Tuile unique placéee sur la ligne 14
+				else if((yBis > 0 && yBis < 14) && xBis == 14) {
+					
+					if(p.getTuileTampon(yBis, xBis-1) == null && p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "gauche";
+					else if(p.getTuileTampon(yBis, xBis-1) == null && p.getTuileTampon(yBis-1, xBis) == null)
+						direction = "droite";
+					else if(p.getTuileTampon(yBis-1, xBis) == null && p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "haut";
+				}
+				// Tuile unique placée sur la case (0,0)
+				else if(xBis == 0 && yBis == 0) {
+					
+					if(p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "bas";
+					else if(p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "droite";
+				}
+				// Tuile unique placée sur la case (0, 14)
+				else if(xBis == 0 && yBis == 14) {
+					
+					if(p.getTuileTampon(yBis-1, xBis) == null)
+						direction = "bas";
+					else if(p.getTuileTampon(yBis, xBis+1) == null)
+						direction = "gauche";
+				}
+				// Tuile unique placée sur la case (14, 14)
+				else if(xBis == 14 && yBis == 14) {
+					
+					if(p.getTuileTampon(yBis-1, xBis) == null)
+						direction = "haut";
+					else if(p.getTuileTampon(yBis, xBis-1) == null)
+						direction = "gauche";
+				}
+				// Tuile unique placée sur la case (14, 0)
+				else if(xBis == 14 && yBis == 0) {
+					
+					if(p.getTuileTampon(yBis+1, xBis) == null)
+						direction = "haut";
+					else if(p.getTuileTampon(yBis, xBis-1) == null)
+						direction = "droite";
+				}
+			}
+			
+			// Recherche des coordonnées pour une unique tuile posée
 			// Recherche des coordonnees de gauche à droite
 			if(direction.equals("droite")) {
 				
 				int y = yDebut;
 				
 				// Vérification de l'existence d'une tuile voisine
-				while(p.getTuileTampon(y+1, xDebut) != null) {
+				while(y <= 13 && p.getTuileTampon(y+1, xDebut) != null) {
 					
 					// Ajout des coordonnes
 					motJoueComplet.add(new Coordonnees(xDebut, y));
@@ -329,7 +408,7 @@ public class Joueur {
 				int y = yDebut;
 				
 				// Vérification de l'existence d'une tuile voisine
-				while(p.getTuileTampon(y-1, xDebut) != null) {
+				while(y >= 1 && p.getTuileTampon(y-1, xDebut) != null) {
 					
 					// Ajout des coordonnees
 					motJoueComplet.add(new Coordonnees(xDebut, y));
@@ -347,7 +426,7 @@ public class Joueur {
 				int x = xDebut;
 				
 				// Vérification de l'existence d'une tuile voisine
-				while(p.getTuileTampon(yDebut, x+1) != null) {
+				while(x <= 13 && p.getTuileTampon(yDebut, x+1) != null) {
 					
 					// Ajout des coordonnees
 					motJoueComplet.add(new Coordonnees(x, yDebut));
@@ -362,7 +441,7 @@ public class Joueur {
 				int x = xDebut;
 				
 				// Vérification de l'existence d'une tuile voisine
-				while(p.getTuileTampon(yDebut, x-1) != null){
+				while(x >= 1 && p.getTuileTampon(yDebut, x-1) != null){
 					
 					// Ajout des coordonnees
 					motJoueComplet.add(new Coordonnees(x, yDebut));
@@ -384,24 +463,28 @@ public class Joueur {
 				int y = yDebut;
 				
 				// Recherche d'une tuile vosine sur les colonnes inferieures a la tuile de depart
-				while(p.getTuileTampon(y-1, xDebut) != null) {
+				while(y >= 1 && p.getTuileTampon(y-1, xDebut) != null) {
 					
 					// Ajout des coordonnees
-					motJoueComplet.add(new Coordonnees(xDebut, y-1));
+					motJoueComplet.add(new Coordonnees(xDebut, y));
 					y--;
 				}
 				
-				// Ajout des coordonnees de la tuile de depart
-				motJoueComplet.add(new Coordonnees(xDebut, yDebut));
+				motJoueComplet.add(new Coordonnees(xDebut, y));
 				
-				y = yDebut;
-				
-				// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
-				while(p.getTuileTampon(y+1, xDebut) != null) {
+				if(p.getTuileTampon(yDebut+1, xDebut) != null) {
 					
-					// Ajout des coordonnees
-					motJoueComplet.add(new Coordonnees(xDebut, y+1));
-					y++;
+					y = yDebut+1;
+					
+					// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
+					while(y <= 13 && p.getTuileTampon(y+1, xDebut) != null) {
+						
+						// Ajout des coordonnees
+						motJoueComplet.add(new Coordonnees(xDebut, y));
+						y++;
+					}
+					
+					motJoueComplet.add(new Coordonnees(xDebut, y));
 				}
 				
 				// Tri des coordonnees en y pour mettre le mot dans le bon sens
@@ -419,24 +502,28 @@ public class Joueur {
 				int x = xDebut;
 				
 				// Recherche d'une tuile vosine sur les lignes inferieures a la tuile de depart
-				while(p.getTuileTampon(yDebut, x-1) != null) {
+				while(x >= 1 && p.getTuileTampon(yDebut, x-1) != null) {
 					
 					// Ajout des coordonnees
-					motJoueComplet.add(new Coordonnees(x-1, yDebut));
+					motJoueComplet.add(new Coordonnees(x, yDebut));
 					x--;
 				}
 				
-				// Ajout des coordonnees de la tuile de depart
-				motJoueComplet.add(new Coordonnees(xDebut, yDebut));
+				motJoueComplet.add(new Coordonnees(x, yDebut));
 				
-				x = xDebut;
+				if(p.getTuileTampon(yDebut, xDebut+1) != null) {
 				
-				// Recherche d'une tuile vosine sur les lignes superieures a la tuile de depart
-				while(p.getTuileTampon(yDebut, x+1) != null) {
+					x = xDebut+1;
 					
-					// Ajout des coordonnees
-					motJoueComplet.add(new Coordonnees(x+1, yDebut));
-					x++;
+					// Recherche d'une tuile vosine sur les lignes superieures a la tuile de depart
+					while(x <= 13 && p.getTuileTampon(yDebut, x+1) != null) {
+						
+						// Ajout des coordonnees
+						motJoueComplet.add(new Coordonnees(x, yDebut));
+						x++;
+					}
+					
+					motJoueComplet.add(new Coordonnees(x, yDebut));
 				}
 				
 				// Tri des coordonnees en x pour mettre le mot dans le bon sens

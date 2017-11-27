@@ -397,12 +397,8 @@ public class JeuControleur extends Jeu {
 				// On récupère le score du mot joué
 				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
 				joueur.setScore(joueur.getScore() + score);
-				// Affichage en console du mot joué et du score obtenu
-				System.out.println("Mot joué : "+mot);
-				System.out.println("Score du mot joué : "+ score);
 				// On ajoute 1 tour au compteur
 				nbTours++;
-				
 				// On rafraichi le compteur de tour avec +1 tour
 				lblNbTour.setText("Tour : " + nbTours);
 				
@@ -412,6 +408,8 @@ public class JeuControleur extends Jeu {
 				recupTuilesJouees();
 			}
 		}
+		else 
+			recupTuilesJouees();
 		
 		// On efface le mot joue 
 		joueur.effacerMotJoue();
