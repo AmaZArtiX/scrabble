@@ -1,6 +1,8 @@
 // Package
 package scrabble;
 
+import java.util.ArrayList;
+
 // Import(s)
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +27,10 @@ public class Jeu extends Application {
 	static Dictionnaire dictionnaire = new Dictionnaire();
 	
 	// Declaration du Joueur
-	static Joueur joueur = new Joueur();
+	static ArrayList<Joueur> Joueurs = new ArrayList<Joueur>();
+	
+	// 
+	static int joueur = 0;
 	
 	// Declaration du Sac et remplissage avec les 102 Tuiles
 	static Sac sac = new Sac();
@@ -57,7 +62,7 @@ public class Jeu extends Application {
 		Parent rootAccueil = FXMLLoader.load(getClass().getResource("/scrabble/Accueil.fxml"));
 		
 		// Declaration de la scene javafx
-		Scene sceneAccueil = new Scene(rootAccueil, 400, 200);
+		Scene sceneAccueil = new Scene(rootAccueil, 1080, 720);
 		
 		// Visualisation de stageAccueil
 		stageAccueil.setScene(sceneAccueil);

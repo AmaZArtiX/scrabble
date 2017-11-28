@@ -5,6 +5,7 @@ package scrabble;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,10 +25,14 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 /*************************************************************************
  * Nom ...........: JeuControleur.java
@@ -42,6 +46,9 @@ import javafx.stage.StageStyle;
 
 public class JeuControleur extends Jeu {
 
+	// 
+	@FXML private AnchorPane anchorPane;
+	
 	// Lien entre le fichier FXML et le ComboBox de Mode de Jeu
 	@FXML private ComboBox<String> cbModeJeu;
 	
@@ -87,12 +94,30 @@ public class JeuControleur extends Jeu {
 	// Fonction d'initialisation de la fenetre de Jeu
 	public void initialize() {
 
+		// 
+		apparitionScene();
+		
 		// Initialisation du Plateau de Jeu
 		plateau.initialiser();
 
-		// Affichage du Score du Joueur ainsi que son nom
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+		if(Joueurs.size() == 1) {
+			
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// 
+			lblScoreJ2.setText("IA : 0");
 
+		} else if(Joueurs.size() == 2) {
+			
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+
+			// Affichage du Score du Joueur ainsi que son nom
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+
+		}
+		
 		// Initialisation de casesPlateau avec les ImageView de grillePlateau
 		for(int i=0;i<(Plateau.TAILLE*Plateau.TAILLE);i++) {
 			casesPlateau[i] = (ImageView) grillePlateau.getChildren().get(i);
@@ -107,11 +132,26 @@ public class JeuControleur extends Jeu {
 		rafraichissementPlateau();
 	}
 	
+	// 
+	private void apparitionScene() {
+		
+		// 
+		anchorPane.setOpacity(0);
+		
+		// 
+		FadeTransition transition = new FadeTransition();
+		transition.setDuration(Duration.millis(500));
+		transition.setNode(anchorPane);
+		transition.setFromValue(0);
+		transition.setToValue(1);
+		transition.play();
+	}
+	
 	// Fonction de changement de mode de jeu
 	@FXML private void changeModeJeu() {
 		
 		// On verifie si une partie n'est pas deja en cours
-		if(!jeuEnCours) {
+		if(!jeuEnCours & !cbModeJeu.getSelectionModel().isEmpty()) {
 			
 			// Selon le mode de jeu choisi, on initialise et affiche le chevalet du joueur
 			// et on active les boutons
@@ -122,11 +162,33 @@ public class JeuControleur extends Jeu {
 				jeuEnCours = true;
 				nbTours = 1;
 				
-				// On active le lbl de Score du Joueur
-				lblScoreJ1.setDisable(false);
+				if(Joueurs.size() == 1) {
+					
+					// On active le lbl de Score du Joueur
+					lblScoreJ1.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+					
+					lblScoreJ2.setDisable(false);
+				} else if(Joueurs.size() == 2) {
 				
-				// On rafraichi le Score du Joueur
-				lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
+					// On active le lbl de Score du Joueur
+					lblScoreJ1.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+					
+					// On active le lbl de Score du Joueur
+					lblScoreJ2.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+					
+				}
+				
+				// 
+				joueurEnCours(joueur);
 				
 				// On active le lbl de Nb de Tour
 				lblNbTour.setDisable(false);
@@ -135,10 +197,14 @@ public class JeuControleur extends Jeu {
 				lblNbTour.setText("Tour : " + nbTours);
 				
 				// Recuperation du Chevalet du Joueur et remplissage avec 7 Tuiles
-				joueur.getChevalet().remplir(sac);
+				for (Joueur joueur : Joueurs) {
+					joueur.getChevalet().remplir(sac);
+				}
 				
 				// On sauvegarde le chevalet du joueur
-				plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+				for (Joueur joueur : Joueurs) {
+					plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+				}
 				
 				// On rafraichit les ImageView du Chevalet
 				rafraichissementChevalet();
@@ -190,21 +256,26 @@ public class JeuControleur extends Jeu {
 	}
 	
 	// Fonction permettant d'acceder au dictionnaire
-	@FXML private void gotoDictionnaire(ActionEvent e) throws IOException {
+	@FXML private void gotoDictionnaire(){
 		
-		// Test root cree avec Scene Builder
-		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
-		
-		// Declaration de la scene
-		Scene scene = new Scene(root, 300, 300);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageDictionnaire = new Stage();
-		stageDictionnaire.setScene(scene);
-		stageDictionnaire.getIcons().add(new Image("S.png"));
-		stageDictionnaire.setTitle("Dictionnaire - Scrabble");
-		stageDictionnaire.setResizable(false);
-		stageDictionnaire.show();
+		try {
+			// Test root cree avec Scene Builder
+			Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Dictionnaire.fxml"));
+			
+			// Declaration de la scene
+			Scene scene = new Scene(root, 300, 300);
+			
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageDictionnaire = new Stage();
+			stageDictionnaire.setScene(scene);
+			stageDictionnaire.getIcons().add(new Image("S.png"));
+			stageDictionnaire.setTitle("Dictionnaire - Scrabble");
+			stageDictionnaire.setResizable(false);
+			stageDictionnaire.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Fonction d'aide au placement de tuile
@@ -221,7 +292,13 @@ public class JeuControleur extends Jeu {
 
 		// On raffraichi le compteur de tour
 		lblNbTour.setText("Tour : " + nbTours);
-
+		
+		// 
+		lblScoreJ1.setTextFill(Color.BLACK);
+		lblScoreJ1.setFont(new Font("Arial", 18));
+		lblScoreJ2.setTextFill(Color.BLACK);
+		lblScoreJ2.setFont(new Font("Arial", 18));
+		
 		// Si le bouton Sac est desactive alors des tuiles ont ete jouees et le bouton Melanger a ete modifie
 		if(btnSac.isDisable()) {
 
@@ -235,9 +312,14 @@ public class JeuControleur extends Jeu {
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
 
-			// On desactive les lbl de Score de Joueur et Nb de Tour
-			lblScoreJ1.setDisable(true);
+			// 
 			lblNbTour.setDisable(true);
+				
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ1.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ2.setDisable(true);
 		} else {
 
 			// On desactive les boutons de jeu
@@ -247,20 +329,41 @@ public class JeuControleur extends Jeu {
 			btnMelRec.setDisable(true);
 			btnJouer.setDisable(true);
 
-			// On desactive les lbl de Score de Joueur et Nb de Tour
-			lblScoreJ1.setDisable(true);
+			// 
 			lblNbTour.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ1.setDisable(true);
+			
+			// On desactive les lbl de Score de Joueur
+			lblScoreJ2.setDisable(true);
 		}
 
 		// On reinitialise le Plateau
 		plateau.initialiser();
 
 		// On reinitialise les donnees du Joueur (sauf le nom)
-		joueur = new Joueur(joueur.getNom());
+		for (int i=0;i<Joueurs.size();i++) {
+		
+			Joueurs.set(i, new Joueur(Joueurs.get(i).getNom()));
+		}
 
-		// On rafraichit le Score du Joueur
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-
+		if(Joueurs.size() == 1) {
+		
+			// On rafraichit le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+		
+			// 
+			lblScoreJ2.setText("IA : 0");
+		} else if (Joueurs.size() == 2) {
+			
+			// On rafraichit le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// On rafraichit le Score du Joueur
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+		}
+		
 		// On reinitialise le Sac
 		sac = new Sac();
 		
@@ -273,42 +376,47 @@ public class JeuControleur extends Jeu {
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
 
-		// On reset le ComboBox de choix de Mode de Jeu
-		((ComboBoxBase<String>) cbModeJeu).setValue(cbModeJeu.getPromptText());
+		// On reset le ComboBox de choix de Mode de Jeu		
+		cbModeJeu.getSelectionModel().clearSelection();
 	}
 	
 	// Fonction permettant d'acceder a l'echange de tuiles
-	@FXML private void gotoEchange(ActionEvent event) throws IOException {
+	@FXML private void gotoEchange(){
 		
+		try {
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Echange.fxml"));
 		
 		// Declaration de la scene
 		Scene scene = new Scene(root, 600, 550);
-		
-		// Changement de la scene d'accueil vers la scene principale
-		Stage stageEchange = new Stage();
-		stageEchange.setScene(scene);
-		stageEchange.getIcons().add(new Image("S.png"));
-		stageEchange.setTitle("Echanger des lettres - Scrabble");
-		stageEchange.setResizable(false);
-		stageEchange.initOwner(((Button) event.getSource()).getScene().getWindow());
-		stageEchange.initModality(Modality.WINDOW_MODAL);
-		stageEchange.initStyle(StageStyle.UNDECORATED);
-		stageEchange.setOnHidden(EventHandler -> {
-			plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
-			rafraichissementChevalet();
-			btnJouer.fire();
 			
-			// On rafraichit le nb de tuile affiche sur le sac
-			btnSac.setText(Integer.toString(sac.getTaille()));
-		});
-		stageEchange.showAndWait();
+			// Changement de la scene d'accueil vers la scene principale
+			Stage stageEchange = new Stage();
+			stageEchange.setScene(scene);
+			stageEchange.getIcons().add(new Image("S.png"));
+			stageEchange.setTitle("Echanger des lettres - Scrabble");
+			stageEchange.setResizable(false);
+			stageEchange.initOwner(btnSac.getScene().getWindow());
+			stageEchange.initModality(Modality.WINDOW_MODAL);
+			stageEchange.setOnHidden(EventHandler -> {
+				plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
+				rafraichissementChevalet();
+				btnJouer.fire();
+				
+				// On rafraichit le nb de tuile affiche sur le sac
+				btnSac.setText(Integer.toString(sac.getTaille()));
+			});
+			stageEchange.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Fonction de choix d'une tuile pour le placement d'un Joker
-	@FXML private void choixTuileJoker(DragEvent event) throws IOException {
+	@FXML private void choixTuileJoker(DragEvent event) {
 		
+		try{
 		// Test root cree avec Scene Builder
 		Parent root = FXMLLoader.load(getClass().getResource("/scrabble/Joker.fxml"));
 		
@@ -325,27 +433,31 @@ public class JeuControleur extends Jeu {
 		stageJoker.initModality(Modality.WINDOW_MODAL);
 		stageJoker.initStyle(StageStyle.UNDECORATED);
 		stageJoker.showAndWait();
+		}catch(IOException e){
+		
+		e.printStackTrace();
+		}
 	}
 	
 	// Fonction de melange des Tuiles du Chevalet
 	@FXML private void melangeChevalet() {
 		
 		// Melange des Tuiles du Chevalet du Joueur
-		joueur.getChevaletTampon().melanger();
-		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		Joueurs.get(joueur).getChevaletTampon().melanger();
+		plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
 	}
 	
 	// Fonction de recuperation des tuiles jouees
-	private void recupTuilesJouees() {
+	private void recupTuilesJouee() {
 
 		// On supprime les Tuiles jouees de plateauTuilesTampon
 		plateau.sauvegarderPlateauTuiles();
 
 		// On recupere l'etat du Chevalet au debut du Jeu
-		plateau.sauvegarderChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		plateau.sauvegarderChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
@@ -362,6 +474,20 @@ public class JeuControleur extends Jeu {
 		
 		// On rafraichi le compteur de tour avec +1 tour
 		lblNbTour.setText("Tour : " + nbTours);
+		
+		// 
+		if(Joueurs.size() == 2) {
+			
+			// 
+			if(joueur == 0) {
+				joueur = 1;
+			} else joueur = 0;
+			
+			// 
+			joueurEnCours(joueur);
+		}
+		
+		rafraichissementChevalet();
 	}
 	
 	// Fonction de fin de tour de jeu
@@ -375,13 +501,12 @@ public class JeuControleur extends Jeu {
 		// 
 		
 		// On verifie le bon placement des tuiles placees
-		
-		if(joueur.verifierMotJoue(plateau)) {
+		if(Joueurs.get(joueur).verifierMotJoue(plateau)) {
 			
 			// On récupère toutes les coordonnees des tuiles qui forment le mot 
-			ArrayList <Coordonnees> listeCoordonnees = joueur.getMotJoueComplet(plateau);
+			ArrayList <Coordonnees> listeCoordonnees = Joueurs.get(joueur).getMotJoueComplet(plateau);
 			// On récupere toutes les tuiles qui forment le mot
-			ArrayList<Tuile> liste = joueur.getTuilesJouees(plateau, listeCoordonnees);
+			ArrayList<Tuile> liste = Joueurs.get(joueur).getTuilesJouees(plateau, listeCoordonnees);
 			// On initialise le bonus scrabble à faux
 			boolean scrabble = false;
 			// Mot formé
@@ -391,43 +516,47 @@ public class JeuControleur extends Jeu {
 			if(dictionnaire.existe(mot.toUpperCase())) {
 
 				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
-				if(joueur.getChevaletTampon().getTaille() == 0)
+				if(Joueurs.get(joueur).getChevaletTampon().getTaille() == 0)
 					scrabble = true;
 					
 				// On récupère le score du mot joué
 				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
-				joueur.setScore(joueur.getScore() + score);
-				// On ajoute 1 tour au compteur
-				nbTours++;
-				// On rafraichi le compteur de tour avec +1 tour
-				lblNbTour.setText("Tour : " + nbTours);
-				
-			}
-			else {
-				
-				recupTuilesJouees();
+				Joueurs.get(joueur).setScore(Joueurs.get(joueur).getScore() + score);
+				// Affichage en console du mot joué et du score obtenu
+				System.out.println("Mot joué : "+mot);
+				System.out.println("Score du mot jou� : "+ score);
 			}
 		}
-		else 
-			recupTuilesJouees();
 		
 		// On efface le mot joue 
-		joueur.effacerMotJoue();
+		Joueurs.get(joueur).effacerMotJoue();
 		
-		// On rafraichit le Score du Joueur
-		lblScoreJ1.setText(joueur.getNom() + " : " + Integer.toString(joueur.getScore()));
-		
+		if(Joueurs.size() == 1) {
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			
+		} else if(Joueurs.size() == 2) {
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+			
+			// On rafraichi le Score du Joueur
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+			
+		}
 		// On applique les ajouts de tuiles au Plateau
 		plateau.restaurerPlateauTuiles();
 		
 		// On remplit le Chevalet du Joueur
-		joueur.getChevaletTampon().reRemplir(sac);
+		Joueurs.get(joueur).getChevaletTampon().reRemplir(sac);
 		
 		// On rafraichit le nb de tuile affiche sur le sac
 		btnSac.setText(Integer.toString(sac.getTaille()));
 		
 		// On applique les suppressions de tuiles au Chevalet du Joueur
-		plateau.restaurerChevalet(joueur.getChevalet(), joueur.getChevaletTampon());
+		plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
 		
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
@@ -445,6 +574,22 @@ public class JeuControleur extends Jeu {
 		
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
+	}
+	
+	private void joueurEnCours(int i) {
+		
+		// 
+		if(i == 0) {
+			lblScoreJ1.setTextFill(Color.web("007024"));
+			lblScoreJ1.setFont(new Font("Arial", 22));
+			lblScoreJ2.setTextFill(Color.web("000000"));
+			lblScoreJ2.setFont(new Font("Arial", 18));
+		} else if(i == 1) {
+			lblScoreJ1.setTextFill(Color.web("000000"));
+			lblScoreJ1.setFont(new Font("Arial", 18));
+			lblScoreJ2.setTextFill(Color.web("007024"));
+			lblScoreJ2.setFont(new Font("Arial", 22));
+		}
 	}
 	
 	// Fonction de detection d'un drag'n'drop
@@ -499,7 +644,7 @@ public class JeuControleur extends Jeu {
 		int lig = GridPane.getRowIndex((Node) event.getSource());
 		
 		// On affecte le Tuile jouee a tuile
-		Tuile tuile = joueur.getChevaletTampon().getTuile(index);
+		Tuile tuile = Joueurs.get(joueur).getChevaletTampon().getTuile(index);
 		
 		// On verifie si la Tuile posee est un Joker
 		if (tuile.getLettre() == '*') {
@@ -511,13 +656,13 @@ public class JeuControleur extends Jeu {
 			tuile = joker;
 		}
 		
-		System.out.println(tuile);
+		//System.out.println(tuile);
 		
 		// On ajoute la Tuile jouee a plateauTuilesTampon
-		joueur.ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
+		Joueurs.get(joueur).ajouterCoordonnees(plateau.placerTuile(lig, col, tuile));
 		
 		// On supprime la Tuile jouee du Chevalet Tampon du Joueur
-		joueur.getChevaletTampon().supprimerTuile(index);
+		Joueurs.get(joueur).getChevaletTampon().supprimerTuile(index);
 		
 		// On desactive l'acces a l'echange de tuiles
 		btnSac.setDisable(true);
@@ -527,7 +672,7 @@ public class JeuControleur extends Jeu {
 		btnMelRec.setOnAction(EventHandler -> {
 			
 			// On recupere les tuiles jouees
-			recupTuilesJouees();		
+			recupTuilesJouee();		
 			
 			// On reactive l'acces a l'echange de tuiles
 			btnSac.setDisable(false);
@@ -556,13 +701,13 @@ public class JeuControleur extends Jeu {
 	private void rafraichissementChevalet() {
 		
 		// Le Chevalet du Joueur n'est pas vide
-		if(!joueur.getChevaletTampon().estVide()) {
+		if(!Joueurs.get(joueur).getChevaletTampon().estVide()) {
 			
 			int i; // En fonction de la taille du Chevalet Tampon
-			for(i=0;i<joueur.getChevaletTampon().getTaille();i++) {
+			for(i=0;i<Joueurs.get(joueur).getChevaletTampon().getTaille();i++) {
 				
 				// On met a jour les ImageView du Chevalet
-				casesChevalet[i].setImage(joueur.getChevaletTampon().getTuile(i).getImg());
+				casesChevalet[i].setImage(Joueurs.get(joueur).getChevaletTampon().getTuile(i).getImg());
 			}
 			
 			// Si le nombre de Tuile present dans le Chevalet du Joueur est inferieur a la taille
