@@ -468,41 +468,45 @@ public class JeuControleur extends Jeu {
 	
 	// Fonction de passage de tour de jeu
 	@FXML private void passerTourJeu() {
-		
-		// On ajoute 1 tour au compteur
-		nbTours++;
-		
-		// On rafraichi le compteur de tour avec +1 tour
-		lblNbTour.setText("Tour : " + nbTours);
-		
-		// 
-		if(Joueurs.size() == 2) {
-			
+
+		nbToursPasses++;
+
+		if(nbToursPasses < 6) {
+
+			// On ajoute 1 tour au compteur
+			nbTours++;
+
+			// On rafraichi le compteur de tour avec +1 tour
+			lblNbTour.setText("Tour : " + nbTours);
+
 			// 
-			if(joueur == 0) {
-				joueur = 1;
-			} else joueur = 0;
+			if(Joueurs.size() == 2) {
+
+				// 
+				if(joueur == 0) {
+					joueur = 1;
+				} else joueur = 0;
+
+				// 
+				joueurEnCours(joueur);
+			}
+
+			rafraichissementChevalet();
+		} else if (nbToursPasses == 6) {
 			
-			// 
-			joueurEnCours(joueur);
+			// arret de la partie
+			abandonPartie();
 		}
-		
-		rafraichissementChevalet();
 	}
 	
 	// Fonction de fin de tour de jeu
 	@FXML private void finTourJeu() {
 		
-		// On calcul le score du mot joue par le Joueur
-		// ------------------------------------------------
-		// |                    TODO                      |
-		// ------------------------------------------------
-		// joueur.setScore(joueur.getScore() + plateau.calculScoreMot(listeTuiles, listeBonus));
-		// 
-		
 		// On verifie le bon placement des tuiles placees
 		if(Joueurs.get(joueur).verifierMotJoue(plateau)) {
 			
+			System.out.println("Les tuiles sont bien placees !");
+
 			// On récupère toutes les coordonnees des tuiles qui forment le mot 
 			ArrayList <Coordonnees> listeCoordonnees = Joueurs.get(joueur).getMotJoueComplet(plateau);
 			// On récupere toutes les tuiles qui forment le mot
@@ -511,69 +515,154 @@ public class JeuControleur extends Jeu {
 			boolean scrabble = false;
 			// Mot formé
 			String mot = plateau.creerMot(liste);
-			
+
 			// On verifie que le mot joue existe dans le dico
-			if(dictionnaire.existe(mot.toUpperCase())) {
+			if(dictionnaire.existe(mot.toUpperCase()) | test) {
+				
+				System.out.println("Le mot existe !");
 
 				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
 				if(Joueurs.get(joueur).getChevaletTampon().getTaille() == 0)
 					scrabble = true;
-					
+				
 				// On récupère le score du mot joué
 				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
 				Joueurs.get(joueur).setScore(Joueurs.get(joueur).getScore() + score);
 				// Affichage en console du mot joué et du score obtenu
 				System.out.println("Mot joué : "+mot);
 				System.out.println("Score du mot jou� : "+ score);
+
+				// On efface le mot joue 
+				Joueurs.get(joueur).effacerMotJoue();
+				
+				if(Joueurs.size() == 1) {
+					
+					System.out.println("Il n'y a qu'un seul joueur");
+
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+
+
+				} else if(Joueurs.size() == 2) {
+					
+					System.out.println("Il y a deux joueurs");
+
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+
+					// On rafraichi le Score du Joueur
+					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+
+				}
+				
+				// On applique les ajouts de tuiles au Plateau
+				plateau.restaurerPlateauTuiles();
+				
+				// 
+				if(sac.estVide() & Joueurs.get(joueur).getChevaletTampon().estVide()) {
+					
+					System.out.println("Le sac est vide & le chevalet du joueur est vide");
+					
+					// 
+					if(joueur == 0) {
+						
+						System.out.println("pour le joueur 0");
+						
+						// 
+						Joueurs.get(0).setScore(Joueurs.get(0).getScore()+scoreChevalet(Joueurs.get(1)));
+						
+						// 
+						Joueurs.get(1).setScore(Joueurs.get(1).getScore()-scoreChevalet(Joueurs.get(1)));
+					} else if(joueur == 1) {
+						
+						System.out.println("pour le joueur 1");
+						
+						// 
+						Joueurs.get(1).setScore(Joueurs.get(1).getScore()+scoreChevalet(Joueurs.get(0)));
+						
+						// 
+						Joueurs.get(0).setScore(Joueurs.get(0).getScore()-scoreChevalet(Joueurs.get(0)));
+					}
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
+
+					// On rafraichi le Score du Joueur
+					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+
+					// 
+					//abandonPartie();
+				} else if(Joueurs.get(joueur).getChevaletTampon().getTaille() >= 0) {
+					
+					System.out.println("Le chevalet du joueur n'est pas vide");
+					
+					// On remplit le Chevalet du Joueur
+					Joueurs.get(joueur).getChevaletTampon().reRemplir(sac);
+
+					// On rafraichit le nb de tuile affiche sur le sac
+					btnSac.setText(Integer.toString(sac.getTaille()));
+
+					// On applique les suppressions de tuiles au Chevalet du Joueur
+					plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
+					
+					// 
+					nbToursPasses = 0;
+					
+					// On ajoute 1 tour au compteur
+					nbTours++;
+
+					// On rafraichi le compteur de tour avec +1 tour
+					lblNbTour.setText("Tour : " + nbTours);
+
+					// 
+					if(Joueurs.size() == 2) {
+
+						// 
+						if(joueur == 0) {
+							joueur = 1;
+						} else joueur = 0;
+
+						// 
+						joueurEnCours(joueur);
+					}
+				}
 			}
+		} else {
+
+			// On recupere les tuiles jouees
+			recupTuilesJouee();
 		}
-		
-		// On efface le mot joue 
-		Joueurs.get(joueur).effacerMotJoue();
-		
-		if(Joueurs.size() == 1) {
-			
-			// On rafraichi le Score du Joueur
-			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
-			
-			
-		} else if(Joueurs.size() == 2) {
-			
-			// On rafraichi le Score du Joueur
-			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
-			
-			// On rafraichi le Score du Joueur
-			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
-			
-		}
-		// On applique les ajouts de tuiles au Plateau
-		plateau.restaurerPlateauTuiles();
-		
-		// On remplit le Chevalet du Joueur
-		Joueurs.get(joueur).getChevaletTampon().reRemplir(sac);
-		
-		// On rafraichit le nb de tuile affiche sur le sac
-		btnSac.setText(Integer.toString(sac.getTaille()));
-		
-		// On applique les suppressions de tuiles au Chevalet du Joueur
-		plateau.restaurerChevalet(Joueurs.get(joueur).getChevalet(), Joueurs.get(joueur).getChevaletTampon());
-		
+
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
-		
+
 		// On change l'image et la fonction du bouton Recuperer pour revenir a Melanger
 		((ImageView) btnMelRec.getGraphic()).setImage(new Image("melanger.png"));
 		btnMelRec.setOnAction(e -> melangeChevalet());
-		
+
 		// On change l'image et la fonction du bouton Jouer pour revenir a Passer
 		((ImageView) btnJouer.getGraphic()).setImage(new Image("passer.png"));
 		btnJouer.setOnAction(e -> passerTourJeu());
-		
+
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
-		
+
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
+	}
+	
+	private int scoreChevalet(Joueur joueur) {
+		
+		// On initialise le score du chevalet
+		int score = 0;
+		
+		// On compose le score du chevalet
+		for(Tuile tuile : joueur.getChevaletTampon().getTuiles()) {
+			score = score + tuile.getValeur();
+		}
+		
+		// On retourne le score du chevalet
+		return score;
 	}
 	
 	private void joueurEnCours(int i) {

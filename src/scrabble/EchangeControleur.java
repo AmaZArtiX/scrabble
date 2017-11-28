@@ -101,7 +101,7 @@ public class EchangeControleur extends Jeu {
 			}
 	    }
 	    
-	    // On quitte la fenêtre
+	    // On quitte la fenï¿½tre
 	    ((Stage) ((Button) event.getSource()).getScene().getWindow()).close();
 	}
 	
@@ -118,7 +118,7 @@ public class EchangeControleur extends Jeu {
 			Joueurs.get(joueur).getChevaletTampon().ajouterTuile(sac.tirerUneLettre());
 		}
 		
-		// On quitte la fenêtre
+		// On quitte la fenï¿½tre
 		((Stage) ((Button) event.getSource()).getScene().getWindow()).close();
 	}
 	
@@ -149,14 +149,26 @@ public class EchangeControleur extends Jeu {
 	// Fonction de detection d'un drag dropped
 	@FXML private void dragDroppedOnChevaletEchange(DragEvent event) {
 
-		// On recupere l'indice de la Tuile a echanger (Chevalet)
-		int index = GridPane.getColumnIndex((Node) event.getGestureSource());
+		// 
+		int taille = 0;
 		
-		// On ajoute la Tuile a echanger dans le Chevalet d'echange
-		echange.ajouterTuile(Joueurs.get(joueur).getChevaletTampon().getTuile(index));
+		// 
+		for(int i=0;i<Chevalet.TAILLE;i++) {
+			if(casesChevalet[i].getImage() != null) taille++;
+		}
 		
-		// On supprime la Tuile jouee du Chevalet du Joueur
-		Joueurs.get(joueur).getChevaletTampon().supprimerTuile(index);
+		// 
+		if(taille < sac.getTaille()) {
+
+			// On recupere l'indice de la Tuile a echanger (Chevalet)
+			int index = GridPane.getColumnIndex((Node) event.getGestureSource());
+			
+			// On ajoute la Tuile a echanger dans le Chevalet d'echange
+			echange.ajouterTuile(Joueurs.get(joueur).getChevaletTampon().getTuile(index));
+			
+			// On supprime la Tuile jouee du Chevalet du Joueur
+			Joueurs.get(joueur).getChevaletTampon().supprimerTuile(index);
+		}
 	}
 	
 	// Fonction de detection d'un drag dropped

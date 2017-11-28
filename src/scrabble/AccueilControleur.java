@@ -153,7 +153,7 @@ public class AccueilControleur extends Jeu {
 			stageJeu.getIcons().add(new Image("S.png"));
 			stageJeu.setResizable(false);
 			stageJeu.show();
-			stageJeu.centerOnScreen();
+			//stageJeu.centerOnScreen();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

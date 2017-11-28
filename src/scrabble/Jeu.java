@@ -44,6 +44,12 @@ public class Jeu extends Application {
 	// Declaration du nombre de tours
 	static int nbTours = 0;
 	
+	// Declaration du nombre de tours passes
+	static int nbToursPasses = 0;
+	
+	// Declaration du boolean de test
+	static boolean test = true;
+	
 	// Declaration de la Tuile Joker
 	static Tuile joker = new Tuile();
 	
@@ -69,6 +75,7 @@ public class Jeu extends Application {
 		stageAccueil.getIcons().add(new Image("S.png"));
 		stageAccueil.setTitle("Accueil - Scrabble");
 		stageAccueil.setResizable(false);
+		stageAccueil.sizeToScene();
 		stageAccueil.show();
 	}
 }
