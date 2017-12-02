@@ -24,6 +24,7 @@ Dernière modification : 10/11/2017
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -93,10 +94,15 @@ Dernière modification : 10/11/2017
                         </Label>
                         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
                            <content>
-                              <TableView maxWidth="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="290.0">
+                              <TableView fx:id="tableHistorique" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="290.0">
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="colonneJoueur" maxWidth="88.0" minWidth="88.0" prefWidth="88.0" resizable="false" text="Joueur" />
+                                    <TableColumn fx:id="colonneAction" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" resizable="false" text="Action" />
+                                    <TableColumn fx:id="colonnePoints" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="Points" />
+                                 </columns>
                               </TableView>
                            </content>
                         </ScrollPane>

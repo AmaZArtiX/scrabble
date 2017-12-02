@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -91,9 +96,28 @@ public class JeuControleur extends Jeu {
 	// Lien entre le fichier FXML et le Button Jouer
 	@FXML private Button btnJouer;
 	
+	@FXML private TableView<Historique> tableHistorique = new TableView<>();
+	@FXML private TableColumn<Historique, String> colonneJoueur;
+	@FXML private TableColumn<Historique, String> colonneAction;
+	@FXML private TableColumn<Historique, String> colonnePoints;
+	
+	private ObservableList<Historique> historique = FXCollections.observableArrayList(
+			new Historique("Tour 1", "", "")
+			);
+	
+	/**
+	 * Raffraichit l'historique
+	 */
+	public void raffraichirHistorique() {
+		
+		colonneJoueur.setCellValueFactory(new PropertyValueFactory<Historique, String>("joueur"));
+		colonneAction.setCellValueFactory(new PropertyValueFactory<Historique, String>("action"));
+		colonnePoints.setCellValueFactory(new PropertyValueFactory<Historique, String>("points"));
+		tableHistorique.setItems(historique);
+	}
+	
 	// Fonction d'initialisation de la fenetre de Jeu
 	public void initialize() {
-
 		// 
 		apparitionScene();
 		
@@ -130,6 +154,9 @@ public class JeuControleur extends Jeu {
 
 		// On rafraichit les ImageView du Plateau
 		rafraichissementPlateau();
+		
+		// Non possibilité de modification manuelle de l'historique
+		tableHistorique.setEditable(false);
 	}
 	
 	// 
@@ -475,6 +502,12 @@ public class JeuControleur extends Jeu {
 
 			// On ajoute 1 tour au compteur
 			nbTours++;
+			
+			/************************************/
+			historique.add(new Historique(Joueurs.get(joueur).getNom(), "Tour passé", "0"));
+			historique.add(new Historique("Tour "+nbTours, "", ""));
+			raffraichirHistorique();
+			/************************************/
 
 			// On rafraichi le compteur de tour avec +1 tour
 			lblNbTour.setText("Tour : " + nbTours);
@@ -530,7 +563,13 @@ public class JeuControleur extends Jeu {
 				Joueurs.get(joueur).setScore(Joueurs.get(joueur).getScore() + score);
 				// Affichage en console du mot joué et du score obtenu
 				System.out.println("Mot joué : "+mot);
-				System.out.println("Score du mot jou� : "+ score);
+				System.out.println("Score du mot joué : "+ score);
+				
+				/************************************/
+				historique.add(new Historique(Joueurs.get(joueur).getNom(), mot, String.valueOf(score)));
+				raffraichirHistorique();
+				/************************************/
+				
 
 				// On efface le mot joue 
 				Joueurs.get(joueur).effacerMotJoue();
@@ -610,7 +649,12 @@ public class JeuControleur extends Jeu {
 					
 					// On ajoute 1 tour au compteur
 					nbTours++;
-
+					
+					/************************************/
+					historique.add(new Historique("Tour "+nbTours, "", ""));
+					raffraichirHistorique();
+					/************************************/
+					
 					// On rafraichi le compteur de tour avec +1 tour
 					lblNbTour.setText("Tour : " + nbTours);
 
@@ -627,11 +671,12 @@ public class JeuControleur extends Jeu {
 					}
 				}
 			}
-		} else {
-
-			// On recupere les tuiles jouees
+			else
+				recupTuilesJouee();
+				
+		} else 
 			recupTuilesJouee();
-		}
+
 
 		// On reactive l'acces a l'echange de tuiles
 		btnSac.setDisable(false);
