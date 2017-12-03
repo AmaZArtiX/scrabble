@@ -472,19 +472,21 @@ public class Joueur {
 				
 				motJoueComplet.add(new Coordonnees(xDebut, y));
 				
-				if(p.getTuileTampon(yDebut+1, xDebut) != null) {
-					
-					y = yDebut+1;
-					
-					// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
-					while(y <= 13 && p.getTuileTampon(y+1, xDebut) != null) {
+				if(yDebut < 14) {
+					if(p.getTuileTampon(yDebut+1, xDebut) != null) {
 						
-						// Ajout des coordonnees
+						y = yDebut+1;
+						
+						// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
+						while(y <= 13 && p.getTuileTampon(y+1, xDebut) != null) {
+							
+							// Ajout des coordonnees
+							motJoueComplet.add(new Coordonnees(xDebut, y));
+							y++;
+						}
+						
 						motJoueComplet.add(new Coordonnees(xDebut, y));
-						y++;
 					}
-					
-					motJoueComplet.add(new Coordonnees(xDebut, y));
 				}
 				
 				// Tri des coordonnees en y pour mettre le mot dans le bon sens
@@ -511,19 +513,21 @@ public class Joueur {
 				
 				motJoueComplet.add(new Coordonnees(x, yDebut));
 				
-				if(p.getTuileTampon(yDebut, xDebut+1) != null) {
-				
-					x = xDebut+1;
+				if(xDebut < 14) {
+					if(p.getTuileTampon(yDebut, xDebut+1) != null) {
 					
-					// Recherche d'une tuile vosine sur les lignes superieures a la tuile de depart
-					while(x <= 13 && p.getTuileTampon(yDebut, x+1) != null) {
+						x = xDebut+1;
 						
-						// Ajout des coordonnees
+						// Recherche d'une tuile vosine sur les lignes superieures a la tuile de depart
+						while(x <= 13 && p.getTuileTampon(yDebut, x+1) != null) {
+							
+							// Ajout des coordonnees
+							motJoueComplet.add(new Coordonnees(x, yDebut));
+							x++;
+						}
+						
 						motJoueComplet.add(new Coordonnees(x, yDebut));
-						x++;
 					}
-					
-					motJoueComplet.add(new Coordonnees(x, yDebut));
 				}
 				
 				// Tri des coordonnees en x pour mettre le mot dans le bon sens

@@ -4,6 +4,8 @@ package scrabble;
 // Import(s)
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -532,6 +534,313 @@ public class JeuControleur extends Jeu {
 		}
 	}
 	
+	/**
+	 * Vérifie le plateau selon le nouveau mot joué, et balaye tous les autres 
+	 * mots qui le touchent directement 
+	 * @param listeCoordonnees Coordonnees des tuiles jouees  
+	 * @return Le bon placement d'un mot
+	 */
+	public boolean verifierPlateau(ArrayList<Coordonnees> listeCoordonnees) {
+		
+		// Bon placement d'un mot 
+		boolean resultat = true;
+		// Liste de tuiles qui forment le mot
+		ArrayList<Tuile> liste = new ArrayList<Tuile>();
+		// Direction du mot
+		String direction = "";
+		// Mot en lien avec le mot joue
+		String mot;
+		
+		// Coordonnees de debut et de fin 
+		int xDebut = listeCoordonnees.get(0).getX();
+		int xFin = listeCoordonnees.get(listeCoordonnees.size()-1).getX();
+		int yDebut = listeCoordonnees.get(0).getY();
+		int yFin = listeCoordonnees.get(listeCoordonnees.size()-1).getY();
+		
+		// Parcours de toutes les tuiles qui forment le mot joué
+		for(Coordonnees c: listeCoordonnees) {
+			
+			// Coordonnees de la tuile courante
+			int x = c.getX();
+			int y = c.getY();
+			
+			// Tuile sur la premiere ligne
+			if(x == 0 && (y > 0 && y < 14)) {
+				
+				// Possibilités de parcours
+				if((xDebut != xFin) && plateau.getTuileTampon(y-1, x) != null)
+					direction = "gauche";
+				else if((xDebut != xFin) && plateau.getTuileTampon(y+1, x) != null)
+					direction = "droite";
+				else if((xDebut == xFin) && plateau.getTuileTampon(y, x+1) != null)
+					direction = "bas";		
+			}
+			// Tuile sur la derniere colonne
+			else if(y == 14 && (x > 0 && x < 14)) {
+				
+				// Possibilites de parcours
+				if((yDebut != yFin) && plateau.getTuileTampon(y, x-1) != null)
+					direction = "haut";
+				else if((yDebut != yFin) && plateau.getTuileTampon(y, x+1) != null)
+					direction = "bas";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y-1, x) != null)
+					direction = "gauche";
+			}
+			// Tuile sur la derniere ligne
+			else if(x == 14 && (y > 0 && y < 14)) {
+				
+				// Possibilites de parcours
+				if((xDebut != xFin) && plateau.getTuileTampon(y-1, x) != null)
+					direction = "gauche";
+				else if((xDebut != xFin) && plateau.getTuileTampon(y+1, x) != null)
+					direction = "droite";
+				else if((xDebut == xFin) && plateau.getTuileTampon(y, x-1) != null)
+					direction = "haut";
+				
+			}
+			// Tuile sur la premiere colonne
+			else if(y == 0 && (x > 0 && x < 14)) {
+				
+				
+				if((yDebut != yFin) && plateau.getTuileTampon(y, x+1) != null)
+					direction = "bas";
+				else if((yDebut != yFin) && plateau.getTuileTampon(y, x-1) != null)
+					direction = "haut";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y+1, x) != null)
+					direction = "droite";
+			}
+			// Tuile sur la case (0, 0)
+			else if(x == 0 && y == 0) {
+				
+				// Possibilites de parcours
+				if((xDebut == xFin) && plateau.getTuileTampon(y, x+1) != null)
+					direction = "bas";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y+1, x) != null)
+					direction = "droite";
+			}
+			// Tuile sur la case (0, 14)
+			else if(x == 0 && y == 14) {
+				
+				// Possibilites de parcours
+				if((xDebut == xFin) && plateau.getTuileTampon(y, x+1) != null)
+					direction = "bas";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y-1, x) != null)
+					direction = "gauche";
+			}
+			// Tuile sur la case (14, 14)
+			else if(x == 14 && y == 14) {
+				
+				// Possibilites de parcours
+				if((xDebut == xFin) && plateau.getTuileTampon(y, x-1) != null)
+					direction = "haut";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y-1, x) != null)
+					direction = "gauche";
+			}
+			// Tuile sur la case (14, 0)
+			else if(x == 14 && y == 0) {
+				
+				// Possibilites de parcours
+				if((xDebut == xFin) && plateau.getTuileTampon(y, x-1) != null)
+					direction = "haut";
+				else if((yDebut == yFin) && plateau.getTuileTampon(y+1, x) != null)
+					direction = "droite";
+			}
+			// Tuile hors limites du plateau
+			else if (x > 0 && x < 14  && y > 0 && y < 14) {
+				
+				// Coordonnees du mot courant
+				ArrayList<Coordonnees> coordonnees = new ArrayList<Coordonnees>();
+				
+				// Mot horizontal, balayage vertical
+				if(xDebut == xFin) {
+					
+					int xDebutBis = x;
+					
+					// Recherche de tuiles vosines sur les lignes inferieures a la tuile de depart
+					while(x >= 1 && plateau.getTuileTampon(y, x-1) != null) {
+						
+						// Ajout des coordonnees
+						coordonnees.add(new Coordonnees(x, y));
+						x--;
+					}
+					
+					if(plateau.getTuileTampon(y, xDebutBis-1) != null || plateau.getTuileTampon(y, xDebutBis+1) != null)
+						coordonnees.add(new Coordonnees(x, y));
+					
+					// Recherche de tuiles voisines sur les lignes superieures a la tuile de depart
+					if(xDebutBis < 14) {
+						if(plateau.getTuileTampon(y, xDebutBis+1) != null) {
+							
+							x = xDebutBis+1;
+							
+							while(x <= 13 && plateau.getTuileTampon(y, x+1) != null) {
+								
+								// Ajout des coordonnees
+								coordonnees.add(new Coordonnees(x, y));
+								x++;
+							}
+							
+							if(plateau.getTuileTampon(y, xDebutBis+1) != null)
+								coordonnees.add(new Coordonnees(x, y));
+						}
+					}
+					
+					// Tri des coordonnees en x pour mettre le mot dans le bon sens
+					Collections.sort(coordonnees, new Comparator<Coordonnees>() {
+
+						@Override
+						public int compare(Coordonnees c1, Coordonnees c2) {
+							return c1.getX() - c2.getX();
+						}
+					});
+					
+					if(coordonnees.size() > 1) {
+
+						liste = Joueurs.get(joueur).getTuilesJouees(plateau, coordonnees);
+						mot = plateau.creerMot(liste);
+						System.out.println("Je balaye les mots verticaux "+mot);
+						if(!dictionnaire.existe(mot))
+							resultat = false; break;
+					}
+				}
+				// Mot vertical, balayage horizontal
+				else if(yDebut == yFin) {
+					
+					int yDebutBis = y;
+					
+					// Recherche de tuiles vosines sur les colonnes inferieures a la tuile de depart
+					while(y >= 1 && plateau.getTuileTampon(y-1, x) != null) {
+						
+						// Ajout des coordonnees
+						coordonnees.add(new Coordonnees(x, y));
+						y--;
+					}
+					
+					if(plateau.getTuileTampon(yDebutBis-1, x) != null || plateau.getTuileTampon(yDebutBis+1, x) != null)
+						coordonnees.add(new Coordonnees(x, y));
+					
+					// Recherche de tuiles vosines sur les colonnes superieures a la tuile de depart
+					if(yDebutBis < 14) {
+						if(plateau.getTuileTampon(yDebutBis+1, x) != null) {
+							
+							y = yDebutBis+1;
+							
+							// Recherche d'une tuile vosine sur les colonnes superieures a la tuile de depart
+							while(y <= 13 && plateau.getTuileTampon(y+1, x) != null) {
+								
+								// Ajout des coordonnees
+								coordonnees.add(new Coordonnees(x, y));
+								y++;
+							}
+							
+							if(plateau.getTuileTampon(yDebutBis+1, x) != null)
+								coordonnees.add(new Coordonnees(x, y));
+						}
+					}
+					
+					// Tri des coordonnees en y pour mettre le mot dans le bon sens
+					Collections.sort(coordonnees, new Comparator<Coordonnees>() {
+
+						@Override
+						public int compare(Coordonnees c1, Coordonnees c2) {
+							return c1.getY() - c2.getY();
+						}
+					});
+					
+					if(coordonnees.size() > 1) {
+
+						liste = Joueurs.get(joueur).getTuilesJouees(plateau, coordonnees);
+						mot = plateau.creerMot(liste);
+						System.out.println("Je balaye les mots horizontaux "+mot);
+						if(!dictionnaire.existe(mot))
+							resultat = false; break;
+					}
+				}
+			}
+			
+			// Recherche des coordonnees de gauche à droite
+			if(direction.equals("droite")) {
+			
+				// Vérification de l'existence d'une tuile voisine
+				while(y <= 13 && plateau.getTuileTampon(y+1, x) != null) {
+					
+					// Ajout des coordonnes
+					liste.add(plateau.getTuileTampon(y, x));
+					y++;
+				}
+				
+				liste.add(plateau.getTuileTampon(y, x));
+				
+				mot = plateau.creerMot(liste);
+				System.out.println("Je verifie à droite "+mot);
+				if(!dictionnaire.existe(mot))
+					resultat = false; break;		
+			}
+			// Recherche des coordonnees de droite à gauche
+			else if(direction.equals("gauche")) {
+								
+				// Vérification de l'existence d'une tuile voisine
+				while(y >= 1 && plateau.getTuileTampon(y-1, x) != null) {
+					
+					// Ajout des coordonnees
+					liste.add(plateau.getTuileTampon(y, x));
+					y--;
+				}
+				
+				liste.add(plateau.getTuileTampon(y, x));
+				
+				// Inversion des coordonnees, pour former le mot dans le bon sens
+				Collections.reverse(liste);
+				
+				mot = plateau.creerMot(liste);
+				System.out.println("Je verifie à gauche "+mot);
+				if(!dictionnaire.existe(mot))
+					resultat = false; break;	
+			}
+			// Recherche des coordonnees de haut en bas 
+			else if(direction.equals("bas")) {
+				
+				// Vérification de l'existence d'une tuile voisine
+				while(x <= 13 && plateau.getTuileTampon(y, x+1) != null) {
+					
+					// Ajout des coordonnees
+					liste.add(plateau.getTuileTampon(y, x));
+					x++;
+				}
+				
+				liste.add(plateau.getTuileTampon(y, x));
+				
+				mot = plateau.creerMot(liste);
+				System.out.println("Je verifie en bas "+mot);
+				if(!dictionnaire.existe(mot))
+					resultat = false; break;	
+			}
+			// Recherche des coordonnees de bas en haut
+			else if(direction.equals("haut")) {
+								
+				// Vérification de l'existence d'une tuile voisine
+				while(x >= 1 && plateau.getTuileTampon(y, x-1) != null){
+					
+					// Ajout des coordonnees
+					liste.add(plateau.getTuileTampon(y, x));
+					x--;
+				}
+				
+				liste.add(plateau.getTuileTampon(y, x));
+				
+				// Inversion des coordonnees, pour former le mot dans le bon sens
+				Collections.reverse(liste);
+				
+				mot = plateau.creerMot(liste);
+				System.out.println("Je verifie en haut "+mot);
+				if(!dictionnaire.existe(mot))
+					resultat = false; break;	
+			}
+		}
+		
+		return resultat;
+	}
+	
 	// Fonction de fin de tour de jeu
 	@FXML private void finTourJeu() {
 		
@@ -551,6 +860,11 @@ public class JeuControleur extends Jeu {
 
 			// On verifie que le mot joue existe dans le dico
 			if(dictionnaire.existe(mot.toUpperCase()) | test) {
+				
+				if(verifierPlateau(listeCoordonnees))
+					System.out.println("Placement correct");
+				else 
+					System.out.println("Placement incorrect");
 				
 				System.out.println("Le mot existe !");
 
