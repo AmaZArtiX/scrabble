@@ -30,6 +30,8 @@ public class Joueur {
 	// Coordonnees dans l'ordre des tuiles jouees 
 	private ArrayList<Coordonnees> motJoue;
 	
+	boolean currentPlayer = false;
+	
 	/**
 	 * TODO
 	 * Ajouter un historique
@@ -560,5 +562,17 @@ public class Joueur {
 		}
 			
 		return mot;
+	}
+
+	//ajoute le nouveau score a l'encien
+	//@param nouveau score
+	public void addScore(int newScore) {
+		// TODO Auto-generated method stub
+		score += newScore;
+	}
+
+	public void setCurrentPlayer(boolean value) {
+		// TODO Auto-generated method stub
+		currentPlayer = value;
 	}
 }
