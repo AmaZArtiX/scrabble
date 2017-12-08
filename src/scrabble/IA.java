@@ -1,7 +1,9 @@
 // Package
 package scrabble;
 
- /**
+import java.util.ArrayList;
+
+/**
   * ***********************************************************************
   * Nom ...........: IA.java
   * Description ...: Intelligence artificielle poss�dant 1 niveau de difficult�
@@ -31,5 +33,11 @@ public class IA extends Joueur{
 	//Placer lettre a lettre ou echanger lettre
 	
 	
+	// 
+	public void jouerMotIntermediaire(Plateau plateau, Chevalet chevalet) {
+		// On recupere la liste des tuiles dispo. sur le plateau
+		ArrayList<Tuile> tuilesPlateau = new ArrayList<Tuile>(plateau.getTuilesDisponibles());
 	
+		
+	}
 }
