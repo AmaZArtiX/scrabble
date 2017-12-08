@@ -70,7 +70,7 @@ public class IA extends Joueur{
 		 **/
 		public ArrayList<String> findAnagrams(char lettre) {
 
-			char[] characters;
+			char[] characters; 
 			if (lettre != ' ') {
 				characters = new char[getChevalet().getTaille() + 1];
 			} else {
