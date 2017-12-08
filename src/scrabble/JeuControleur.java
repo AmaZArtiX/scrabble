@@ -976,9 +976,6 @@ public class JeuControleur extends Jeu {
 					
 					// 
 					nbToursPasses = 0;
-					
-					// On rafraichi le compteur de tour avec +1 tour
-					lblNbTour.setText("Tour : " + nbTours);
 
 					// 
 					if(Joueurs.size() == 2) {
@@ -989,6 +986,9 @@ public class JeuControleur extends Jeu {
 						} else {
 							// On ajoute 1 tour au compteur
 							nbTours++;
+							
+							// On rafraichi le compteur de tour
+							lblNbTour.setText("Tour : " + nbTours);
 							
 							historique.add(new Historique("Tour "+nbTours, "", ""));
 							raffraichirHistorique();
