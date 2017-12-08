@@ -103,9 +103,7 @@ public class JeuControleur extends Jeu {
 	@FXML private TableColumn<Historique, String> colonneAction;
 	@FXML private TableColumn<Historique, String> colonnePoints;
 	
-	private ObservableList<Historique> historique = FXCollections.observableArrayList(
-			new Historique("Tour 1", "", "")
-			);
+	private ObservableList<Historique> historique = FXCollections.observableArrayList();
 	
 	/**
 	 * Raffraichit l'historique
@@ -131,8 +129,8 @@ public class JeuControleur extends Jeu {
 			// Affichage du Score du Joueur ainsi que son nom
 			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 			
-			// 
-			lblScoreJ2.setText("IA : 0");
+			// Affichage du Score de l'IA
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
 
 		} else if(Joueurs.size() == 2) {
 			
@@ -191,6 +189,9 @@ public class JeuControleur extends Jeu {
 				jeuEnCours = true;
 				nbTours = 1;
 				
+				historique.add(new Historique("Tour "+nbTours, "", ""));
+				raffraichirHistorique();
+				
 				if(Joueurs.size() == 1) {
 					
 					// On active le lbl de Score du Joueur
@@ -199,7 +200,12 @@ public class JeuControleur extends Jeu {
 					// On rafraichi le Score du Joueur
 					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 					
+					// On active le lbl de Score du Joueur
 					lblScoreJ2.setDisable(false);
+					
+					// On rafraichi le Score du Joueur
+					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
+					
 				} else if(Joueurs.size() == 2) {
 				
 					// On active le lbl de Score du Joueur
@@ -318,9 +324,19 @@ public class JeuControleur extends Jeu {
 		// On reinitialise l'etat de la partie et le nb de tours
 		jeuEnCours = false;
 		nbTours = 0;
+		
+		// 
+		nbToursPasses = 0;
+		
+		// 
+		historique.clear();
+		raffraichirHistorique();
 
 		// On raffraichi le compteur de tour
 		lblNbTour.setText("Tour : " + nbTours);
+		
+		// 
+		joueur = 0;
 		
 		// 
 		lblScoreJ1.setTextFill(Color.BLACK);
@@ -501,18 +517,11 @@ public class JeuControleur extends Jeu {
 		nbToursPasses++;
 
 		if(nbToursPasses < 6) {
-
-			// On ajoute 1 tour au compteur
-			nbTours++;
 			
 			/************************************/
 			historique.add(new Historique(Joueurs.get(joueur).getNom(), "Tour passé", "0"));
-			historique.add(new Historique("Tour "+nbTours, "", ""));
 			raffraichirHistorique();
 			/************************************/
-
-			// On rafraichi le compteur de tour avec +1 tour
-			lblNbTour.setText("Tour : " + nbTours);
 
 			// 
 			if(Joueurs.size() == 2) {
@@ -520,7 +529,19 @@ public class JeuControleur extends Jeu {
 				// 
 				if(joueur == 0) {
 					joueur = 1;
-				} else joueur = 0;
+				} else {
+					
+					// On ajoute 1 tour au compteur
+					nbTours++;
+					
+					// On rafraichi le compteur de tour avec +1 tour
+					lblNbTour.setText("Tour : " + nbTours);
+					
+					historique.add(new Historique("Tour "+nbTours, "", ""));
+					raffraichirHistorique();
+					
+					joueur = 0;
+				}
 
 				// 
 				joueurEnCours(joueur);
@@ -890,6 +911,7 @@ public class JeuControleur extends Jeu {
 					// On rafraichi le Score du Joueur
 					lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 
+					// 
 
 				} else if(Joueurs.size() == 2) {
 					
@@ -900,7 +922,6 @@ public class JeuControleur extends Jeu {
 
 					// On rafraichi le Score du Joueur
 					lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
-
 				}
 				
 				// On applique les ajouts de tuiles au Plateau
@@ -956,14 +977,6 @@ public class JeuControleur extends Jeu {
 					// 
 					nbToursPasses = 0;
 					
-					// On ajoute 1 tour au compteur
-					nbTours++;
-					
-					/************************************/
-					historique.add(new Historique("Tour "+nbTours, "", ""));
-					raffraichirHistorique();
-					/************************************/
-					
 					// On rafraichi le compteur de tour avec +1 tour
 					lblNbTour.setText("Tour : " + nbTours);
 
@@ -973,7 +986,15 @@ public class JeuControleur extends Jeu {
 						// 
 						if(joueur == 0) {
 							joueur = 1;
-						} else joueur = 0;
+						} else {
+							// On ajoute 1 tour au compteur
+							nbTours++;
+							
+							historique.add(new Historique("Tour "+nbTours, "", ""));
+							raffraichirHistorique();
+							
+							joueur = 0;
+						}
 
 						// 
 						joueurEnCours(joueur);

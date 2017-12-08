@@ -84,6 +84,6 @@ public class Tuile {
 
 	@Override
 	public String toString() {
-		return "Tuile [" + lettre + " " + valeur + " " + img + "]";
+		return "Tuile [" + lettre + " " + valeur + "]";
 	}
 }

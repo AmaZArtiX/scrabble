@@ -57,6 +57,9 @@ public class AccueilControleur extends Jeu {
 			// On initialise les donnees du Joueur
 			Joueurs.add(new Joueur(nomTxtJoueur1.getText()));
 			
+			// On initialise les donnees de l'ia
+			Joueurs.add(new IA());
+			
 		} else if(cbNombreJoueurs.getValue().equals("2 Joueurs")) {
 			
 			// On initialise les donnees du Joueur

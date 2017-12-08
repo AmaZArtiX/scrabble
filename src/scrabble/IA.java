@@ -4,19 +4,20 @@ package scrabble;
  /**
   * ***********************************************************************
   * Nom ...........: IA.java
-  * Description ...: Intelligence artificielle possèdant 1 niveau de difficulté
-  * ...............: intermédiaire et contre laquelle l'utilisateur pourra jouer
+  * Description ...: Intelligence artificielle possï¿½dant 1 niveau de difficultï¿½
+  * ...............: intermï¿½diaire et contre laquelle l'utilisateur pourra jouer
   * ...............:
   * Auteur(s) .....: YACINE CHTAIRI
   * Version .......: 1.0
-  * Copyright .....: © 2017 YACINE CHTAIRI ALL RIGHTS RESERVED
+  * Copyright .....: ï¿½ 2017 YACINE CHTAIRI ALL RIGHTS RESERVED
   ***********************************************************************
   */
 
 public class IA extends Joueur{ 
 
-	public IA() { //Constructeur sans paramètres
+	public IA() { //Constructeur sans paramï¿½tres
 		super();
+		setNom("IA");
 	}
 	
 	//Recuperer indice jusqu'a case vide
@@ -24,7 +25,7 @@ public class IA extends Joueur{
 	//Recuperer contenu de l'indice
 	//Stocker contenu dans Tableau2
 	//Lire tableau2
-	//Verifier dans dico mots commençant par contenu
+	//Verifier dans dico mots commenï¿½ant par contenu
 	//Choisir aleatoirement un mot
 	//Verifier si lettre dispo dans chevalet
 	//Placer lettre a lettre ou echanger lettre
