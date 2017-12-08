@@ -859,12 +859,7 @@ public class JeuControleur extends Jeu {
 			String mot = plateau.creerMot(liste);
 
 			// On verifie que le mot joue existe dans le dico
-			if(dictionnaire.existe(mot.toUpperCase()) | test) {
-				
-				if(verifierPlateau(listeCoordonnees))
-					System.out.println("Placement correct");
-				else 
-					System.out.println("Placement incorrect");
+			if(dictionnaire.existe(mot.toUpperCase()) && verifierPlateau(listeCoordonnees)) {
 				
 				System.out.println("Le mot existe !");
 
@@ -986,10 +981,10 @@ public class JeuControleur extends Jeu {
 				}
 			}
 			else
-				recupTuilesJouee();
+				recupTuilesJouee(); Joueurs.get(joueur).effacerMotJoue();
 				
 		} else 
-			recupTuilesJouee();
+			recupTuilesJouee(); Joueurs.get(joueur).effacerMotJoue();
 
 
 		// On reactive l'acces a l'echange de tuiles
