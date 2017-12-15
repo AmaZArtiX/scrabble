@@ -259,6 +259,13 @@ public class JeuControleur extends Jeu {
 				break;
 			}
 		}
+		
+		ArrayList<String> motJouables = ((IA) Joueurs.get(1)).findAnagrams(getChars(plateau.getTuilesDisponibles()));
+
+		System.out.println("Liste des mots jouables :");
+		for (String string : motJouables) {
+			System.out.println(string);
+		}
 	}
 	
 	// Fonction permettant de quitter l'application
@@ -390,22 +397,22 @@ public class JeuControleur extends Jeu {
 		// On reinitialise les donnees du Joueur (sauf le nom)
 		for (int i=0;i<Joueurs.size();i++) {
 		
-			Joueurs.set(i, new Joueur(Joueurs.get(i).getNom()));
+			Joueurs.get(i).reinitialisation();
 		}
 
 		if(Joueurs.size() == 1) {
 		
-			// On rafraichit le Score du Joueur
+			// On rafraichit le Score du Joueur 1
 			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 		
-			// 
-			lblScoreJ2.setText("IA : 0");
+			// On rafraichit le Score de l'IA
+			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
 		} else if (Joueurs.size() == 2) {
 			
-			// On rafraichit le Score du Joueur
+			// On rafraichit le Score du Joueur 1
 			lblScoreJ1.setText(Joueurs.get(0).getNom() + " : " + Integer.toString(Joueurs.get(0).getScore()));
 			
-			// On rafraichit le Score du Joueur
+			// On rafraichit le Score du Joueur 2
 			lblScoreJ2.setText(Joueurs.get(1).getNom() + " : " + Integer.toString(Joueurs.get(1).getScore()));
 		}
 		
@@ -1024,6 +1031,14 @@ public class JeuControleur extends Jeu {
 
 		// On rafraichit les ImageView du Chevalet
 		rafraichissementChevalet();
+	}
+	
+	private char[] getChars(ArrayList<Tuile> tuiles) {
+		char[] lettres = new char[tuiles.size()];
+		for (int i = 0; i < lettres.length; i++) {
+			lettres[i] = tuiles.get(i).getLettre();
+		}
+		return lettres;
 	}
 	
 	private int scoreChevalet(Joueur joueur) {

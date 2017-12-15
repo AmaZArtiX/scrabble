@@ -561,4 +561,11 @@ public class Joueur {
 			
 		return mot;
 	}
+	
+	protected void reinitialisation() {
+		this.score = 0;
+		this.chevalet = new Chevalet();
+		this.chevaletTampon = new Chevalet();
+		this.motJoue = new ArrayList<>();
+	}
 }
