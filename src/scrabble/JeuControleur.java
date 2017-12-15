@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Optional;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -28,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -1033,10 +1037,16 @@ public class JeuControleur extends Jeu {
 		rafraichissementChevalet();
 	}
 	
-	private char[] getChars(ArrayList<Tuile> tuiles) {
-		char[] lettres = new char[tuiles.size()];
-		for (int i = 0; i < lettres.length; i++) {
-			lettres[i] = tuiles.get(i).getLettre();
+	// 
+	private char[] getChars(Hashtable<Tuile, int[]> posTuiles) {
+		char[] lettres = null;
+		if(posTuiles != null) {
+			lettres = new char[posTuiles.size()];
+			for (int i = 0; i < lettres.length; i++) {
+				lettres[i] = ((Tuile) posTuiles.keySet().toArray()[i]).getLettre();
+			}
+		} else {
+			lettres = new char[] {' '};
 		}
 		return lettres;
 	}

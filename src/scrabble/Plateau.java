@@ -3,6 +3,7 @@ package scrabble;
 
 // Import(s)
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /*************************************************************************
  * Nom ...........: Plateau.java
@@ -210,9 +211,10 @@ public class Plateau {
 	 * Renvoie la liste des tuiles disponibles sur le plateau pour faire un mot
 	 * @return liste Liste de tuiles 
 	 */
-	public ArrayList<Tuile> getTuilesDisponibles(){
+	public Hashtable<Tuile, int[]> getTuilesDisponibles() {
 		
-		ArrayList<Tuile> liste = new ArrayList<>();
+		//ArrayList<Tuile> liste = new ArrayList<>();
+		Hashtable<Tuile, int[]> posTuiles = null;
 		
 		for(int x = 0; x < TAILLE; x++) {
 			
@@ -225,15 +227,63 @@ public class Plateau {
 					      break;
 					// Tuile voisine a l'horizontale
 					if(plateauTuiles[x][y+1] == null && plateauTuiles[x][y-1] == null)
-						liste.add(plateauTuiles[x][y]);
+						posTuiles.put(plateauTuiles[x][y], new int[] {x, y});
 					// Tuile voisine a la verticale
 					else if(plateauTuiles[x+1][y] == null && plateauTuiles[x-1][y] == null)
-						liste.add(plateauTuiles[x][y]);
+						posTuiles.put(plateauTuiles[x][y], new int[] {x, y});
 				}
 			}
 		}
 		
-		return liste;
+		return posTuiles;
+	}
+
+	//
+	public int motsJouables(Hashtable<Tuile, int[]> posTuiles) {
+		//Hashtable<, > motsJouables;
+		
+		for (Tuile tuile : posTuiles.keySet()) {
+			// 
+			for(int x=posTuiles.get(tuile)[0]; x<TAILLE; x++) {
+
+				// 
+				if(plateauTuiles[x][posTuiles.get(tuile)[1]] != null) {
+
+					
+				}
+			}
+			
+			// 
+			for(int x=posTuiles.get(tuile)[0]; x>0; x--) {
+				
+				// 
+				if(plateauTuiles[x][posTuiles.get(tuile)[1]] != null) {
+					
+					
+				}
+			}
+			
+			// 
+			for(int y=posTuiles.get(tuile)[1]; y<TAILLE; y++) {
+
+				// 
+				if(plateauTuiles[posTuiles.get(tuile)[0]][y] != null) {
+
+					
+				}
+			}
+			
+			// 
+			for(int y=posTuiles.get(tuile)[1]; y>0; y--) {
+
+				// 
+				if(plateauTuiles[posTuiles.get(tuile)[0]][y] != null) {
+
+					
+				}
+			}
+		}
+		return -1;
 	}
 	
 	/**
