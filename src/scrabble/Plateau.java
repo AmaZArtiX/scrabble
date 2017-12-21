@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class Plateau {
 	
+	Square [][] squares;
+	
 	// Taille (longueur et largeur) du plateau
 	public static final int TAILLE = 15;
 	
@@ -532,4 +534,31 @@ public class Plateau {
 	public Tuile getTuileTampon(int col, int lig) {
 		return plateauTuilesTampon[lig][col];
 	}
+
+	public ArrayList<Square> buildWord(Square first, char c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/** Inserts a given letter into the square at coordinates r, c on the board. **/
+	public void putLetter(Lettre letter, int r, int c) {
+		squares[r][c].setLetter(letter);
+		
+		//incrementer le nombre de tuile dans le plateau
+
+	}
+
+	/** Returns the square at coordinates r, c on the board. **/
+	public Square getSquare(int r, int c) {
+		return squares[r][c];
+	}
+
+	public boolean estVide()
+	{
+		if(plateauTuiles != null)
+			return true;
+		return false;
+	}
+
+	
 }

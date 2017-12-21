@@ -568,7 +568,7 @@ public class Joueur {
 	//@param nouveau score
 	public void addScore(int newScore) {
 		// TODO Auto-generated method stub
-		score += newScore;
+		setScore(getScore() + newScore);
 	}
 
 	public void setCurrentPlayer(boolean value) {
