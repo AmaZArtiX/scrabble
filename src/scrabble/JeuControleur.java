@@ -865,6 +865,8 @@ public class JeuControleur extends Jeu {
 	// Fonction de fin de tour de jeu
 	@FXML private void finTourJeu() {
 		
+		System.out.println("Tuiles dispos pour mot "+plateau.getTuilesDisponibles());
+		
 		// On verifie le bon placement des tuiles placees
 		if(Joueurs.get(joueur).verifierMotJoue(plateau)) {
 			
