@@ -34,6 +34,12 @@ public class Tuile {
 		this.img = Lettre.img(_lettre);
 	}
 	
+	public Tuile(char _lettre) {
+		this.lettre = _lettre;
+		this.valeur = Lettre.vlr(_lettre);
+		this.img = Lettre.img(_lettre);
+	}
+	
 	public Tuile(Image _img) {
 		this.lettre = Lettre.ltr(_img);
 		this.valeur = Lettre.vlr(_img);

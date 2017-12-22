@@ -191,6 +191,103 @@ public enum Lettre {
 		// On retourne la valeur recherchee
 		return valeur;
 	}
+	
+	// Fonction de recherche d'une valeur en fonction de la lettre
+		public static int vlr(char lettre) {
+			
+			// On declare la valeur a retourner
+			int valeur = 0;
+			
+			// On cherche la valeur en fonction de la lettre
+			switch (lettre) {
+			case 'A':
+				valeur = A.valeur;
+				break;
+			case 'B':
+				valeur = B.valeur;
+				break;
+			case 'C':
+				valeur = C.valeur;
+				break;
+			case 'D':
+				valeur = D.valeur;
+				break;
+			case 'E':
+				valeur = E.valeur;
+				break;
+			case 'F':
+				valeur = F.valeur;
+				break;
+			case 'G':
+				valeur = G.valeur;
+				break;
+			case 'H':
+				valeur = H.valeur;
+				break;
+			case 'I':
+				valeur = I.valeur;
+				break;
+			case 'J':
+				valeur = J.valeur;
+				break;
+			case 'K':
+				valeur = K.valeur;
+				break;
+			case 'L':
+				valeur = L.valeur;
+				break;
+			case 'M':
+				valeur = M.valeur;
+				break;
+			case 'N':
+				valeur = N.valeur;
+				break;
+			case 'O':
+				valeur = O.valeur;
+				break;
+			case 'P':
+				valeur = P.valeur;
+				break;
+			case 'Q':
+				valeur = Q.valeur;
+				break;
+			case 'R':
+				valeur = R.valeur;
+				break;
+			case 'S':
+				valeur = S.valeur;
+				break;
+			case 'T':
+				valeur = T.valeur;
+				break;
+			case 'U':
+				valeur = U.valeur;
+				break;
+			case 'V':
+				valeur = V.valeur;
+				break;
+			case 'W':
+				valeur = W.valeur;
+				break;
+			case 'X':
+				valeur = X.valeur;
+				break;
+			case 'Y':
+				valeur = Y.valeur;
+				break;
+			case 'Z':
+				valeur = Z.valeur;
+				break;
+			case '*':
+				valeur = JOKER.valeur;
+				break;
+			default:
+				break;
+			}
+			
+			// On retourne la valeur recherchee
+			return valeur;
+		}
 
 	// Fonction de recherche d'une image en fonction de la lettre
 	public static Image img(char lettre) {
@@ -290,10 +387,8 @@ public enum Lettre {
 	}
 	
 	public static boolean imgEgales(Image img1, Image img2) {
-		for (int i = 0; i < img1.getWidth(); i++)
-		{
-		  for (int j = 0; j < img1.getHeight(); j++)
-		  {
+		for (int i = 0; i < img1.getWidth(); i++) {
+		  for (int j = 0; j < img1.getHeight(); j++) {
 			  if (img1.getPixelReader().getArgb(i, j) != img2.getPixelReader().getArgb(i, j)) return false;
 		  }
 		}

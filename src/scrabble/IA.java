@@ -3,6 +3,8 @@ package scrabble;
 
 // Imports
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
 
 /**
   * ***********************************************************************
@@ -53,7 +55,7 @@ public class IA extends Joueur{
 	 * Dico
 	 * @author Mamadou BAH
 	 **/
-	public ArrayList<String> findAnagrams(char[] lettres) {
+	protected ArrayList<String> findAnagrams(char[] lettres) {
 
 		char[] characters = new char[getChevalet().getTaille() + lettres.length]; 
 
@@ -118,9 +120,19 @@ public class IA extends Joueur{
 	
 	
 	// 
-	public void jouerMotIntermediaire(Plateau plateau, Chevalet chevalet) {
+	protected void jouerMotAleatoire(Plateau plateau) {
 		
 		// 
+		Hashtable<ArrayList<Tuile>, int[][]> motsJouables = plateau.motsJouables(plateau.getTuilesDisponibles());
 		
+		// 
+		if(!motsJouables.isEmpty()) {
+			// 
+			int indice = (int) (Math.random()*motsJouables.size());
+
+			// 
+			ArrayList<Tuile> motAJouer = (ArrayList<Tuile>) motsJouables.keySet().toArray()[indice];
+			System.out.println("Tuiles a jouer : " + motAJouer + " aux coordonnees : " + Arrays.deepToString(motsJouables.get(motAJouer)));
+		}
 	}
 }

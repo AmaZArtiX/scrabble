@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Optional;
 import javafx.animation.FadeTransition;
@@ -31,7 +29,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -264,12 +261,12 @@ public class JeuControleur extends Jeu {
 			}
 		}
 		
-		ArrayList<String> motJouables = ((IA) Joueurs.get(1)).findAnagrams(getChars(plateau.getTuilesDisponibles()));
+		/*ArrayList<String> motJouables = ((IA) Joueurs.get(1)).findAnagrams(getChars(plateau.getTuilesDisponibles()));
 
 		System.out.println("Liste des mots jouables :");
 		for (String string : motJouables) {
 			System.out.println(string);
-		}
+		}*/
 	}
 	
 	// Fonction permettant de quitter l'application
@@ -881,13 +878,13 @@ public class JeuControleur extends Jeu {
 			
 			System.out.println("Les tuiles sont bien placees !");
 
-			// On récupère toutes les coordonnees des tuiles qui forment le mot 
+			// On recupere toutes les coordonnees des tuiles qui forment le mot 
 			ArrayList <Coordonnees> listeCoordonnees = Joueurs.get(joueur).getMotJoueComplet(plateau);
-			// On récupere toutes les tuiles qui forment le mot
+			// On recupere toutes les tuiles qui forment le mot
 			ArrayList<Tuile> liste = Joueurs.get(joueur).getTuilesJouees(plateau, listeCoordonnees);
-			// On initialise le bonus scrabble à faux
+			// On initialise le bonus scrabble a faux
 			boolean scrabble = false;
-			// Mot formé
+			// Mot forme
 			String mot = plateau.creerMot(liste);
 
 			// On verifie que le mot joue existe dans le dico
@@ -895,16 +892,16 @@ public class JeuControleur extends Jeu {
 				
 				System.out.println("Le mot existe !");
 
-				// Si le joueur à placer toutes ses tuiles, on lui attribue le bonus scrabble
+				// Si le joueur a placer toutes ses tuiles, on lui attribue le bonus scrabble
 				if(Joueurs.get(joueur).getChevaletTampon().getTaille() == 0)
 					scrabble = true;
 				
-				// On récupère le score du mot joué
+				// On recupere le score du mot joue
 				int score = plateau.calculScoreMot(listeCoordonnees, scrabble);
 				Joueurs.get(joueur).setScore(Joueurs.get(joueur).getScore() + score);
-				// Affichage en console du mot joué et du score obtenu
-				System.out.println("Mot joué : "+mot);
-				System.out.println("Score du mot joué : "+ score);
+				// Affichage en console du mot joue et du score obtenu
+				System.out.println("Mot joue : "+mot);
+				System.out.println("Score du mot joue : "+ score);
 				
 				/************************************/
 				historique.add(new Historique(Joueurs.get(joueur).getNom(), mot, String.valueOf(score)));
@@ -1005,6 +1002,12 @@ public class JeuControleur extends Jeu {
 							raffraichirHistorique();
 							
 							joueur = 0;
+						}
+						
+						// 
+						if(Joueurs.get(joueur).getNom() == "IA") {
+							((IA) Joueurs.get(joueur)).jouerMotAleatoire(plateau);
+							passerTourJeu();
 						}
 
 						// 

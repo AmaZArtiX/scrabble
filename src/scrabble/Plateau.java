@@ -15,7 +15,7 @@ import java.util.Hashtable;
  * Copyright .....: Â© 2017 SIMON BACQUET, RONAN LAMPE ALL RIGHTS RESERVED
  ************************************************************************/
 
-public class Plateau {
+public class Plateau extends Jeu{
 	
 	// Taille (longueur et largeur) du plateau
 	public static final int TAILLE = 15;
@@ -52,6 +52,9 @@ public class Plateau {
 	private Tuile[][] plateauTuiles;
 	// Tableau 2D contenant les tuiles (tampon)
 	private Tuile[][] plateauTuilesTampon;
+	
+	// 
+	private static ArrayList<ArrayList<String>> permutations = new ArrayList<ArrayList<String>>();
 	
 	// Constructeur 
 	Plateau(){
@@ -213,13 +216,16 @@ public class Plateau {
 	 */
 	public Hashtable<Tuile, int[]> getTuilesDisponibles() {
 		
-		//ArrayList<Tuile> liste = new ArrayList<>();
-		Hashtable<Tuile, int[]> posTuiles = null;
+		// On declare 
+		Hashtable<Tuile, int[]> posTuiles = new Hashtable<Tuile, int[]>();
 		
+		// Pour chaque ligne
 		for(int x = 0; x < TAILLE; x++) {
 			
+			// Pour chaque colonne
 			for(int y = 0; y < TAILLE; y++) {
 				
+				// On verifie si une tuile est presente
 				if(plateauTuiles[x][y] != null) {
 					
 					// Recherche d'une tuile voisine, si pas, on sort de la boucle
@@ -235,55 +241,416 @@ public class Plateau {
 			}
 		}
 		
+		// On affiche 
+		System.out.println(posTuiles);
+		
+		// On retourne 
 		return posTuiles;
 	}
-
-	//
-	public int motsJouables(Hashtable<Tuile, int[]> posTuiles) {
-		//Hashtable<, > motsJouables;
+	
+	// Fonction permettant le retour du hashtable contenant tout les mots jouables (et les positions de chaque tuile)
+	public Hashtable<ArrayList<Tuile>, int[][]> motsJouables(Hashtable<Tuile, int[]> posTuiles) {
+		Hashtable<ArrayList<Tuile>, int[][]> motsJouables = new Hashtable<ArrayList<Tuile>, int[][]>();
 		
 		for (Tuile tuile : posTuiles.keySet()) {
-			// 
-			for(int x=posTuiles.get(tuile)[0]; x<TAILLE; x++) {
-
-				// 
-				if(plateauTuiles[x][posTuiles.get(tuile)[1]] != null) {
-
-					
-				}
-			}
 			
-			// 
-			for(int x=posTuiles.get(tuile)[0]; x>0; x--) {
+			// On declare les ArrayLists ligne et colonne (qui contiendront les mots crees avant verification)
+			ArrayList<Tuile> ligne = new ArrayList<Tuile>();
+			ArrayList<Tuile> colonne = new ArrayList<Tuile>();
+			
+			// On initialise la ligne avec la tuile donnee
+			ligne.add(plateauTuiles[posTuiles.get(tuile)[0]][posTuiles.get(tuile)[1]]);
+			
+			// On initialise la colonne avec la tuile donnee
+			colonne.add(plateauTuiles[posTuiles.get(tuile)[0]][posTuiles.get(tuile)[1]]);
+			
+			/////////////////////////////////////////////////////////////////////////////
+			
+			// On parcours toutes les lignes de la colonne (vers le bas)
+			int fc;
+			for(fc=posTuiles.get(tuile)[0]; fc<TAILLE-1; fc++) {
 				
 				// 
-				if(plateauTuiles[x][posTuiles.get(tuile)[1]] != null) {
+				//System.out.println("Fin -> " + fc);
+				
+				// On verifie si 1 case apres, la bordure du plateau n'est pas atteinte
+				if((fc+1) < TAILLE) {
 					
+					// On verifie la presence d'une tuile sur la case suivante
+					if(plateauTuiles[fc+1][posTuiles.get(tuile)[1]] != null) {
+						
+						// On ajoute la tuile suivante a la colonne
+						colonne.add(plateauTuiles[fc+1][posTuiles.get(tuile)[1]]);
+					} else break;
+				} else break;
+			}
+			
+			// On parcours toutes les lignes de la colonne (vers le haut)
+			int dc;
+			for(dc=posTuiles.get(tuile)[0]; dc>0; dc--) {
+				
+				// 
+				//System.out.println("Début -> " + dc);
+				
+				// On verifie si 1 case avant, la bordure du plateau n'est pas atteinte
+				if((dc-1) >= 0) {
 					
+					// On verifie la presence d'une tuile sur la case precedente
+					if(plateauTuiles[dc-1][posTuiles.get(tuile)[1]] != null) {
+						
+						// On ajoute la tuile precedente a la colonne
+						colonne.add(0, plateauTuiles[dc-1][posTuiles.get(tuile)[1]]);
+					} else break;
+				} else break;
+			}
+			
+			// On affiche les indices debut & la fin de la colonne
+			//System.out.println("Colonne : " + posTuiles.get(tuile)[1] + " -> Ligne de début : " + dc + " Ligne de fin : " + fc);
+			
+			// On affiche la colonne (test)
+			//System.out.println("Colonne : " + posTuiles.get(tuile)[1] + " " + colonne);
+			
+			// On declare
+			ArrayList<String> lettresPlateau = new ArrayList<String>();
+			lettresPlateau.addAll(lettresTuiles(colonne));
+			
+			// 
+			System.out.println("Colonne : " + posTuiles.get(tuile)[1] + " -> Lettre(s) plateau : " + lettresPlateau + " -> Ligne de début : " + dc + " | Ligne de fin : " + fc);
+			
+			// On declare
+			ArrayList<String> lettresColonne = new ArrayList<String>();
+			lettresColonne.add(concatArray(lettresPlateau).toLowerCase());
+			lettresColonne.addAll(lettresTuiles(Joueurs.get(joueur).getChevalet().getTuiles()));
+			
+			// 
+			//System.out.println("Colonne : " + posTuiles.get(tuile)[1] + " Lettre(s) : " + lettresColonne);
+
+			// On cree les permutations
+			subsets(lettresColonne, lettresPlateau);
+			
+			// On recupere les permutations
+			ArrayList<ArrayList<String>> mots = new ArrayList<ArrayList<String>>();
+			mots = (ArrayList<ArrayList<String>>) permutations.clone();
+			
+			// 
+			//System.out.println("Liste des permutations : " + mots);
+			
+			// On recupere les mots valides des permutations
+			ArrayList<ArrayList<String>> motsValides = new ArrayList<ArrayList<String>>();
+			motsValides = motsValides(mots);
+			
+			// 
+			//System.out.println("Liste des permutations valides : " + motsValides);
+			
+			// On ajoute les mots jouables dans le hashtable
+			motsJouables(motsJouables, motsValides, 'c', posTuiles.get(tuile)[1], dc, fc);
+			
+			// 
+			//System.out.println("Liste des permutations jouables : " + motsJouables);
+			System.out.println();
+			
+			//
+			lettresColonne = new ArrayList<String>();
+			
+			// 
+			lettresPlateau = new ArrayList<String>();
+			
+			// On reinitialise les permutations
+			permutations = new ArrayList<ArrayList<String>>();
+			
+			// On reinitialise les mots
+			mots = new ArrayList<ArrayList<String>>();
+			
+			// On reinitialise les mots valides
+			motsValides = new ArrayList<ArrayList<String>>();
+			
+			///////////////////////////////////////////////////////////////////////////
+			
+			// On parcours toutes les colonnes de la ligne (vers la droite)
+			int fl;
+			for(fl=posTuiles.get(tuile)[1]; fl<TAILLE-1; fl++) {
+
+				// 
+				//System.out.println("Fin -> " + fl);
+				
+				// On verifie si 1 case apres, la bordure du plateau n'est pas atteinte
+				if((fl+1) < TAILLE) {
+					
+					// On verifie la presence d'une tuile sur la case suivante
+					if(plateauTuiles[posTuiles.get(tuile)[0]][fl+1] != null) {
+						
+						// On ajoute la tuile suivante a la colonne
+						ligne.add(plateauTuiles[posTuiles.get(tuile)[0]][fl+1]);
+					} else break;
+				} else break;
+			}
+			
+			// On parcours toutes les colonnes de la ligne (vers la gauche)
+			int dl;
+			for(dl=posTuiles.get(tuile)[1]; dl>0; dl--) {
+
+				// 
+				//System.out.println("Début -> " + dl);
+				
+				// On verifie si 1 case avant, la bordure du plateau n'est pas atteinte
+				if((dl-1) >= 0) {
+					
+					// On verifie la presence d'une tuile sur la case precedente
+					if(plateauTuiles[posTuiles.get(tuile)[0]][dl-1] != null) {
+						
+						// On ajoute la tuile precedente a la colonne
+						ligne.add(0, plateauTuiles[posTuiles.get(tuile)[0]][dl-1]);
+					} else break;
+				} else break;
+			}
+			
+			// On affiche les indices debut & la fin de la ligne
+			//System.out.println("Ligne : " + posTuiles.get(tuile)[0] + " -> Colonne de début : " + dl + " Colonne de fin : " + fl);
+			
+			// On affiche la ligne (test)
+			//System.out.println("Ligne : " + posTuiles.get(tuile)[0] + " " + ligne);
+			
+			// 
+			lettresPlateau.addAll(lettresTuiles(ligne));
+			
+			// 
+			System.out.println("Ligne : " + posTuiles.get(tuile)[0] + " -> Lettre(s) plateau : " + lettresPlateau + " -> Colonne de début : " + dl + " | Colonne de fin : " + fl);
+			
+			// 
+			ArrayList<String> lettresLigne = new ArrayList<String>();
+			lettresLigne.add(concatArray(lettresPlateau).toLowerCase());
+			lettresLigne.addAll(lettresTuiles(Joueurs.get(joueur).getChevalet().getTuiles()));
+			
+			// 
+			//System.out.println("Ligne : " + posTuiles.get(tuile)[0] + " Lettre(s) : " + lettresLigne);
+			
+			// On cree les permutations
+			subsets(lettresLigne, lettresPlateau);
+			
+			// On recupere les permutations
+			mots = (ArrayList<ArrayList<String>>) permutations.clone();
+			
+			// 
+			//System.out.println("Liste des permutations : " + mots);
+			
+			// On recupere les mots valides des permutations
+			motsValides = motsValides(mots);
+			
+			// 
+			//System.out.println("Liste des permutations valides : " + motsValides);
+			
+			// On ajoute les mots jouables dans le hashtable
+			motsJouables(motsJouables, motsValides, 'l', posTuiles.get(tuile)[0], dl, fl);
+			
+			// 
+			//System.out.println("Liste des permutations jouables : " + motsJouables);
+			System.out.println();
+			
+			// 
+			lettresLigne = new ArrayList<String>();
+
+			// 
+			lettresPlateau = new ArrayList<String>();
+			
+			// On reinitialise les permutations
+			permutations = new ArrayList<ArrayList<String>>();
+			
+			// On reinitialise les mots
+			mots = new ArrayList<ArrayList<String>>();
+			
+			// On reinitialise les mots valides
+			motsValides = new ArrayList<ArrayList<String>>();
+		}
+		
+		System.out.println("Liste des permutations jouables : " + motsJouables);
+		System.out.println();
+		
+		// On retourne le hashtable des mots jouables
+		return motsJouables;
+	}
+	
+	// Procedure d'ajout des mots jouables au hashtable
+	private void motsJouables(Hashtable<ArrayList<Tuile>, int[][]> motsJouables, ArrayList<ArrayList<String>> motsValides, char orientation, int pos, int debut, int fin) {
+		// 
+		for (ArrayList<String> mot : motsValides) {
+			ArrayList<Tuile> tuiles = getTuiles(mot);
+			int[][] coordonnees = new int[tuiles.size()][2];
+			int avant = debut, apres = fin;
+			boolean ap = false, jouable = true;
+			
+			// 
+			for (String element : mot) {
+				String upElement = element.toUpperCase();
+				if (!element.equals(upElement)) {
+					ap = true;
+					element = element.toUpperCase();
+				} else {
+					if (!ap) avant--;
+					else if (ap) apres++;
 				}
 			}
 			
 			// 
-			for(int y=posTuiles.get(tuile)[1]; y<TAILLE; y++) {
-
-				// 
-				if(plateauTuiles[posTuiles.get(tuile)[0]][y] != null) {
-
-					
+			int ind = 0;
+			for (int j = avant; j <= apres; j++) {
+				switch (orientation) {
+				case 'l':
+					coordonnees[ind][0] = pos;
+					coordonnees[ind][1] = j;
+					break;
+				case 'c':
+					coordonnees[ind][0] = j;
+					coordonnees[ind][1] = pos;
+					break;
+				default:
+					break;
+				}
+				ind++;
+			}
+			
+			// Verification de la jouabilite d'un mot
+			for(int i=0; i<tuiles.size(); i++) {
+				if(coordonnees[i][0] >= 0 & coordonnees[i][0] < TAILLE & coordonnees[i][1] >= 0 & coordonnees[i][1] < TAILLE) {
+					if (plateauTuiles[coordonnees[i][0]][coordonnees[i][1]] != null)
+						if (!plateauTuiles[coordonnees[i][0]][coordonnees[i][1]].equals(tuiles.get(i)))
+							jouable = false;
+					if(coordonnees[i][0]+1 < TAILLE)
+						if(orientation == 'l' & plateauTuiles[coordonnees[i][0]+1][coordonnees[i][1]] != null)
+							if (plateauTuiles[coordonnees[i][0]+1][coordonnees[i][1]] instanceof Tuile)
+								jouable = false;
+					if(coordonnees[i][0]-1 >= 0)
+						if(orientation == 'l' & plateauTuiles[coordonnees[i][0]-1][coordonnees[i][1]] != null)
+							if (plateauTuiles[coordonnees[i][0]-1][coordonnees[i][1]] instanceof Tuile)
+								jouable = false;
+					if(coordonnees[i][1]+1 < TAILLE)
+						if(orientation == 'c' & plateauTuiles[coordonnees[i][0]][coordonnees[i][1]+1] != null)
+							if (plateauTuiles[coordonnees[i][0]][coordonnees[i][1]+1] instanceof Tuile)
+								jouable = false;
+					if(coordonnees[i][1]-1 >= 0)
+						if(orientation == 'c' & plateauTuiles[coordonnees[i][0]][coordonnees[i][1]-1] != null)
+							if (plateauTuiles[coordonnees[i][0]][coordonnees[i][1]-1] instanceof Tuile)
+								jouable = false;
 				}
 			}
 			
 			// 
-			for(int y=posTuiles.get(tuile)[1]; y>0; y--) {
-
-				// 
-				if(plateauTuiles[posTuiles.get(tuile)[0]][y] != null) {
-
-					
+			if(jouable)
+				if(motsJouables.get(tuiles) != null) {
+					if(!motsJouables.get(tuiles).equals(coordonnees))
+						motsJouables.put(tuiles, coordonnees);
+				} else {
+					motsJouables.put(tuiles, coordonnees);
+				}
+		}
+	}
+	
+	// Fonction de recuperation des tuiles d'une permutation
+	private ArrayList<Tuile> getTuiles(ArrayList<String> mot){
+		ArrayList<Tuile> tuiles = new ArrayList<Tuile>();
+		for (String partie : mot) {
+			if(partie.length() == 1) {
+				tuiles.add(new Tuile(partie.toUpperCase().charAt(0)));
+			} else if(partie.length() > 1) {
+				for(int i=0; i<partie.length(); i++) {
+					tuiles.add(new Tuile(partie.toUpperCase().charAt(i)));
 				}
 			}
 		}
-		return -1;
+		return tuiles;
+	}
+	
+	// Fonction de retour des mots valides
+	private ArrayList<ArrayList<String>> motsValides(ArrayList<ArrayList<String>> motsAValides) {
+		ArrayList<ArrayList<String>> motsValides = new ArrayList<ArrayList<String>>();
+		for (ArrayList<String> lettres : motsAValides) {
+			// Position eventuelle du tri
+			String mot = concatArray(lettres);
+			if(dictionnaire.existe(mot.toUpperCase()))
+				motsValides.add(lettres);
+		}
+		return motsValides;
+	}
+	
+	// Fonction de retour des lettres de tuiles
+	private ArrayList<String> lettresTuiles(ArrayList<Tuile> tuiles){
+		ArrayList<String> lettres = new ArrayList<String>();
+		for (Tuile tuile : tuiles) {
+			lettres.add(String.valueOf(tuile.getLettre()));
+		}
+		return lettres;
+	}
+	
+	// print n! permutation of the elements of array a (not in order)    
+    private static void perms(ArrayList<String> str) {
+    	int n = str.size();
+    	perms(str, n);
+    }
+    
+    // 
+	private static void perms(ArrayList<String> str, int n) {
+    	if (n == 1) {
+			permutations.add((ArrayList<String>) str.clone());
+		}
+    	for(int i=0; i<n; i++) {
+    		perm(str, i, n-1);
+    		perms(str, n-1);
+    		perm(str, i, n-1);
+    	}
+    }
+    
+    // swap the characters at indices i and j
+    private static void perm(ArrayList<String> str, int i, int j) {
+    	String s = str.get(i);
+    	str.set(i, str.get(j));
+    	str.set(j, s);
+    }
+    
+    // Fonction de recherche des sous-listes
+    private static void subsets(ArrayList<String> perms, ArrayList<String> lettresPlateau) {
+    	for(int i=2; i<perms.size(); i++) {
+    		boolean[] ajoute = new boolean[perms.size()];
+    		subsets(perms, ajoute, 0, i, concatArray(lettresPlateau).toLowerCase());
+    	}
+    }
+    
+    //Fonction d'aide a la recherche des sous-listes
+    private static void subsets(ArrayList<String> perms, boolean[] ajoute, int debut, int reste, String plateau) {
+    	if(reste == 0) {
+    		ArrayList<String> ssliste = new ArrayList<String>();
+    		for(int i=0; i<ajoute.length; i++) {
+    			if(ajoute[i]) {
+    				ssliste.add(perms.get(i));
+    			}
+    		}
+    		
+    		// 
+    		boolean trouve = false;			
+    		for (String element : ssliste) {
+    			
+    			// 
+				if (element.equals(plateau)) {
+					trouve = true;
+				}
+			}
+    		if(trouve) perms(ssliste);
+    	} else {
+    		for(int i=debut; i<perms.size(); i++) {
+    			if(!ajoute[i]) {
+    				ajoute[i] = true;
+    				subsets(perms, ajoute, i+1, reste-1, plateau);
+    				ajoute[i] = false;
+    			}
+    		}
+    	}
+    }
+    
+	// 
+	private static String concatArray(ArrayList<String> lettres) {
+		String mot = "";
+		for (String lettre : lettres) {
+			mot += lettre;
+		}
+		return mot;
 	}
 	
 	/**
