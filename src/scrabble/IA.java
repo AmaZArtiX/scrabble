@@ -1,7 +1,12 @@
 // Package
 package scrabble;
 
- /**
+// Imports
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
+
+/**
   * ***********************************************************************
   * Nom ...........: IA.java
   * Description ...: Intelligence artificielle possï¿½dant 1 niveau de difficultï¿½
@@ -31,5 +36,103 @@ public class IA extends Joueur{
 	//Placer lettre a lettre ou echanger lettre
 	
 	
+	/**
+	 * Vérifie si un mot contient un caractère spécifique et renvoie l'index de
+	 *  la première instance. Sinon renvoie -1.
+	 *  @author Mamadou BAH
+	 **/
+	private int contains(char[] word, char lettre) {
+		for (int i = 0; i < word.length; i++) {
+			if (lettre == word[i]) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Trouve tous les anagrammes des lettres du chevalet et un sur le plateau dans le
+	 * Dico
+	 * @author Mamadou BAH
+	 **/
+	protected ArrayList<String> findAnagrams(char[] lettres) {
+
+		char[] characters = new char[getChevalet().getTaille() + lettres.length]; 
+
+		ArrayList<String> anagrams = new ArrayList<String>();
+
+		/* Remplit les caractères avec les lettres du Chevalet */
+		for (int i = 0; i < getChevalet().getTaille(); i++) {
+			characters[i] = getChevalet().getTuile(i).getLettre();
+		}
+		
+		if (lettres.length > 0) {
+			for(int i = 0; i < lettres.length; i++) {
+				characters[getChevalet().getTaille() + i] = lettres[i];
+			}
+		}
+		
+		System.out.println("Liste des caracteres :");
+		System.out.println(characters);
+		System.out.println("");
+		
+		/* Pour chaque mot du dictionnaire */
+		for (int i = 0; i < Jeu.dictionnaire.getTaille(); i++) {
+
+			char[] word = Jeu.dictionnaire.getMot(i).toCharArray();
+			char[] temp = word.clone();
+			
+			// 
+			if(characters.length >= word.length) {
+
+				/* Pour chaque caractère en mot */
+				for (int j = 0; j < characters.length; j++) {
+					if (contains(temp, characters[j]) != -1) {
+						temp[contains(temp, characters[j])] = '.';
+					}
+				}
+				
+				// 
+				if (motFaisable(temp)) {
+					String newWord = new String(word);
+					anagrams.add(newWord);
+				}
+			}
+		}
+		
+		System.out.println("Nombre de mots jouables :");
+		System.out.println(anagrams.size());
+		System.out.println("");
+		
+		return anagrams;
+	}
 	
+	// 
+	private boolean motFaisable(char[] mot) {
+		for(int i=0; i < mot.length; i++) {
+			if(mot[i] != '.') {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	// 
+	protected void jouerMotAleatoire(Plateau plateau) {
+		
+		// 
+		Hashtable<ArrayList<Tuile>, int[][]> motsJouables = plateau.motsJouables(plateau.getTuilesDisponibles());
+		
+		// 
+		if(!motsJouables.isEmpty()) {
+			// 
+			int indice = (int) (Math.random()*motsJouables.size());
+
+			// 
+			ArrayList<Tuile> motAJouer = (ArrayList<Tuile>) motsJouables.keySet().toArray()[indice];
+			System.out.println("Tuiles a jouer : " + motAJouer + " aux coordonnees : " + Arrays.deepToString(motsJouables.get(motAJouer)));
+		}
+	}
 }

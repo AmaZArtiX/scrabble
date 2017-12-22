@@ -1,9 +1,8 @@
 // Package
 package scrabble;
 
+//Import(s)
 import java.util.ArrayList;
-
-// Import(s)
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
